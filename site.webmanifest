@@ -1,0 +1,15 @@
+{
+  "name": "fabius — scout wide · strike narrow",
+  "short_name": "fabius",
+  "description": "One super-skill that equips any LLM agent end-to-end under a single Fabian stance: scout wide, strike narrow.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any", "purpose": "any" },
+    { "src": "/assets/icon-192.png", "type": "image/png", "sizes": "192x192", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "type": "image/png", "sizes": "512x512", "purpose": "any" }
+  ]
+}
