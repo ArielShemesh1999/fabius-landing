@@ -144,18 +144,13 @@ img{display:block;max-width:100%}
 .walker{position:absolute;top:var(--lane,40%);left:0;width:var(--size,60px);color:var(--lav);opacity:var(--op,.4);
   --seam:var(--canvas);animation:cross var(--dur,28s) linear var(--delay,0s) infinite}
 .walker.rtl{animation-direction:reverse}
-.walker.no-legs .lg{animation:none}
-.walker-bob{animation:bob var(--bd,2s) ease-in-out infinite;transform-origin:center}
+/* gait = a tiny bob + sway on the WHOLE beetle (rigid transform) — never distorts the body */
+.walker-bob{animation:bob var(--bd,2s) ease-in-out infinite;transform-origin:center;will-change:transform}
 .wb{width:100%;height:auto;display:block;rotate:90deg}
 .walker.rtl .wb{rotate:-90deg}
-.wb .lg{transform-box:view-box;transform-origin:60px 92px}
-.wb .lg-a{animation:legA var(--ld,.72s) ease-in-out infinite}
-.wb .lg-b{animation:legB var(--ld,.72s) ease-in-out infinite}
 @keyframes cross{from{transform:translateX(-16vw)}to{transform:translateX(116vw)}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes legA{0%,100%{transform:rotate(-5.5deg)}50%{transform:rotate(5.5deg)}}
-@keyframes legB{0%,100%{transform:rotate(5.5deg)}50%{transform:rotate(-5.5deg)}}
-@media (prefers-reduced-motion:reduce){.walker{animation:none;opacity:calc(var(--op,.4) * .8)}.walker-bob,.wb .lg{animation:none}}
+@keyframes bob{0%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}100%{transform:translateY(0) rotate(-1deg)}}
+@media (prefers-reduced-motion:reduce){.walker{animation:none;opacity:calc(var(--op,.4) * .8)}.walker-bob{animation:none}}
 
 /* ── trust strip ─────────────────────────────────────────── */
 .strip{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);background:var(--canvas-alt)}
@@ -259,7 +254,12 @@ img{display:block;max-width:100%}
 .c-axis{fill:var(--faint);font-size:11px}
 .c-xlab{fill:var(--muted);font-size:12.5px}
 .c-base{fill:var(--chart-base)}.c-ctl{fill:var(--lav)}.c-fab{fill:var(--primary)}
-.c-val{fill:var(--ink);font-size:13.5px;font-weight:600;font-family:var(--sans)}
+.c-val{fill:var(--ink);font-size:13.5px;font-weight:700;font-family:var(--sans)}
+.c-val-sm{fill:var(--faint);font-size:11.5px;font-weight:540;font-family:var(--sans)}
+.c-region{fill:var(--faint);font-size:11px;font-style:italic;letter-spacing:.02em}
+.c-range{stroke:var(--lav);stroke-width:1.5}
+.c-range-lab{fill:var(--primary-ink);font-size:11px;font-weight:600;font-family:var(--sans)}
+.c-knee-halo{fill:var(--primary);opacity:.16}
 .bench-chart rect.c-base,.bench-chart rect.c-ctl,.bench-chart rect.c-fab{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s var(--ease)}
 .bench-figure.in .bench-chart rect{transform:scaleY(1)}
 .c-shade{fill:var(--tint);opacity:.6}

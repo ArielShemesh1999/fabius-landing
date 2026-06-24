@@ -100,34 +100,41 @@
     stage.appendChild(frag);
   };
   const small = matchMedia('(max-width:640px)').matches;
-  // a dense, fast swarm of mostly-small beetles — the scale spreading & moving quickly,
-  // with a couple of larger anchors for depth
+  // two-tier swarm: a few LARGE + SLOW anchors (graceful depth) and MANY tiny + very fast ones
   const heroWalk = [
-    { lane: 15, size: 70,  dur: 12,  delay: -3,  op: .42, dir: 1,  bob: 1.0, leg: .38, color: '#9b6bff' },
-    { lane: 72, size: 56,  dur: 10,  delay: -5,  op: .34, dir: -1, bob: .9,  leg: .34 },
-    { lane: 40, size: 30,  dur: 6,   delay: -2,  op: .26, dir: 1,  bob: .62 },
-    { lane: 84, size: 26,  dur: 5,   delay: -4,  op: .24, dir: -1, bob: .55 },
-    { lane: 8,  size: 24,  dur: 6.5, delay: -1,  op: .22, dir: 1,  bob: .6 },
-    { lane: 56, size: 22,  dur: 4.5, delay: -3,  op: .2,  dir: -1, bob: .5 },
-    { lane: 28, size: 20,  dur: 4,   delay: -2,  op: .2,  dir: 1,  bob: .48 },
-    { lane: 64, size: 34,  dur: 7.5, delay: -6,  op: .26, dir: 1,  bob: .7 },
-    { lane: 48, size: 18,  dur: 3.6, delay: -1,  op: .18, dir: -1, bob: .44 },
-    { lane: 90, size: 22,  dur: 5,   delay: -5,  op: .2,  dir: 1,  bob: .52 },
-    { lane: 34, size: 26,  dur: 5.5, delay: -4,  op: .22, dir: -1, bob: .56 },
-    { lane: 78, size: 18,  dur: 3.4, delay: -2,  op: .18, dir: -1, bob: .42 },
-    { lane: 20, size: 30,  dur: 6,   delay: -7,  op: .24, dir: 1,  bob: .64 },
+    // large, slow anchors
+    { lane: 16, size: 102, dur: 32, delay: -5,  op: .46, dir: 1,  bob: 1.9, leg: .74, color: '#9b6bff' },
+    { lane: 70, size: 90,  dur: 36, delay: -16, op: .4,  dir: -1, bob: 2.1, leg: .82 },
+    { lane: 44, size: 56,  dur: 24, delay: -9,  op: .3,  dir: 1,  bob: 1.6, leg: .64 },
+    // many small, very fast
+    { lane: 8,  size: 22, dur: 4,   delay: -1, op: .24, dir: 1,  bob: .5 },
+    { lane: 30, size: 18, dur: 3,   delay: -2, op: .2,  dir: -1, bob: .44 },
+    { lane: 52, size: 20, dur: 3.4, delay: -1, op: .22, dir: 1,  bob: .46 },
+    { lane: 84, size: 16, dur: 2.6, delay: -2, op: .18, dir: -1, bob: .4 },
+    { lane: 38, size: 24, dur: 4.4, delay: -3, op: .24, dir: 1,  bob: .5 },
+    { lane: 62, size: 14, dur: 2.4, delay: -1, op: .16, dir: -1, bob: .38 },
+    { lane: 22, size: 18, dur: 3.2, delay: -2, op: .2,  dir: 1,  bob: .44 },
+    { lane: 76, size: 20, dur: 3.6, delay: -4, op: .2,  dir: 1,  bob: .46 },
+    { lane: 48, size: 16, dur: 2.8, delay: -1, op: .18, dir: -1, bob: .4 },
+    { lane: 90, size: 18, dur: 3,   delay: -3, op: .2,  dir: -1, bob: .42 },
+    { lane: 14, size: 14, dur: 2.5, delay: -2, op: .16, dir: 1,  bob: .38 },
+    { lane: 58, size: 22, dur: 4,   delay: -1, op: .22, dir: 1,  bob: .48 },
+    { lane: 34, size: 16, dur: 2.7, delay: -4, op: .18, dir: -1, bob: .4 },
+    { lane: 80, size: 14, dur: 2.3, delay: -1, op: .16, dir: 1,  bob: .36 },
   ];
-  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 7) : heroWalk);
-  // dark "core" band — same fast swarm, brighter on black
+  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 9) : heroWalk);
+  // dark "core" band — same two-tier idea, brighter on black
   buildWalkers($('#coreWalk'), [
-    { lane: 20, size: 62, dur: 11,  delay: -4, op: .85, dir: 1,  bob: 1.0, leg: .36, color: '#b491ff' },
-    { lane: 70, size: 40, dur: 8,   delay: -6, op: .72, dir: -1, bob: .8,  color: '#8a5cff' },
-    { lane: 44, size: 26, dur: 5,   delay: -2, op: .62, dir: 1,  bob: .58, color: '#c9b6ff' },
-    { lane: 86, size: 30, dur: 6,   delay: -5, op: .6,  dir: -1, bob: .6,  color: '#9b6bff' },
-    { lane: 32, size: 20, dur: 3.8, delay: -1, op: .5,  dir: 1,  bob: .46, color: '#b491ff' },
-    { lane: 58, size: 22, dur: 4.4, delay: -3, op: .52, dir: -1, bob: .5,  color: '#c9b6ff' },
-    { lane: 78, size: 18, dur: 3.4, delay: -2, op: .46, dir: 1,  bob: .42, color: '#9b6bff' },
-  ].filter((_, i) => small ? i < 4 : true));
+    { lane: 20, size: 84, dur: 28, delay: -6, op: .82, dir: 1,  bob: 1.8, leg: .72, color: '#b491ff' },
+    { lane: 68, size: 52, dur: 21, delay: -11, op: .66, dir: -1, bob: 1.5, leg: .6,  color: '#8a5cff' },
+    { lane: 44, size: 20, dur: 3.6, delay: -2, op: .6,  dir: 1,  bob: .46, color: '#c9b6ff' },
+    { lane: 86, size: 16, dur: 2.8, delay: -1, op: .55, dir: -1, bob: .4,  color: '#9b6bff' },
+    { lane: 34, size: 18, dur: 3,   delay: -3, op: .55, dir: 1,  bob: .42, color: '#b491ff' },
+    { lane: 58, size: 14, dur: 2.4, delay: -1, op: .5,  dir: -1, bob: .38, color: '#c9b6ff' },
+    { lane: 78, size: 18, dur: 3.2, delay: -2, op: .5,  dir: 1,  bob: .44, color: '#9b6bff' },
+    { lane: 14, size: 16, dur: 2.6, delay: -1, op: .52, dir: -1, bob: .4,  color: '#b491ff' },
+    { lane: 50, size: 14, dur: 2.3, delay: -3, op: .48, dir: 1,  bob: .36, color: '#c9b6ff' },
+  ].filter((_, i) => small ? i < 5 : true));
 
   /* ── active section in nav ──────────────────────────────── */
   const links = $$('.nav-links a');
