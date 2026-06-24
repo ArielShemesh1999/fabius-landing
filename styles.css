@@ -144,13 +144,20 @@ img{display:block;max-width:100%}
 .walker{position:absolute;top:var(--lane,40%);left:0;width:var(--size,60px);color:var(--lav);opacity:var(--op,.4);
   --seam:var(--canvas);animation:cross var(--dur,28s) linear var(--delay,0s) infinite}
 .walker.rtl{animation-direction:reverse}
-/* gait = a tiny bob + sway on the WHOLE beetle (rigid transform) — never distorts the body */
-.walker-bob{animation:bob var(--bd,2s) ease-in-out infinite;transform-origin:center;will-change:transform}
+.walker-bob{animation:bob var(--bd,2s) ease-in-out infinite;transform-origin:center}
 .wb{width:100%;height:auto;display:block;rotate:90deg}
 .walker.rtl .wb{rotate:-90deg}
+/* each leg hinges at its own hip (--ox/--oy) so the foot swings but the body join never detaches;
+   tripod gait = la / lb swing in opposite phase, smoothly coordinated */
+.wb .leg{transform-box:view-box;transform-origin:var(--ox,60px) var(--oy,92px)}
+.wb .la{animation:stepA var(--ld,.6s) ease-in-out infinite}
+.wb .lb{animation:stepB var(--ld,.6s) ease-in-out infinite}
+.walker.no-legs .leg{animation:none}
 @keyframes cross{from{transform:translateX(-16vw)}to{transform:translateX(116vw)}}
-@keyframes bob{0%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}100%{transform:translateY(0) rotate(-1deg)}}
-@media (prefers-reduced-motion:reduce){.walker{animation:none;opacity:calc(var(--op,.4) * .8)}.walker-bob{animation:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3.5px)}}
+@keyframes stepA{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@keyframes stepB{0%,100%{transform:rotate(8deg)}50%{transform:rotate(-8deg)}}
+@media (prefers-reduced-motion:reduce){.walker{animation:none;opacity:calc(var(--op,.4) * .8)}.walker-bob,.wb .leg{animation:none}}
 
 /* ── trust strip ─────────────────────────────────────────── */
 .strip{border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);background:var(--canvas-alt)}

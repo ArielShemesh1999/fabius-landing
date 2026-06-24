@@ -74,10 +74,14 @@
 
   /* ── living walkers (sakana-style beetles crossing the field) ── */
   const WB = `<svg class="wb" viewBox="0 0 120 150" fill="none">
-    <g class="lg lg-a" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M40 50 L17 41 L7 47"/><path d="M84 73 L110 73 L118 86"/><path d="M39 99 L15 113 L8 128"/></g>
-    <g class="lg lg-b" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M80 50 L103 41 L113 47"/><path d="M36 73 L10 73 L2 86"/><path d="M81 99 L105 113 L112 128"/></g>
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path class="leg la" style="--ox:40px;--oy:50px" d="M40 50 L17 41 L7 47"/>
+      <path class="leg lb" style="--ox:80px;--oy:50px" d="M80 50 L103 41 L113 47"/>
+      <path class="leg lb" style="--ox:36px;--oy:73px" d="M36 73 L10 73 L2 86"/>
+      <path class="leg la" style="--ox:84px;--oy:73px" d="M84 73 L110 73 L118 86"/>
+      <path class="leg la" style="--ox:39px;--oy:99px" d="M39 99 L15 113 L8 128"/>
+      <path class="leg lb" style="--ox:81px;--oy:99px" d="M81 99 L105 113 L112 128"/>
+    </g>
     <g stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M53 17 C46 8 41 5 36 3"/><path d="M67 17 C74 8 79 5 84 3"/></g>
     <ellipse cx="60" cy="20" rx="12" ry="11" fill="currentColor"/>
     <path d="M46 30 Q60 27 74 30 L82 50 Q60 46 38 50 Z" fill="currentColor"/>
