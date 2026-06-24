@@ -73,6 +73,26 @@
     }, { threshold: 0.4 }).observe($('#ideaEmblem'));
   }
 
+  /* ── explainer video: play-in-view + click toggle ──────── */
+  const dVideo = $('#demoVideo'), dFrame = $('#demoFrame'), dToggle = $('#demoToggle');
+  if (dVideo && dFrame) {
+    const setPlay = (play) => {
+      if (play) { dVideo.play().then(() => dFrame.classList.add('playing')).catch(() => {}); }
+      else { dVideo.pause(); }
+      if (dToggle) dToggle.setAttribute('aria-label', play ? 'Pause the explainer' : 'Play the explainer');
+    };
+    const toggle = () => setPlay(dVideo.paused);
+    dToggle && dToggle.addEventListener('click', toggle);
+    dVideo.addEventListener('click', toggle);
+    dVideo.addEventListener('play', () => dFrame.classList.add('playing'));
+    dVideo.addEventListener('pause', () => dFrame.classList.remove('playing'));
+    if (!reduce && 'IntersectionObserver' in window) {
+      new IntersectionObserver((ents) => {
+        ents.forEach((en) => setPlay(en.isIntersecting && en.intersectionRatio >= 0.4));
+      }, { threshold: [0, 0.4, 0.75] }).observe(dFrame);
+    }
+  }
+
   /* ── living walkers (sakana-style beetles crossing the field) ── */
   const WB = `<svg class="wb" viewBox="0 0 120 150" fill="none">
     <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
