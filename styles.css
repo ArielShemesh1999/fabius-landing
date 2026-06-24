@@ -220,10 +220,7 @@ img{display:block;max-width:100%}
 .cmp-row span{font-size:15.5px;color:var(--muted);line-height:1.45}
 .cmp-row .cmp-f{color:var(--ink);font-weight:480;position:relative;padding-left:26px}
 .cmp-row:not(.cmp-h) .cmp-f::before{content:"";position:absolute;left:0;top:7px;width:16px;height:16px;border-radius:50%;
-  background:var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b27d6' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat}
-/* gentle colour rhythm down the column — teal + amber alongside the purple */
-.cmp-row:not(.cmp-h):nth-child(3n) .cmp-f::before{background:var(--c-teal-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a6f65' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat}
-.cmp-row:not(.cmp-h):nth-child(3n+1) .cmp-f::before{background:var(--c-amber-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239a5a10' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat}
+  background:var(--c-teal-wash) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230a6f65' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat}
 
 /* ── architecture ────────────────────────────────────────── */
 .arch{padding:var(--sec) 0}
@@ -389,9 +386,7 @@ img{display:block;max-width:100%}
 .research-pts li{position:relative;padding-left:26px;font-size:15.5px;color:var(--muted);line-height:1.55}
 .research-pts li b{color:var(--ink);font-weight:560}
 .research-pts li code{font-family:var(--mono);font-size:.82em;background:#fff;border:1px solid var(--hairline-2);padding:1px 6px;border-radius:6px;color:var(--primary-ink)}
-.research-pts li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:13px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--tint)}
-.research-pts li:nth-child(2)::before{background:var(--c-teal);box-shadow:0 0 0 4px var(--c-teal-wash)}
-.research-pts li:nth-child(3)::before{background:var(--c-amber);box-shadow:0 0 0 4px var(--c-amber-wash)}
+.research-pts li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:13px;border-radius:50%;background:var(--c-teal);box-shadow:0 0 0 4px var(--c-teal-wash)}
 .research-actions{display:flex;gap:12px;flex-wrap:wrap}
 
 /* ── the decision (math) ─────────────────────────────────── */
