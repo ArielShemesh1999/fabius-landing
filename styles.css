@@ -28,6 +28,11 @@
   --tint:#f3eeff;              /* accent wash */
   --tint-2:#ece3ff;
   --on-primary:#ffffff;
+  /* data-viz secondary palette — cool + warm, used only in charts (AA-checked) */
+  --c-teal:#14a596;            /* cool secondary — control arm + family-lift bars (graphical 3.0+) */
+  --c-teal-ink:#0a6f65;        /* teal text/labels (AA) */
+  --c-amber:#cf7a1a;           /* warm accent — gain arrows + the knee/threshold (graphical 3.0+) */
+  --c-amber-ink:#9a5a10;       /* amber text/labels (AA) */
 
   /* type */
   --sans:"Inter var","Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -311,38 +316,38 @@ img{display:block;max-width:100%}
 .c-grid{stroke:var(--hairline);stroke-width:1}
 .c-axis{fill:var(--faint);font-size:11px}
 .c-xlab{fill:var(--muted);font-size:12.5px}
-.c-base{fill:var(--chart-base)}.c-ctl{fill:var(--lav)}.c-fab{fill:var(--primary)}
+.c-base{fill:var(--chart-base)}.c-ctl{fill:var(--c-teal)}.c-fab{fill:var(--primary)}
 .c-val{fill:var(--ink);font-size:13.5px;font-weight:700;font-family:var(--sans)}
 .c-val-sm{fill:var(--faint);font-size:11.5px;font-weight:540;font-family:var(--sans)}
 .c-region{fill:var(--faint);font-size:11px;font-style:italic;letter-spacing:.02em}
 .c-range{stroke:var(--lav);stroke-width:1.5}
 .c-range-lab{fill:var(--primary-ink);font-size:11px;font-weight:600;font-family:var(--sans)}
-.c-knee-halo{fill:var(--primary);opacity:.16}
+.c-knee-halo{fill:var(--c-amber);opacity:.18}
 .bench-chart rect.c-base,.bench-chart rect.c-ctl,.bench-chart rect.c-fab{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform .9s var(--ease)}
 .bench-figure.in .bench-chart rect{transform:scaleY(1)}
 .c-shade{fill:var(--tint);opacity:.6}
 .c-area{fill:var(--tint);opacity:.7}
 .c-line{fill:none;stroke:var(--primary);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:820;stroke-dashoffset:820;transition:stroke-dashoffset 1.5s var(--ease)}
 .ladder-fig.in .c-line{stroke-dashoffset:0}
-.c-knee{stroke:var(--primary);stroke-width:1.5;stroke-dasharray:4 5;opacity:.55}
-.c-knee-dot{fill:#fff;stroke:var(--primary);stroke-width:3}
-.c-knee-lab{fill:var(--primary-ink);font-size:12px;font-weight:600;font-family:var(--sans)}
+.c-knee{stroke:var(--c-amber);stroke-width:1.5;stroke-dasharray:4 5;opacity:.6}
+.c-knee-dot{fill:#fff;stroke:var(--c-amber);stroke-width:3}
+.c-knee-lab{fill:var(--c-amber-ink);font-size:12px;font-weight:600;font-family:var(--sans)}
 .c-pt-fab{fill:var(--primary)}.c-pt{fill:var(--faint)}
 .c-axtitle{fill:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
 /* benchmark gain arrows */
-.c-gain{stroke:var(--primary);stroke-width:1.6}
-.c-gain-h{fill:none;stroke:var(--primary);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.c-gain-l{fill:var(--primary-ink);font-size:11px;font-weight:700;font-family:var(--sans)}
+.c-gain{stroke:var(--c-amber);stroke-width:1.6}
+.c-gain-h{fill:none;stroke:var(--c-amber);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.c-gain-l{fill:var(--c-amber-ink);font-size:11px;font-weight:700;font-family:var(--sans)}
 /* cross-family bars */
 .c-famtrack{fill:var(--canvas-alt)}
-.c-fam{fill:var(--primary);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--ease)}
+.c-fam{fill:var(--c-teal);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--ease)}
 .fam-figure.in .c-fam{transform:scaleX(1)}
 .c-famlab{fill:var(--ink);font-size:13px;font-weight:600;font-family:var(--mono)}
-.c-famval{fill:var(--primary-ink);font-size:12.5px;font-weight:700;font-family:var(--sans)}
+.c-famval{fill:var(--c-teal-ink);font-size:12.5px;font-weight:700;font-family:var(--sans)}
 /* value-gate */
-.c-engage{fill:var(--tint);opacity:.7}
+.c-engage{fill:var(--c-teal);opacity:.1}
 .c-zero{stroke:var(--hairline-2);stroke-width:1.5}
-.c-region2{fill:var(--primary-ink);font-size:12px;font-weight:600;font-family:var(--sans);letter-spacing:.03em}
+.c-region2{fill:var(--c-teal-ink);font-size:12px;font-weight:600;font-family:var(--sans);letter-spacing:.03em}
 .gate-chart .c-line{stroke-dasharray:none;stroke-dashoffset:0}
 .fig-title{font-size:clamp(17px,2.1vw,21px);font-weight:600;letter-spacing:-0.02em;color:var(--ink);margin-bottom:22px;line-height:1.3}
 .fig-note{font-size:12.5px;color:var(--faint);font-style:italic;margin-top:14px;max-width:460px}
@@ -350,7 +355,7 @@ img{display:block;max-width:100%}
 .chart-legend{display:flex;gap:20px;justify-content:flex-start;flex-wrap:wrap;margin-top:16px;font-size:13px;color:var(--muted);font-family:var(--sans)}
 .chart-legend span{display:inline-flex;align-items:center;gap:7px}
 .chart-legend span::before{content:"";width:11px;height:11px;border-radius:3px}
-.lg-base::before{background:var(--chart-base)}.lg-ctl::before{background:var(--lav)}.lg-fab::before{background:var(--primary)}
+.lg-base::before{background:var(--chart-base)}.lg-ctl::before{background:var(--c-teal)}.lg-fab::before{background:var(--primary)}
 
 /* ── core band (dark signature) ──────────────────────────── */
 .core{position:relative;background:var(--canvas-ink);color:#fff;padding:clamp(96px,13vw,156px) 0;overflow:hidden;isolation:isolate;text-align:center}
