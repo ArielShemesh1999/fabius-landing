@@ -312,6 +312,21 @@ img{display:block;max-width:100%}
 .c-knee-lab{fill:var(--primary-ink);font-size:12px;font-weight:600;font-family:var(--sans)}
 .c-pt-fab{fill:var(--primary)}.c-pt{fill:var(--faint)}
 .c-axtitle{fill:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+/* benchmark gain arrows */
+.c-gain{stroke:var(--primary);stroke-width:1.6}
+.c-gain-h{fill:none;stroke:var(--primary);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.c-gain-l{fill:var(--primary-ink);font-size:11px;font-weight:700;font-family:var(--sans)}
+/* cross-family bars */
+.c-famtrack{fill:var(--canvas-alt)}
+.c-fam{fill:var(--primary);transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform .9s var(--ease)}
+.fam-figure.in .c-fam{transform:scaleX(1)}
+.c-famlab{fill:var(--ink);font-size:13px;font-weight:600;font-family:var(--mono)}
+.c-famval{fill:var(--primary-ink);font-size:12.5px;font-weight:700;font-family:var(--sans)}
+/* value-gate */
+.c-engage{fill:var(--tint);opacity:.7}
+.c-zero{stroke:var(--hairline-2);stroke-width:1.5}
+.c-region2{fill:var(--primary-ink);font-size:12px;font-weight:600;font-family:var(--sans);letter-spacing:.03em}
+.gate-chart .c-line{stroke-dasharray:none;stroke-dashoffset:0}
 .fig-title{font-size:clamp(17px,2.1vw,21px);font-weight:600;letter-spacing:-0.02em;color:var(--ink);margin-bottom:22px;line-height:1.3}
 .fig-note{font-size:12.5px;color:var(--faint);font-style:italic;margin-top:14px;max-width:460px}
 .bench-figure,.ladder-fig{margin:0;background:#fff;border:1px solid var(--hairline-2);border-radius:var(--r-l);padding:clamp(22px,3vw,34px);box-shadow:var(--shadow-sm)}
@@ -354,6 +369,42 @@ img{display:block;max-width:100%}
 .research-pts li code{font-family:var(--mono);font-size:.82em;background:#fff;border:1px solid var(--hairline-2);padding:1px 6px;border-radius:6px;color:var(--primary-ink)}
 .research-pts li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:13px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 4px var(--tint)}
 .research-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ── the decision (math) ─────────────────────────────────── */
+.math{padding:var(--sec) 0}
+.formula-band{text-align:center;margin-bottom:30px;padding:clamp(30px,5vw,50px) 24px;
+  background:radial-gradient(120% 110% at 50% 0%,var(--tint) 0%,var(--canvas-alt) 72%);border:1px solid var(--hairline);border-radius:var(--r-l)}
+.formula{font-size:clamp(21px,4.3vw,40px);letter-spacing:-0.01em;color:var(--ink);font-weight:480;line-height:1.4}
+.formula .bb{font-weight:560}
+.formula .m-op{color:var(--muted);margin:0 .1em}
+.formula .t-skip{color:var(--muted)}
+.formula .t-act{color:var(--primary)}
+.formula i{font-style:italic}
+.formula .m-then{color:var(--primary-ink);font-weight:600;white-space:nowrap}
+.formula-key{display:flex;gap:8px 30px;justify-content:center;flex-wrap:wrap;margin-top:24px;font-size:13px;color:var(--muted)}
+.formula-key span{display:inline-flex;align-items:baseline;gap:7px}
+.formula-key b{color:var(--ink);font-weight:600;font-family:var(--mono);font-size:.88em}
+.math-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:stretch}
+.gate-fig,.math-work{margin:0;background:#fff;border:1px solid var(--hairline-2);border-radius:var(--r-l);padding:clamp(22px,3vw,30px);box-shadow:var(--shadow-sm)}
+.math-work{display:flex;flex-direction:column}
+.work-q{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:18px;letter-spacing:-0.02em}
+.work-steps{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column}
+.work-steps li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;border-top:1px solid var(--hairline);padding:11px 0;font-size:14.5px}
+.work-steps li:first-child{border-top:0;padding-top:2px}
+.ws-k{color:var(--muted)}
+.ws-v{font-family:var(--mono);color:var(--ink);font-weight:540;white-space:nowrap;font-size:13px}
+.work-bar{display:flex;flex-direction:column;gap:9px;margin:auto 0 18px}
+.wb-row{display:flex;align-items:center;gap:12px;font-size:13px}
+.wb-lab{color:var(--muted);width:72px;flex:none}
+.wb-track{flex:1;height:12px;background:var(--canvas-alt);border-radius:6px;overflow:hidden}
+.wb-fill{display:block;height:100%;border-radius:6px;transform-origin:left;transform:scaleX(0);transition:transform 1s var(--ease)}
+.math-work.in .wb-fill{transform:scaleX(1)}
+.wb-before{background:var(--lav)}
+.wb-after{background:var(--primary)}
+.wb-row b{font-family:var(--mono);font-weight:700;color:var(--ink);width:38px;text-align:right;flex:none}
+.work-concl{font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.work-concl b{color:var(--primary-ink)}
+.work-rule{font-family:var(--mono);font-size:11.5px;color:var(--faint)}
 
 /* ── any tool ────────────────────────────────────────────── */
 .tools{padding:var(--sec) 0}
@@ -417,7 +468,7 @@ img{display:block;max-width:100%}
   .nav.open{background:#fff;backdrop-filter:none;border-bottom-color:var(--hairline)}
   .nav.open .mobile-menu{display:flex}
   .research-in{grid-template-columns:1fr;gap:36px}
-  .bench-stats{gap:14px}
+  .math-grid{grid-template-columns:1fr;gap:18px}
   .flow{max-width:100%}
   .flow-node,.flow-spec,.flow-core{max-width:100%}
   .flow-node.router{padding:16px 20px;gap:13px}
