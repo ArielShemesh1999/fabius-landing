@@ -100,22 +100,34 @@
     stage.appendChild(frag);
   };
   const small = matchMedia('(max-width:640px)').matches;
+  // a dense, fast swarm of mostly-small beetles — the scale spreading & moving quickly,
+  // with a couple of larger anchors for depth
   const heroWalk = [
-    { lane: 17, size: 104, dur: 34, delay: -5,  op: .5,  dir: 1,  bob: 2.3, leg: .8,  color: '#9b6bff' },
-    { lane: 63, size: 62,  dur: 26, delay: -13, op: .36, dir: -1, bob: 1.9, leg: .66 },
-    { lane: 39, size: 46,  dur: 42, delay: -22, op: .28, dir: 1,  bob: 2.6, leg: .9 },
-    { lane: 79, size: 54,  dur: 23, delay: -3,  op: .32, dir: -1, bob: 1.7, leg: .6 },
-    { lane: 7,  size: 40,  dur: 37, delay: -18, op: .24, dir: 1,  bob: 2.1, leg: .85 },
-    { lane: 51, size: 34,  dur: 29, delay: -9,  op: .22, dir: -1, bob: 1.5, leg: .7 },
+    { lane: 15, size: 70,  dur: 12,  delay: -3,  op: .42, dir: 1,  bob: 1.0, leg: .38, color: '#9b6bff' },
+    { lane: 72, size: 56,  dur: 10,  delay: -5,  op: .34, dir: -1, bob: .9,  leg: .34 },
+    { lane: 40, size: 30,  dur: 6,   delay: -2,  op: .26, dir: 1,  bob: .62 },
+    { lane: 84, size: 26,  dur: 5,   delay: -4,  op: .24, dir: -1, bob: .55 },
+    { lane: 8,  size: 24,  dur: 6.5, delay: -1,  op: .22, dir: 1,  bob: .6 },
+    { lane: 56, size: 22,  dur: 4.5, delay: -3,  op: .2,  dir: -1, bob: .5 },
+    { lane: 28, size: 20,  dur: 4,   delay: -2,  op: .2,  dir: 1,  bob: .48 },
+    { lane: 64, size: 34,  dur: 7.5, delay: -6,  op: .26, dir: 1,  bob: .7 },
+    { lane: 48, size: 18,  dur: 3.6, delay: -1,  op: .18, dir: -1, bob: .44 },
+    { lane: 90, size: 22,  dur: 5,   delay: -5,  op: .2,  dir: 1,  bob: .52 },
+    { lane: 34, size: 26,  dur: 5.5, delay: -4,  op: .22, dir: -1, bob: .56 },
+    { lane: 78, size: 18,  dur: 3.4, delay: -2,  op: .18, dir: -1, bob: .42 },
+    { lane: 20, size: 30,  dur: 6,   delay: -7,  op: .24, dir: 1,  bob: .64 },
   ];
-  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 3) : heroWalk);
-  // dark "core" band walkers (brighter on black)
+  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 7) : heroWalk);
+  // dark "core" band — same fast swarm, brighter on black
   buildWalkers($('#coreWalk'), [
-    { lane: 22, size: 90,  dur: 30, delay: -7,  op: .85, dir: 1,  bob: 2.2, leg: .74, color: '#b491ff' },
-    { lane: 66, size: 58,  dur: 24, delay: -15, op: .7,  dir: -1, bob: 1.8, leg: .62, color: '#8a5cff' },
-    { lane: 44, size: 40,  dur: 36, delay: -2,  op: .6,  dir: 1,  bob: 2.5, leg: .82, color: '#c9b6ff' },
-    { lane: 84, size: 46,  dur: 20, delay: -11, op: .55, dir: -1, bob: 1.6, leg: .58, color: '#9b6bff' },
-  ].filter((_, i) => small ? i < 2 : true));
+    { lane: 20, size: 62, dur: 11,  delay: -4, op: .85, dir: 1,  bob: 1.0, leg: .36, color: '#b491ff' },
+    { lane: 70, size: 40, dur: 8,   delay: -6, op: .72, dir: -1, bob: .8,  color: '#8a5cff' },
+    { lane: 44, size: 26, dur: 5,   delay: -2, op: .62, dir: 1,  bob: .58, color: '#c9b6ff' },
+    { lane: 86, size: 30, dur: 6,   delay: -5, op: .6,  dir: -1, bob: .6,  color: '#9b6bff' },
+    { lane: 32, size: 20, dur: 3.8, delay: -1, op: .5,  dir: 1,  bob: .46, color: '#b491ff' },
+    { lane: 58, size: 22, dur: 4.4, delay: -3, op: .52, dir: -1, bob: .5,  color: '#c9b6ff' },
+    { lane: 78, size: 18, dur: 3.4, delay: -2, op: .46, dir: 1,  bob: .42, color: '#9b6bff' },
+  ].filter((_, i) => small ? i < 4 : true));
 
   /* ── active section in nav ──────────────────────────────── */
   const links = $$('.nav-links a');
