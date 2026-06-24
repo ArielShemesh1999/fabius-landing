@@ -215,28 +215,58 @@ img{display:block;max-width:100%}
 .chip:hover{border-color:var(--lav);color:var(--primary-ink);transform:translateY(-2px)}
 .flow-core{font-size:14px;color:var(--muted);background:var(--tint);border:1px dashed var(--lav);border-radius:var(--r-pill);padding:11px 22px;text-align:center}
 .flow-core b{color:var(--primary-ink);font-family:var(--mono);font-weight:600;font-size:13.5px}
-/* dispatch animation — a current flows down, fans out across the specialists, converges to the result */
+/* dispatch — ONE precise choreographed cycle (4s, gated by .flow.in):
+   prompt sends → signal travels → router activates → splits & fans out to the specialists
+   → through the lean core → converges to the result. Each step is timed in sequence. */
+.flow-node.prompt::after{content:"";display:inline-block;width:7px;height:1em;margin-left:7px;vertical-align:-2px;background:var(--lav);border-radius:1px}
 @media (prefers-reduced-motion:no-preference){
-  .flow.in .flow-conn{background:linear-gradient(180deg,var(--hairline-2) 0%,var(--lav) 35%,var(--primary) 50%,var(--lav) 65%,var(--hairline-2) 100%);
-    background-size:100% 260%;animation:flowDown 1.5s linear infinite}
-  .flow.in .chip{animation:chipWave 2.4s var(--ease) infinite}
-  .flow.in .chip:nth-child(1){animation-delay:.40s}
-  .flow.in .chip:nth-child(2){animation-delay:.53s}
-  .flow.in .chip:nth-child(3){animation-delay:.66s}
-  .flow.in .chip:nth-child(4){animation-delay:.79s}
-  .flow.in .chip:nth-child(5){animation-delay:.92s}
-  .flow.in .chip:nth-child(6){animation-delay:1.05s}
-  .flow.in .chip:nth-child(7){animation-delay:1.18s}
-  .flow.in .flow-node.result{animation:resGlow 2.4s var(--ease) infinite}
+  .flow-node.prompt::after{animation:blink 1.15s step-end infinite}
+  /* a glowing signal dot travels each connector at its moment in the sequence */
+  .flow.in .flow-conn::after{content:"";position:absolute;left:50%;top:0;width:8px;height:8px;margin-left:-4px;border-radius:50%;
+    background:var(--primary);box-shadow:0 0 11px 2px rgba(122,61,255,.75);opacity:0;animation:travel 4s var(--ease) infinite}
+  .flow.in .flow-conn:nth-child(2)::after{animation-delay:.4s}
+  .flow.in .flow-conn:nth-child(4)::after{animation-delay:1.05s}
+  .flow.in .flow-conn:nth-child(7)::after{animation-delay:2.5s}
+  /* nodes activate in order */
+  .flow.in .flow-node.prompt{animation:promptAct 4s var(--ease) infinite}
+  .flow.in .flow-node.router{animation:routerAct 4s var(--ease) infinite;animation-delay:.6s}
+  .flow.in .flow-core{animation:coreAct 4s var(--ease) infinite;animation-delay:2.15s}
+  .flow.in .flow-node.result{animation:resGlow 4s var(--ease) infinite;animation-delay:2.85s}
+  /* THE SPLIT — chips fan out in a fast staggered wave */
+  .flow.in .chip{animation:chipWave 4s var(--ease) infinite}
+  .flow.in .chip:nth-child(1){animation-delay:1.40s}
+  .flow.in .chip:nth-child(2){animation-delay:1.50s}
+  .flow.in .chip:nth-child(3){animation-delay:1.60s}
+  .flow.in .chip:nth-child(4){animation-delay:1.70s}
+  .flow.in .chip:nth-child(5){animation-delay:1.80s}
+  .flow.in .chip:nth-child(6){animation-delay:1.90s}
+  .flow.in .chip:nth-child(7){animation-delay:2.00s}
 }
-@keyframes flowDown{from{background-position:0 0}to{background-position:0 -260%}}
+@keyframes travel{0%{top:-3px;opacity:0}10%{opacity:1}14%{top:33px;opacity:1}18%,100%{top:33px;opacity:0}}
+@keyframes promptAct{
+  0%,100%{border-color:var(--hairline-2);background:var(--canvas-alt);color:var(--ink-2)}
+  3%{border-color:var(--lav);background:var(--tint);color:var(--primary-ink)}
+  12%{border-color:var(--hairline-2);background:var(--canvas-alt);color:var(--ink-2)}
+}
+@keyframes routerAct{
+  0%,100%{box-shadow:var(--shadow)}
+  4%{box-shadow:0 0 0 4px var(--tint),0 18px 40px -12px rgba(122,61,255,.55)}
+  14%{box-shadow:var(--shadow)}
+}
 @keyframes chipWave{
-  0%,30%,100%{border-color:var(--hairline-2);color:var(--ink-2);transform:translateY(0);box-shadow:none}
-  42%{border-color:var(--lav);color:var(--primary-ink);transform:translateY(-3px);box-shadow:0 8px 18px -10px rgba(122,61,255,.55)}
+  0%,100%{border-color:var(--hairline-2);color:var(--ink-2);transform:translateY(0);box-shadow:none}
+  4%{border-color:var(--lav);color:var(--primary-ink);transform:translateY(-3px);box-shadow:0 8px 18px -10px rgba(122,61,255,.55)}
+  16%{border-color:var(--hairline-2);color:var(--ink-2);transform:translateY(0);box-shadow:none}
+}
+@keyframes coreAct{
+  0%,100%{border-color:var(--lav);box-shadow:none}
+  5%{border-color:var(--primary);box-shadow:0 6px 18px -8px rgba(122,61,255,.5)}
+  16%{border-color:var(--lav);box-shadow:none}
 }
 @keyframes resGlow{
-  0%,52%,100%{box-shadow:0 14px 34px -14px rgba(122,61,255,.75);transform:translateY(0)}
-  72%{box-shadow:0 0 0 5px var(--tint),0 18px 42px -12px rgba(122,61,255,.9);transform:translateY(-2px)}
+  0%,100%{box-shadow:0 14px 34px -14px rgba(122,61,255,.75);transform:translateY(0)}
+  5%{box-shadow:0 0 0 6px var(--tint),0 20px 46px -10px rgba(122,61,255,.95);transform:translateY(-2px)}
+  20%{box-shadow:0 14px 34px -14px rgba(122,61,255,.75);transform:translateY(0)}
 }
 
 /* ── nine skills grid ────────────────────────────────────── */
