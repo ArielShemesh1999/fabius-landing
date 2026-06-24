@@ -319,7 +319,7 @@ img{display:block;max-width:100%}
 .c-axis{fill:var(--faint);font-size:11px}
 .c-xlab{fill:var(--muted);font-size:12.5px}
 .c-base{fill:var(--chart-base)}.c-ctl{fill:var(--c-teal)}.c-fab{fill:var(--primary)}
-.c-val{fill:var(--ink);font-size:13.5px;font-weight:700;font-family:var(--sans)}
+.c-val{fill:var(--ink);font-size:14.5px;font-weight:700;letter-spacing:-0.01em;font-family:var(--sans)}
 .c-val-sm{fill:var(--faint);font-size:11.5px;font-weight:540;font-family:var(--sans)}
 .c-region{fill:var(--faint);font-size:11px;font-style:italic;letter-spacing:.02em}
 .c-range{stroke:var(--lav);stroke-width:1.5}
@@ -358,6 +358,7 @@ img{display:block;max-width:100%}
 .chart-legend span{display:inline-flex;align-items:center;gap:7px}
 .chart-legend span::before{content:"";width:11px;height:11px;border-radius:3px}
 .lg-base::before{background:var(--chart-base)}.lg-ctl::before{background:var(--c-teal)}.lg-fab::before{background:var(--primary)}
+.chart-legend small{color:var(--c-teal-ink);font-size:11.5px;font-weight:600;margin-left:5px}
 
 /* ── core band (dark signature) ──────────────────────────── */
 .core{position:relative;background:var(--canvas-ink);color:#fff;padding:clamp(96px,13vw,156px) 0;overflow:hidden;isolation:isolate;text-align:center}
