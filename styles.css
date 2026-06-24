@@ -431,7 +431,7 @@ img{display:block;max-width:100%}
 .install-in{position:relative;text-align:center;max-width:720px;margin-inline:auto;
   background:radial-gradient(120% 90% at 50% 0%, var(--tint) 0%, #fff 60%);
   border:1px solid var(--hairline-2);border-radius:var(--r-l);padding:clamp(40px,6vw,68px) clamp(24px,5vw,56px);box-shadow:var(--shadow-sm)}
-.install-mark{width:48px;height:48px;color:var(--primary);margin-bottom:22px}
+.install-mark{width:60px;height:60px;color:var(--primary);margin-bottom:24px}
 .install-title{font-size:clamp(28px,4vw,42px);letter-spacing:-0.035em;margin-bottom:14px}
 .install-sub{font-size:17px;color:var(--muted);line-height:1.55;max-width:520px;margin:0 auto 30px;font-weight:420}
 .install-cmds{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;text-align:left}
