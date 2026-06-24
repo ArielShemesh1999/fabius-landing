@@ -15,10 +15,10 @@ python3 -m http.server 8799   # then open http://localhost:8799
 ## Structure
 
 ```
-index.html      structure + reusable SVG symbols (emblem, beetle)
+index.html      structure + inline SVG symbols (emblem, beetle, 9 skill bugs, wordmark)
 styles.css      design system (tokens) + all sections + motion
-main.js         nav, swarm parallax, scroll reveals, count-up, copy buttons
-assets/         emblem.svg · beetle.svg · inter.woff2 · bug-field.webp · og.png
+main.js         nav, beetle swarm, scroll reveals, emblem draw-in, explainer video, copy buttons
+assets/         inter.woff2 · og.png · fabius-explainer.mp4 · fabius-explainer-poster.webp
 vercel.json     security headers + asset caching + CSP
 ```
 
