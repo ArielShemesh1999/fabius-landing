@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>fabius — scout wide · strike narrow</title>
+<meta name="description" content="One Claude super-skill that equips the agent end-to-end — code, prose, agents, design, debug, memory — under a single Fabian stance: scout wide, strike narrow. Nine coordinated skills, one install." />
+<meta name="theme-color" content="#ffffff" />
+<link rel="canonical" href="https://fabius-landing.vercel.app/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="fabius — scout wide · strike narrow" />
+<meta property="og:description" content="One super-skill that equips Claude end-to-end under one lean Fabian stance. Nine coordinated skills, one install. Measured, blind, reproducible." />
+<meta property="og:url" content="https://fabius-landing.vercel.app/" />
+<meta property="og:image" content="https://fabius-landing.vercel.app/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="fabius — scout wide · strike narrow" />
+<meta name="twitter:description" content="One super-skill that equips Claude end-to-end. Nine coordinated skills, one install." />
+<meta name="twitter:image" content="https://fabius-landing.vercel.app/assets/og.png" />
+
+<link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="/styles.css" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","description":"One super-skill that equips Claude end-to-end — code, prose, agents, design, debug, memory — under a single Fabian stance: scout wide, strike narrow.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"license":"https://opensource.org/licenses/MIT","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://github.com/ArielShemesh1999/fabius"}
+</script>
+<script defer src="/main.js"></script>
+</head>
+<body>
+
+<!-- ── reusable vector symbols ─────────────────────────────────── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 100 100">
+    <path d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17"
+      fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="square"/>
+    <circle cx="50" cy="50" r="3.1" fill="currentColor"/>
+  </symbol>
+  <symbol id="beetle" viewBox="0 0 120 150">
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M53 17 C46 8 41 5 36 3"/><path d="M67 17 C74 8 79 5 84 3"/>
+      <path d="M40 50 L17 41 L7 47"/><path d="M36 73 L10 73 L2 86"/><path d="M39 99 L15 113 L8 128"/>
+      <path d="M80 50 L103 41 L113 47"/><path d="M84 73 L110 73 L118 86"/><path d="M81 99 L105 113 L112 128"/>
+    </g>
+    <ellipse cx="60" cy="20" rx="12" ry="11" fill="currentColor"/>
+    <path d="M46 30 Q60 27 74 30 L82 50 Q60 46 38 50 Z" fill="currentColor"/>
+    <path d="M60 47 C84 47 92 66 92 90 C92 120 78 140 60 140 C42 140 28 120 28 90 C28 66 36 47 60 47 Z" fill="currentColor"/>
+    <line x1="60" y1="52" x2="60" y2="134" stroke="var(--seam,#fff)" stroke-width="2.4" stroke-linecap="round" opacity="0.92"/>
+    <g transform="translate(60,92) scale(0.40) translate(-50,-50)">
+      <path d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17"
+        fill="none" stroke="var(--seam,#fff)" stroke-width="6" stroke-linecap="square"/>
+      <circle cx="50" cy="50" r="3.4" fill="var(--seam,#fff)"/>
+    </g>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ── nav ─────────────────────────────────────────────────────── -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="fabius — home">
+      <svg class="brand-mark" aria-hidden="true"><use href="#emblem"/></svg>
+      <span class="brand-name">fabius</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#idea">Idea</a>
+      <a href="#changes">What changes</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#skills">Skills</a>
+      <a href="#benchmark">Benchmark</a>
+      <a href="#research">Research</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn ghost" href="https://github.com/ArielShemesh1999/fabius" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn primary" href="#install">Install</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <a href="#idea">Idea</a>
+    <a href="#changes">What changes</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#skills">Skills</a>
+    <a href="#benchmark">Benchmark</a>
+    <a href="#research">Research</a>
+    <a class="btn ghost" href="https://github.com/ArielShemesh1999/fabius" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn primary" href="#install">Install the plugin</a>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ── hero ────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="swarm" id="swarm" aria-hidden="true">
+    <svg class="bug b1"><use href="#beetle"/></svg>
+    <svg class="bug b2"><use href="#beetle"/></svg>
+    <svg class="bug b3"><use href="#beetle"/></svg>
+    <svg class="bug b4"><use href="#beetle"/></svg>
+    <svg class="bug b5"><use href="#beetle"/></svg>
+    <svg class="bug b6"><use href="#beetle"/></svg>
+    <svg class="bug b7"><use href="#beetle"/></svg>
+  </div>
+  <div class="wrap hero-in">
+    <a class="eyebrow" href="#install">
+      <span class="dot"></span> One install · nine coordinated skills <span class="arrow">→</span>
+    </a>
+    <h1 class="hero-title">
+      <span class="line">scout wide.</span>
+      <span class="line accent">strike narrow.</span>
+    </h1>
+    <p class="hero-sub">
+      One super-skill you hand the agent. It sets <em>how</em> it works across the whole job —
+      write code, write prose, build and orchestrate agents, design UI, debug, and remember —
+      then strikes with the smallest correct artifact. Investigate everything. Ship one thing.
+    </p>
+    <div class="hero-actions">
+      <a class="btn primary lg" href="#install">Install the plugin</a>
+      <a class="btn ghost lg" href="https://github.com/ArielShemesh1999/fabius/blob/main/paper/fabius-as-a-system.pdf" target="_blank" rel="noopener">Read the paper</a>
+    </div>
+    <div class="hero-cmd" id="heroCmd" data-copy="/plugin install fabius">
+      <code><span class="muted">$</span> /plugin install fabius</code>
+      <button class="copy" aria-label="Copy install command">Copy</button>
+    </div>
+  </div>
+  <div class="hero-fade" aria-hidden="true"></div>
+</section>
+
+<!-- ── trust strip ─────────────────────────────────────────────── -->
+<section class="strip">
+  <div class="wrap strip-in">
+    <span>Plain-markdown skills</span><i></i>
+    <span>Claude Code · Codex · Cursor · Gemini</span><i></i>
+    <span>Blind, reproducible benchmark</span><i></i>
+    <span>36-page paper · proofs</span><i></i>
+    <span>MIT</span>
+  </div>
+</section>
+
+<!-- ── the one idea ────────────────────────────────────────────── -->
+<section class="idea" id="idea">
+  <div class="wrap idea-in">
+    <svg class="idea-emblem" id="ideaEmblem" aria-hidden="true" viewBox="0 0 100 100">
+      <path id="ideaPath" d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17"
+        fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="square"/>
+      <circle cx="50" cy="50" r="3.1" fill="currentColor"/>
+    </svg>
+    <p class="eyebrow-text">The one idea</p>
+    <h2 class="idea-title">
+      Scout wide in what you <span class="u">investigate</span>.<br/>
+      Strike narrow in what you <span class="accent">ship</span>.
+    </h2>
+    <p class="idea-body">
+      One axis dissolves the old tension between “be thorough” and “be minimal.” Fan out to
+      understand and verify — cheap to investigate, expensive to be wrong. Then ship the single
+      smallest correct thing, and say it in the fewest words. Process and memory make you wide.
+      Lean makes you narrow. They never conflict — they live on different axes.
+    </p>
+    <p class="idea-foot">Named for Quintus Fabius Maximus — who beat Hannibal by refusing every battle that didn’t matter, and committing fully to the one that did.</p>
+  </div>
+</section>
+
+<!-- ── what changes ────────────────────────────────────────────── -->
+<section class="changes" id="changes">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow-text">What changes</p>
+      <h2 class="sec-title" id="cmpTitle">Same model. A different shape of output.</h2>
+      <p class="sec-lede">One concentrated set of operating rules changes what the agent ships across every kind of work — without you re-explaining yourself each time.</p>
+    </header>
+    <div class="cmp" role="table" aria-labelledby="cmpTitle">
+      <div class="cmp-row cmp-h" role="row">
+        <span role="columnheader">You ask for</span>
+        <span role="columnheader">Typical model default</span>
+        <span role="columnheader" class="cmp-f">Under fabius</span>
+      </div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Code</span><span role="cell">Verbose, over-engineered, may skip validation</span><span role="cell" class="cmp-f">Minimal and surgical — validation and security kept</span></div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">A bug fix</span><span role="cell">Patches the symptom</span><span role="cell" class="cmp-f">Reproduce → root cause → regression test</span></div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">UI</span><span role="cell">Inline styles, inconsistent, desktop-first</span><span role="cell" class="cmp-f">Design tokens, one accent, mobile-first, accessible</span></div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">An agent</span><span role="cell">Broad tools, vague role</span><span role="cell" class="cmp-f">Least privilege, a precise output contract</span></div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">An explanation</span><span role="cell">Padded, hedged</span><span role="cell" class="cmp-f">Tight, exact, no filler</span></div>
+      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Research / memory</span><span role="cell">Re-derives every session</span><span role="cell" class="cmp-f">Written down once, retrieved the next time</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── architecture ────────────────────────────────────────────── -->
+<section class="arch" id="architecture">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow-text">Architecture</p>
+      <h2 class="sec-title">One router. A lean core. Seven specialists.</h2>
+      <p class="sec-lede">Your prompt hits the router, which dispatches by layer, machinery, and model-tier. Process decides <em>how</em>; domain decides <em>what</em>; the lean core runs beneath everything. Each rule has exactly one owner — that’s what keeps nine skills from contradicting one another.</p>
+    </header>
+    <div class="flow">
+      <div class="flow-node prompt">your prompt</div>
+      <div class="flow-conn"><span></span></div>
+      <div class="flow-node router">
+        <svg class="fn-mark" aria-hidden="true"><use href="#emblem"/></svg>
+        <div><b>fabius</b><small>router · dispatches by layer · machinery · model-tier</small></div>
+      </div>
+      <div class="flow-conn"><span></span></div>
+      <div class="flow-spec">
+        <span class="chip">disciplina</span>
+        <span class="chip">decor</span>
+        <span class="chip">cohors</span>
+        <span class="chip">archivum</span>
+        <span class="chip">mercatus</span>
+        <span class="chip">praesidium</span>
+        <span class="chip">ludus</span>
+      </div>
+      <div class="flow-core"><b>fabius-parcus</b> — always-on lean core, beneath every layer</div>
+      <div class="flow-conn"><span></span></div>
+      <div class="flow-node result">the smallest correct result</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── the nine skills ─────────────────────────────────────────── -->
+<section class="skills" id="skills">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow-text">The nine skills</p>
+      <h2 class="sec-title">Nine coordinated, zero-overlap skills. One install.</h2>
+      <p class="sec-lede">A router, an always-on lean core, and seven engineering specialists. Each is a thin operating contract; the depth loads only on demand.</p>
+    </header>
+    <div class="grid">
+      <article class="card lead">
+        <div class="card-top"><svg class="card-mark" aria-hidden="true"><use href="#emblem"/></svg><span class="card-tag">router</span></div>
+        <h3>fabius</h3>
+        <p>Reads the job, sets the stance, dispatches by layer + machinery + model-tier. The conductor and the kill-switch.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">parcus</span><span class="card-tag">always on</span></div>
+        <h3>fabius-parcus</h3>
+        <p>The lean core. Terse output, the YAGNI ladder, surgical changes — never speculative scope. Runs underneath everything.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">disciplina</span><span class="card-tag">process</span></div>
+        <h3>fabius-disciplina</h3>
+        <p>Brainstorm → plan → test-first → prove. Grill ambiguity one question at a time. Root-cause debugging, not symptom patches.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">decor</span><span class="card-tag">design</span></div>
+        <h3>fabius-decor</h3>
+        <p>Ship-grade UI and data-viz. One-accent laws, a token vocabulary, mobile-first, live-verify, data-ink charts.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">cohors</span><span class="card-tag">agents</span></div>
+        <h3>fabius-cohors</h3>
+        <p>Define and orchestrate other agents. A definition schema, least privilege, five orchestration patterns including the swarm.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">archivum</span><span class="card-tag">memory</span></div>
+        <h3>fabius-archivum</h3>
+        <p>Persistent, per-project memory. An LLM-wiki of index + log + topic pages, tended without being asked. Stop re-deriving.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">mercatus</span><span class="card-tag">go-to-market</span></div>
+        <h3>fabius-mercatus</h3>
+        <p>Positioning, message-to-awareness match, proof over adjectives, a one-action funnel, copy that converts.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">praesidium</span><span class="card-tag">security</span></div>
+        <h3>fabius-praesidium</h3>
+        <p>Defensive security. STRIDE per boundary, the OWASP pass, secrets + least privilege, severity → fix → proof findings.</p>
+      </article>
+      <article class="card">
+        <div class="card-top"><span class="card-i">ludus</span><span class="card-tag">game craft</span></div>
+        <h3>fabius-ludus</h3>
+        <p>The core loop first, deliberate juice, state as a machine, the pixel lane, jam-sized scope.</p>
+      </article>
+    </div>
+    <p class="latin">parcus, frugal · disciplina, training · decor, what is fitting · cohors, the cohort · archivum, the record office · mercatus, the marketplace · praesidium, the garrison · ludus, the game.</p>
+  </div>
+</section>
+
+<!-- ── benchmark ───────────────────────────────────────────────── -->
+<section class="bench" id="benchmark">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow-text">The proof</p>
+      <h2 class="sec-title">Measured. Blind. Reproducible.</h2>
+      <p class="sec-lede">A three-arm evaluation — <code>baseline</code>, a generic “be concise” control, and the full fabius stance — scored by a judge model never told which arm wrote which answer. Beating the control, not the baseline, is the real test.</p>
+    </header>
+    <div class="bench-grid">
+      <article class="metric">
+        <p class="m-model">Opus 4.8</p>
+        <p class="m-score" data-to="13.88">0.00</p>
+        <div class="m-bars"><span class="m-base" style="--w:73%">baseline 12.5</span><span class="m-ctl" style="--w:76%">concise 13.0</span><span class="m-fab" style="--w:84%">fabius 13.88</span></div>
+        <p class="m-foot"><b class="up">+0.88</b> vs control · <b class="cut">−43%</b> output</p>
+      </article>
+      <article class="metric">
+        <p class="m-model">Sonnet 4.6</p>
+        <p class="m-score" data-to="12.5">0.00</p>
+        <div class="m-bars"><span class="m-base" style="--w:53%">baseline 8.75</span><span class="m-ctl" style="--w:71%">concise 11.75</span><span class="m-fab" style="--w:76%">fabius 12.5</span></div>
+        <p class="m-foot"><b class="up">+0.75</b> vs control · <b class="cut">−52%</b> output</p>
+      </article>
+      <article class="metric">
+        <p class="m-model">Haiku 4.5</p>
+        <p class="m-score" data-to="10.38">0.00</p>
+        <div class="m-bars"><span class="m-base" style="--w:54%">baseline 8.88</span><span class="m-ctl" style="--w:55%">concise 9.13</span><span class="m-fab" style="--w:63%">fabius 10.38</span></div>
+        <p class="m-foot"><b class="up">+1.25</b> vs control · <b class="cut">−32%</b> output</p>
+      </article>
+    </div>
+    <p class="bench-line">Across four model families — Grok, Mistral, GPT, Claude — the pattern holds: <strong>structure beats brevity, and the advantage grows as the model’s default discipline drops.</strong> Shorter answers that the blind judge scores higher. Not “smarter,” not “10× on everything” — a scope-control system that knows when to compress and when to expand.</p>
+    <a class="text-link" href="https://github.com/ArielShemesh1999/fabius/blob/main/BENCHMARKS.md" target="_blank" rel="noopener">Method, mechanism &amp; caveats — BENCHMARKS.md →</a>
+  </div>
+</section>
+
+<!-- ── research ────────────────────────────────────────────────── -->
+<section class="research" id="research">
+  <div class="wrap research-in">
+    <div class="research-copy">
+      <p class="eyebrow-text">Grounded in research</p>
+      <h2 class="sec-title">Decisions, not hand-waving.</h2>
+      <p class="sec-lede">fabius’s routing is drawn from the agent-research canon — ReAct, Toolformer, Tree of Thoughts, Reflexion, MemGPT, DSPy, Voyager and the 2026 efficiency surveys — turned into a documented decision policy: eighteen rules, each tagged for what the papers <em>measured</em> versus what fabius <em>borrows by analogy</em>.</p>
+      <ul class="research-pts">
+        <li><b>Climb one rung, stop at the knee.</b> Capability scales sub-linearly with machinery — add the smallest sufficient rung (<code>inline → tool → retrieval → plan → subagent → swarm</code>), never jump to a swarm.</li>
+        <li><b>Refine on a real signal.</b> A hard oracle (a test, a compiler) earns ~3 iterations; soft self-critique caps at 1–2; no signal ships once to review.</li>
+        <li><b>Proven to cohere.</b> All eighteen rules reduce to one expected-loss / value-of-information threshold — adversarially verified, then proven gap-free.</li>
+      </ul>
+      <div class="research-actions">
+        <a class="btn primary" href="https://github.com/ArielShemesh1999/fabius/blob/main/paper/fabius-as-a-system.pdf" target="_blank" rel="noopener">Read the 36-page paper</a>
+        <a class="btn ghost" href="https://github.com/ArielShemesh1999/fabius/blob/main/RESEARCH.md" target="_blank" rel="noopener">RESEARCH.md</a>
+      </div>
+    </div>
+    <figure class="research-card">
+      <div class="rc-glow"></div>
+      <img src="/assets/bug-field-900.webp" srcset="/assets/bug-field-900.webp 900w, /assets/bug-field-1600.webp 1600w" sizes="(max-width:900px) 90vw, 520px" width="1536" height="1024" alt="The Fabius core — a swarm of pixel beetles radiating from a single glowing core carrying the squared-spiral signature." loading="lazy" decoding="async" />
+      <figcaption>The core. One signal, the whole swarm.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ── any tool ────────────────────────────────────────────────── -->
+<section class="tools" id="tools">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow-text">Any agent, any tool</p>
+      <h2 class="sec-title">Plain markdown. Model- and tool-agnostic.</h2>
+      <p class="sec-lede">The portable bridge is a single <code>AGENTS.md</code>: drop it in your repo or paste it into your tool’s rules, and the agent operates under fabius end to end.</p>
+    </header>
+    <ul class="tool-list">
+      <li><span>Claude Code</span><small><code>/plugin install fabius</code></small></li>
+      <li><span>Codex / OpenAI</span><small><code>AGENTS.md</code> at repo root</small></li>
+      <li><span>Cursor</span><small><code>.cursor/rules/fabius.mdc</code></small></li>
+      <li><span>Windsurf</span><small><code>.windsurf/rules/fabius.md</code></small></li>
+      <li><span>Cline</span><small><code>.clinerules/fabius.md</code></small></li>
+      <li><span>GitHub Copilot</span><small><code>.github/copilot-instructions.md</code></small></li>
+      <li><span>Gemini CLI</span><small><code>GEMINI.md</code> at repo root</small></li>
+      <li><span>Any LLM</span><small>paste <code>AGENTS.md</code> into the system prompt</small></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── install ─────────────────────────────────────────────────── -->
+<section class="install" id="install">
+  <div class="wrap install-in">
+    <svg class="install-mark" aria-hidden="true"><use href="#emblem"/></svg>
+    <h2 class="install-title">One folder. The whole stack.</h2>
+    <p class="install-sub">A standard Claude Code plugin — zero build, zero config. Start any task with the <code>fabius</code> skill; it loads the stance and routes to the rest.</p>
+    <div class="install-cmds">
+      <div class="cmd" data-copy="/plugin marketplace add ArielShemesh1999/fabius">
+        <code><span class="muted">1</span> /plugin marketplace add ArielShemesh1999/fabius</code>
+        <button class="copy" aria-label="Copy command">Copy</button>
+      </div>
+      <div class="cmd" data-copy="/plugin install fabius">
+        <code><span class="muted">2</span> /plugin install fabius</code>
+        <button class="copy" aria-label="Copy command">Copy</button>
+      </div>
+    </div>
+    <div class="install-actions">
+      <a class="btn primary lg" href="https://github.com/ArielShemesh1999/fabius" target="_blank" rel="noopener">View on GitHub</a>
+      <a class="btn ghost lg" href="https://github.com/ArielShemesh1999/fabius/blob/main/AGENTS.md" target="_blank" rel="noopener">Get AGENTS.md</a>
+    </div>
+    <p class="install-note">MIT licensed · model- and tool-agnostic · <code>stop fabius</code> reverts the stance at any time.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ── footer ──────────────────────────────────────────────────── -->
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="fabius — top">
+        <svg class="brand-mark" aria-hidden="true"><use href="#emblem"/></svg>
+        <span class="brand-name">fabius</span>
+      </a>
+      <p>scout wide · strike narrow. One super-skill that equips Claude end to end.</p>
+    </div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="https://github.com/ArielShemesh1999/fabius" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/ArielShemesh1999/fabius/blob/main/paper/fabius-as-a-system.pdf" target="_blank" rel="noopener">Paper</a>
+      <a href="https://github.com/ArielShemesh1999/fabius/blob/main/BENCHMARKS.md" target="_blank" rel="noopener">Benchmarks</a>
+      <a href="https://github.com/ArielShemesh1999/fabius/blob/main/RESEARCH.md" target="_blank" rel="noopener">Research</a>
+      <a href="#install">Install</a>
+    </nav>
+  </div>
+  <div class="wrap foot-base">
+    <span>© 2026 Ariel Shemesh</span>
+    <span>MIT License</span>
+    <span>Built with fabius — one folder, the whole stack.</span>
+  </div>
+</footer>
+
+</body>
+</html>
