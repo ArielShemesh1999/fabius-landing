@@ -176,6 +176,7 @@ img{display:block;max-width:100%}
 /* ── the explainer (video) ───────────────────────────────── */
 .demo{padding:var(--sec) 0;background:var(--canvas);position:relative}
 .demo-head{max-width:720px;margin-inline:auto;margin-bottom:44px;text-align:center}
+.demo-emblem{width:56px;height:56px;color:var(--primary);display:block;margin:0 auto 24px}
 .demo-frame{position:relative;max-width:980px;margin-inline:auto;aspect-ratio:16/9;border-radius:var(--r-l);overflow:hidden;background:var(--canvas-ink);border:1px solid var(--hairline);box-shadow:var(--shadow);isolation:isolate}
 .demo-frame::before{content:"";position:absolute;inset:-3px;z-index:-1;background:radial-gradient(58% 58% at 50% 38%,rgba(123,61,255,.30),transparent 70%);filter:blur(40px)}
 .demo-video{width:100%;height:100%;object-fit:cover;display:block;cursor:pointer}

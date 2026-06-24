@@ -61,16 +61,28 @@
     revealTargets.forEach((el) => io.observe(el));
   }
 
-  /* ── idea emblem: draw-in spiral ────────────────────────── */
-  const ideaPath = $('#ideaPath');
-  if (ideaPath && !reduce && 'IntersectionObserver' in window) {
-    const len = ideaPath.getTotalLength();
-    ideaPath.style.strokeDasharray = len;
-    ideaPath.style.strokeDashoffset = len;
-    ideaPath.style.transition = 'stroke-dashoffset 1.5s cubic-bezier(.4,0,.2,1)';
-    new IntersectionObserver((e, o) => {
-      e.forEach((en) => { if (en.isIntersecting) { ideaPath.style.strokeDashoffset = '0'; o.disconnect(); } });
-    }, { threshold: 0.4 }).observe($('#ideaEmblem'));
+  /* ── emblem: draw-in "creation" on every spiral it appears (not nav/footer) ── */
+  const emblems = $$('.draw-emblem');
+  if (emblems.length && !reduce && 'IntersectionObserver' in window) {
+    emblems.forEach((svg) => {
+      const path = $('.draw-spiral', svg), dot = $('.draw-dot', svg);
+      if (!path) return;
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len;
+      path.style.strokeDashoffset = len;
+      path.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)';
+      if (dot) { dot.style.opacity = '0'; dot.style.transition = 'opacity .4s ease .95s'; }
+    });
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const path = $('.draw-spiral', en.target), dot = $('.draw-dot', en.target);
+        if (path) path.style.strokeDashoffset = '0';
+        if (dot) dot.style.opacity = '1';
+        obs.unobserve(en.target);
+      });
+    }, { threshold: 0.4 });
+    emblems.forEach((svg) => io.observe(svg));
   }
 
   /* ── explainer video: play-in-view + click toggle ──────── */
