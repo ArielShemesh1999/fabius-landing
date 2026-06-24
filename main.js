@@ -85,19 +85,33 @@
     emblems.forEach((svg) => io.observe(svg));
   }
 
-  /* ── explainer video: play-in-view + click toggle ──────── */
+  /* ── explainer video: play-in-view + auto-hiding controls ──────── */
   const dVideo = $('#demoVideo'), dFrame = $('#demoFrame'), dToggle = $('#demoToggle');
   if (dVideo && dFrame) {
+    let hideTimer = null;
+    // keep the button up only while sitting on the poster (so it stays discoverable)
+    const atPoster = () => dVideo.paused && dVideo.currentTime < 0.06;
+    const showControls = () => {
+      dFrame.classList.add('show-controls');
+      clearTimeout(hideTimer);
+      if (!atPoster()) hideTimer = setTimeout(() => dFrame.classList.remove('show-controls'), 2600);
+    };
+    const hideControls = () => { clearTimeout(hideTimer); dFrame.classList.remove('show-controls'); };
     const setPlay = (play) => {
-      if (play) { dVideo.play().then(() => dFrame.classList.add('playing')).catch(() => {}); }
-      else { dVideo.pause(); }
+      if (play) dVideo.play().catch(() => {});
+      else dVideo.pause();
       if (dToggle) dToggle.setAttribute('aria-label', play ? 'Pause the explainer' : 'Play the explainer');
     };
-    const toggle = () => setPlay(dVideo.paused);
-    dToggle && dToggle.addEventListener('click', toggle);
+    const toggle = () => { setPlay(dVideo.paused); showControls(); };
+    dToggle && dToggle.addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
     dVideo.addEventListener('click', toggle);
-    dVideo.addEventListener('play', () => dFrame.classList.add('playing'));
-    dVideo.addEventListener('pause', () => dFrame.classList.remove('playing'));
+    dVideo.addEventListener('play', () => { dFrame.classList.add('playing'); showControls(); });
+    dVideo.addEventListener('pause', () => { dFrame.classList.remove('playing'); showControls(); });
+    dFrame.addEventListener('pointermove', showControls);
+    dFrame.addEventListener('pointerleave', () => { if (!atPoster()) hideControls(); });
+    // tap/click anywhere outside the video dismisses the controls
+    document.addEventListener('pointerdown', (e) => { if (!dFrame.contains(e.target)) hideControls(); });
+    showControls();
     if (!reduce && 'IntersectionObserver' in window) {
       new IntersectionObserver((ents) => {
         ents.forEach((en) => setPlay(en.isIntersecting && en.intersectionRatio >= 0.4));
