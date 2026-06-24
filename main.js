@@ -73,28 +73,33 @@
     }, { threshold: 0.4 }).observe($('#ideaEmblem'));
   }
 
-  /* ── living walkers — the nine fabius-beetle variants crossing the field ── */
-  const VARIANTS = ['bug-router','bug-parcus','bug-disciplina','bug-decor','bug-cohors','bug-archivum','bug-mercatus','bug-praesidium','bug-ludus'];
-  const symCache = {};
-  const symMarkup = (id) => {
-    if (symCache[id] === undefined) {
-      const sym = document.getElementById(id);
-      symCache[id] = sym ? Array.from(sym.children).map((n) => n.outerHTML).join('') : '';
-    }
-    return symCache[id];
-  };
-  let walkerIdx = 0;
+  /* ── living walkers (sakana-style beetles crossing the field) ── */
+  const WB = `<svg class="wb" viewBox="0 0 120 150" fill="none">
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path class="leg la" style="--ox:40px;--oy:50px" d="M40 50 L17 41 L7 47"/>
+      <path class="leg lb" style="--ox:80px;--oy:50px" d="M80 50 L103 41 L113 47"/>
+      <path class="leg lb" style="--ox:36px;--oy:73px" d="M36 73 L10 73 L2 86"/>
+      <path class="leg la" style="--ox:84px;--oy:73px" d="M84 73 L110 73 L118 86"/>
+      <path class="leg la" style="--ox:39px;--oy:99px" d="M39 99 L15 113 L8 128"/>
+      <path class="leg lb" style="--ox:81px;--oy:99px" d="M81 99 L105 113 L112 128"/>
+    </g>
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M53 17 C46 8 41 5 36 3"/><path d="M67 17 C74 8 79 5 84 3"/></g>
+    <ellipse cx="60" cy="20" rx="12" ry="11" fill="currentColor"/>
+    <path d="M46 30 Q60 27 74 30 L82 50 Q60 46 38 50 Z" fill="currentColor"/>
+    <path d="M60 47 C84 47 92 66 92 90 C92 120 78 140 60 140 C42 140 28 120 28 90 C28 66 36 47 60 47 Z" fill="currentColor"/>
+    <line x1="60" y1="52" x2="60" y2="134" stroke="var(--seam,#fff)" stroke-width="2.4" stroke-linecap="round" opacity=".9"/>
+    <g transform="translate(60,92) scale(0.40) translate(-50,-50)"><path d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17" fill="none" stroke="var(--seam,#fff)" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="3.4" fill="var(--seam,#fff)"/></g>
+  </svg>`;
   const buildWalkers = (stage, configs) => {
     if (!stage) return;
     const frag = document.createDocumentFragment();
     configs.forEach((c) => {
       const w = document.createElement('div');
-      // legs are imperceptible below ~52px — skip their keyframe animations there
+      // legs are imperceptible below ~52px — skip their two keyframe animations there
       w.className = 'walker' + (c.dir < 0 ? ' rtl' : '') + (c.size < 52 ? ' no-legs' : '');
       w.style.cssText = `--lane:${c.lane}%;--size:${c.size}px;--dur:${c.dur}s;--delay:${c.delay}s;--op:${c.op};--bd:${c.bob}s;--ld:${c.leg}s`;
       if (c.color) w.style.color = c.color;
-      const v = c.v || VARIANTS[walkerIdx++ % VARIANTS.length];
-      w.innerHTML = `<div class="walker-bob"><svg class="wb" viewBox="0 0 44 48" fill="currentColor">${symMarkup(v)}</svg></div>`;
+      w.innerHTML = `<div class="walker-bob">${WB}</div>`;
       frag.appendChild(w);
     });
     stage.appendChild(frag);
@@ -103,9 +108,9 @@
   // two-tier swarm: a few LARGE + SLOW anchors (graceful depth) and MANY tiny + very fast ones
   const heroWalk = [
     // large, slow anchors
-    { lane: 16, size: 80, dur: 32, delay: -5,  op: .46, dir: 1,  bob: 1.9, leg: .74, color: '#9b6bff' },
-    { lane: 70, size: 70, dur: 36, delay: -16, op: .4,  dir: -1, bob: 2.1, leg: .82 },
-    { lane: 44, size: 54, dur: 24, delay: -9,  op: .3,  dir: 1,  bob: 1.6, leg: .64 },
+    { lane: 16, size: 102, dur: 32, delay: -5,  op: .46, dir: 1,  bob: 1.9, leg: .74, color: '#9b6bff' },
+    { lane: 70, size: 90,  dur: 36, delay: -16, op: .4,  dir: -1, bob: 2.1, leg: .82 },
+    { lane: 44, size: 56,  dur: 24, delay: -9,  op: .3,  dir: 1,  bob: 1.6, leg: .64 },
     // many small, very fast
     { lane: 8,  size: 22, dur: 4,   delay: -1, op: .24, dir: 1,  bob: .5 },
     { lane: 30, size: 18, dur: 3,   delay: -2, op: .2,  dir: -1, bob: .44 },
@@ -125,8 +130,8 @@
   buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 9) : heroWalk);
   // dark "core" band — same two-tier idea, brighter on black
   buildWalkers($('#coreWalk'), [
-    { lane: 20, size: 70, dur: 28, delay: -6, op: .82, dir: 1,  bob: 1.8, leg: .72, color: '#b491ff' },
-    { lane: 68, size: 50, dur: 21, delay: -11, op: .66, dir: -1, bob: 1.5, leg: .6,  color: '#8a5cff' },
+    { lane: 20, size: 84, dur: 28, delay: -6, op: .82, dir: 1,  bob: 1.8, leg: .72, color: '#b491ff' },
+    { lane: 68, size: 52, dur: 21, delay: -11, op: .66, dir: -1, bob: 1.5, leg: .6,  color: '#8a5cff' },
     { lane: 44, size: 20, dur: 3.6, delay: -2, op: .6,  dir: 1,  bob: .46, color: '#c9b6ff' },
     { lane: 86, size: 16, dur: 2.8, delay: -1, op: .55, dir: -1, bob: .4,  color: '#9b6bff' },
     { lane: 34, size: 18, dur: 3,   delay: -3, op: .55, dir: 1,  bob: .42, color: '#b491ff' },
