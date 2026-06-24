@@ -41,45 +41,23 @@
 
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
-    '.sec-head, .cmp, .flow, .card, .metric, .bench-line, .text-link, ' +
-    '.research-copy, .research-card, .tool-list li, .install-in, .idea-in, .latin'
+    '.sec-head, .cmp, .flow, .card, .bench-figure, .bench-stats, .ladder-fig, .bench-line, .text-link, ' +
+    '.research-copy, .tool-list li, .install-in, .idea-in, .core-in, .latin'
   );
   if (!reduce && 'IntersectionObserver' in window) {
     revealTargets.forEach((el, i) => {
       el.classList.add('reveal');
       // gentle stagger only within tight groups
-      if (el.matches('.card, .metric, .tool-list li')) el.style.transitionDelay = (i % 3) * 70 + 'ms';
+      if (el.matches('.card, .tool-list li')) el.style.transitionDelay = (i % 3) * 70 + 'ms';
     });
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
         en.target.classList.add('in');
-        if (en.target.classList.contains('metric')) animateMetric(en.target);
         obs.unobserve(en.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
     revealTargets.forEach((el) => io.observe(el));
-  } else {
-    $$('.metric').forEach(animateMetric);
-  }
-
-  /* ── benchmark: count-up + bar fill ─────────────────────── */
-  function animateMetric(metric) {
-    const bars = $('.m-bars', metric);
-    if (bars) bars.classList.add('in');
-    const score = $('.m-score', metric);
-    if (!score) return;
-    const to = parseFloat(score.dataset.to || '0');
-    if (reduce) { score.textContent = to.toFixed(2); return; }
-    const dur = 1100, t0 = performance.now();
-    const tick = (t) => {
-      const p = Math.min(1, (t - t0) / dur);
-      const e = 1 - Math.pow(1 - p, 3);
-      score.textContent = (to * e).toFixed(2);
-      if (p < 1) requestAnimationFrame(tick);
-      else score.textContent = to.toFixed(2);
-    };
-    requestAnimationFrame(tick);
   }
 
   /* ── idea emblem: draw-in spiral ────────────────────────── */
@@ -94,26 +72,50 @@
     }, { threshold: 0.4 }).observe($('#ideaEmblem'));
   }
 
-  /* ── hero swarm parallax (pointer + scroll) ─────────────── */
-  const bugs = $$('.swarm .bug');
-  if (bugs.length && !reduce && matchMedia('(pointer:fine)').matches) {
-    let mx = 0, my = 0, sy = 0, raf = 0;
-    const apply = () => {
-      raf = 0;
-      bugs.forEach((b) => {
-        const px = parseFloat(getComputedStyle(b).getPropertyValue('--px')) || 1;
-        // use the `translate` property so parallax composes with the CSS drift keyframe (which animates `transform`)
-        b.style.translate = `${mx * px * 14}px ${(my * px * 12) - sy * px * 0.04}px`;
-      });
-    };
-    const schedule = () => { if (!raf) raf = requestAnimationFrame(apply); };
-    addEventListener('pointermove', (e) => {
-      mx = (e.clientX / innerWidth - 0.5);
-      my = (e.clientY / innerHeight - 0.5);
-      schedule();
-    }, { passive: true });
-    addEventListener('scroll', () => { sy = scrollY; if (scrollY < innerHeight) schedule(); }, { passive: true });
-  }
+  /* ── living walkers (sakana-style beetles crossing the field) ── */
+  const WB = `<svg class="wb" viewBox="0 0 120 150" fill="none">
+    <g class="lg lg-a" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 50 L17 41 L7 47"/><path d="M84 73 L110 73 L118 86"/><path d="M39 99 L15 113 L8 128"/></g>
+    <g class="lg lg-b" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M80 50 L103 41 L113 47"/><path d="M36 73 L10 73 L2 86"/><path d="M81 99 L105 113 L112 128"/></g>
+    <g stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M53 17 C46 8 41 5 36 3"/><path d="M67 17 C74 8 79 5 84 3"/></g>
+    <ellipse cx="60" cy="20" rx="12" ry="11" fill="currentColor"/>
+    <path d="M46 30 Q60 27 74 30 L82 50 Q60 46 38 50 Z" fill="currentColor"/>
+    <path d="M60 47 C84 47 92 66 92 90 C92 120 78 140 60 140 C42 140 28 120 28 90 C28 66 36 47 60 47 Z" fill="currentColor"/>
+    <line x1="60" y1="52" x2="60" y2="134" stroke="var(--seam,#fff)" stroke-width="2.4" stroke-linecap="round" opacity=".9"/>
+    <g transform="translate(60,92) scale(0.40) translate(-50,-50)"><path d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17" fill="none" stroke="var(--seam,#fff)" stroke-width="6" stroke-linecap="square"/><circle cx="50" cy="50" r="3.4" fill="var(--seam,#fff)"/></g>
+  </svg>`;
+  const buildWalkers = (stage, configs) => {
+    if (!stage) return;
+    const frag = document.createDocumentFragment();
+    configs.forEach((c) => {
+      const w = document.createElement('div');
+      // legs are imperceptible below ~52px — skip their two keyframe animations there
+      w.className = 'walker' + (c.dir < 0 ? ' rtl' : '') + (c.size < 52 ? ' no-legs' : '');
+      w.style.cssText = `--lane:${c.lane}%;--size:${c.size}px;--dur:${c.dur}s;--delay:${c.delay}s;--op:${c.op};--bd:${c.bob}s;--ld:${c.leg}s`;
+      if (c.color) w.style.color = c.color;
+      w.innerHTML = `<div class="walker-bob">${WB}</div>`;
+      frag.appendChild(w);
+    });
+    stage.appendChild(frag);
+  };
+  const small = matchMedia('(max-width:640px)').matches;
+  const heroWalk = [
+    { lane: 17, size: 104, dur: 34, delay: -5,  op: .5,  dir: 1,  bob: 2.3, leg: .8,  color: '#9b6bff' },
+    { lane: 63, size: 62,  dur: 26, delay: -13, op: .36, dir: -1, bob: 1.9, leg: .66 },
+    { lane: 39, size: 46,  dur: 42, delay: -22, op: .28, dir: 1,  bob: 2.6, leg: .9 },
+    { lane: 79, size: 54,  dur: 23, delay: -3,  op: .32, dir: -1, bob: 1.7, leg: .6 },
+    { lane: 7,  size: 40,  dur: 37, delay: -18, op: .24, dir: 1,  bob: 2.1, leg: .85 },
+    { lane: 51, size: 34,  dur: 29, delay: -9,  op: .22, dir: -1, bob: 1.5, leg: .7 },
+  ];
+  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 3) : heroWalk);
+  // dark "core" band walkers (brighter on black)
+  buildWalkers($('#coreWalk'), [
+    { lane: 22, size: 90,  dur: 30, delay: -7,  op: .85, dir: 1,  bob: 2.2, leg: .74, color: '#b491ff' },
+    { lane: 66, size: 58,  dur: 24, delay: -15, op: .7,  dir: -1, bob: 1.8, leg: .62, color: '#8a5cff' },
+    { lane: 44, size: 40,  dur: 36, delay: -2,  op: .6,  dir: 1,  bob: 2.5, leg: .82, color: '#c9b6ff' },
+    { lane: 84, size: 46,  dur: 20, delay: -11, op: .55, dir: -1, bob: 1.6, leg: .58, color: '#9b6bff' },
+  ].filter((_, i) => small ? i < 2 : true));
 
   /* ── active section in nav ──────────────────────────────── */
   const links = $$('.nav-links a');
