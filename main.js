@@ -173,9 +173,7 @@
     { lane: 34, size: 16, dur: 2.7, delay: -4, op: .18, dir: -1, bob: .4 },
     { lane: 80, size: 14, dur: 2.3, delay: -1, op: .16, dir: 1,  bob: .36 },
   ];
-  buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 9) : heroWalk);
-  // dark "core" band — same two-tier idea, brighter on black
-  buildWalkers($('#coreWalk'), [
+  const coreWalk = [
     { lane: 20, size: 84, dur: 28, delay: -6, op: .82, dir: 1,  bob: 1.8, leg: .72, color: '#b491ff' },
     { lane: 68, size: 52, dur: 21, delay: -11, op: .66, dir: -1, bob: 1.5, leg: .6,  color: '#8a5cff' },
     { lane: 44, size: 20, dur: 3.6, delay: -2, op: .6,  dir: 1,  bob: .46, color: '#c9b6ff' },
@@ -185,7 +183,14 @@
     { lane: 78, size: 18, dur: 3.2, delay: -2, op: .5,  dir: 1,  bob: .44, color: '#9b6bff' },
     { lane: 14, size: 16, dur: 2.6, delay: -1, op: .52, dir: -1, bob: .4,  color: '#b491ff' },
     { lane: 50, size: 14, dur: 2.3, delay: -3, op: .48, dir: 1,  bob: .36, color: '#c9b6ff' },
-  ].filter((_, i) => small ? i < 5 : true));
+  ].filter((_, i) => small ? i < 5 : true);
+  // defer the decorative swarm DOM build off the critical path → smoother first paint / input
+  const buildSwarms = () => {
+    buildWalkers($('#swarm'), small ? heroWalk.filter((_, i) => i < 9) : heroWalk);
+    buildWalkers($('#coreWalk'), coreWalk);
+  };
+  if ('requestIdleCallback' in window) requestIdleCallback(buildSwarms, { timeout: 700 });
+  else setTimeout(buildSwarms, 150);
 
   /* ── active section in nav ──────────────────────────────── */
   const links = $$('.nav-links a');
