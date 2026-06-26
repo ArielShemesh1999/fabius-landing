@@ -1,7 +1,7 @@
 {
   "name": "fabius — scout wide · strike narrow",
   "short_name": "fabius",
-  "description": "One super-skill that equips any LLM agent end-to-end under a single Fabian stance: scout wide, strike narrow.",
+  "description": "An autonomous AI agent that runs on every major model under a single Fabian stance: scout wide, strike narrow.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
