@@ -41,7 +41,7 @@
 
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
-    '.sec-head, .cmp, .flow, .card, .bench-figure, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
+    '.sec-head, .cmp, .flow, .card, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
     '.formula-band, .gate-fig, .math-work, ' +
     '.research-copy, .tool-list li, .install-in, .idea-in, .core-in, .latin'
   );
