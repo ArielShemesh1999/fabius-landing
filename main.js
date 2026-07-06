@@ -41,7 +41,7 @@
 
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
-    '.sec-head, .cmp, .flow, .card, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
+    '.sec-head, .cmp, .pt-console, .card, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
     '.formula-band, .gate-fig, .math-work, ' +
     '.research-copy, .tool-list li, .install-in, .idea-in, .core-in, .latin'
   );
@@ -208,4 +208,231 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     map.forEach((_, s) => spy.observe(s));
   }
+})();
+
+/* ── the mechanism: live dispatch console (praetorium) ─────────────
+   Give fabius a task; watch it Sense → Classify → Route → Strike →
+   Prove → Compound and dispatch to the right layer(s). Reduced-motion
+   aware (instant, no typing); starts once the console scrolls in. */
+(() => {
+  'use strict';
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, c = document) => c.querySelector(s);
+  const svg = $('#ptDiagram'), stepsWrap = $('#ptSteps'), chipsWrap = $('#ptChips');
+  if (!svg || !stepsWrap || !chipsWrap) return;   // section absent — no-op
+
+  const NS = 'http://www.w3.org/2000/svg';
+  const svgel = (t, a = {}, kids = []) => {
+    const n = document.createElementNS(NS, t);
+    for (const k in a) { if (k === 'text') n.textContent = a[k]; else n.setAttribute(k, a[k]); }
+    (Array.isArray(kids) ? kids : [kids]).forEach((c) => c && n.appendChild(c));
+    return n;
+  };
+  const sleep = (ms) => new Promise((r) => setTimeout(r, RM ? 0 : ms));
+  const CODE = (id) => id === 'parcus' ? 'fabius-parcus' : id === 'router' ? 'fabius' : 'fabius-' + id;
+
+  const RING = ['disciplina','decor','cohors','archivum','mercatus','praesidium','ludus','catena','machina','scientia','doctrina','fortuna','concilium'];
+  const STEPS = ['Sense','Classify','Route','Strike','Prove','Compound'];
+  const VERB = { Sense:'read', Classify:'weigh', Route:'dispatch', Strike:'build', Prove:'verify', Compound:'file' };
+  const AX = [['memory','memory'],['tools','tools·action'],['planning','planning'],['domain','domain']];
+  const A = (m, t, p, d) => ({ memory:m, tools:t, planning:p, domain:d });
+
+  const SC = {
+    landing:{ label:'Build a landing page', tag:'design', task:'Build me a landing page for my app',
+      axes:A(0,1,3,3), tier:'strong', mach:'one agent', lead:'decor', layers:['disciplina','decor'],
+      loop:{ Sense:'read context · no existing design system · small surface, no repo map needed',
+        Classify:'load — planning HIGH · domain(design) HIGH · tools low · memory low → tier <span class="hl">strong</span> (design judgment, not mechanical)',
+        Route:'process first: <span class="hl">disciplina</span> brainstorms the spec → <span class="hl">decor</span> executes · under parcus · one agent, no swarm',
+        Strike:'smallest correct page — design tokens, one accent, one elevation, real copy',
+        Prove:'headless screenshot · <span class="g">0 overflow</span> · contrast AA · single h1',
+        Compound:'file the design tokens → the next page starts ahead' } },
+    secure:{ label:'Is this contract secure?', tag:'security', task:'Is this smart contract secure?',
+      axes:A(0,2,2,3), tier:'strong', mach:'studio · multi-layer', lead:'praesidium', layers:['disciplina','praesidium','catena'],
+      loop:{ Sense:'read the contract · map the trust boundaries first',
+        Classify:'domain(security + on-chain) HIGH · tools med · planning med → tier <span class="hl">strong</span> (a threat model is not haiku work)',
+        Route:'<span class="hl">praesidium</span> leads (defensive) + <span class="hl">catena</span> (money-safe on-chain) · disciplina plans the pass · parcus underneath',
+        Strike:'STRIDE per boundary → each finding ships severity + fix + a regression test',
+        Prove:'the regression test runs <span class="g">red → green</span> · the re-entrancy path is closed',
+        Compound:'file the vuln class → it’s caught for free next time' } },
+    backtest:{ label:'Backtest a strategy', tag:'markets', task:'Backtest this trading strategy for me',
+      axes:A(0,2,2,3), tier:'strong', mach:'one agent', lead:'fortuna', layers:['disciplina','fortuna'],
+      loop:{ Sense:'read the strategy rules · pull the price series',
+        Classify:'domain(markets) HIGH · tools med · planning med → tier <span class="hl">strong</span>',
+        Route:'<span class="hl">fortuna</span> leads — analysis, never advice · disciplina plans · parcus underneath',
+        Strike:'honest backtest — out-of-sample, costs modeled, position size risk-bounded',
+        Prove:'walk-forward holds · <span class="g">no look-ahead leak</span> · the edge survives fees',
+        Compound:'file the edge and its decay window' } },
+    remember:{ label:'Remember this', tag:'memory', task:'Remember this API-key convention for next time',
+      axes:A(3,0,0,0), tier:'cheap', mach:'single tool', lead:'archivum', layers:['archivum'],
+      loop:{ Sense:'no map needed · this is a write, not a search',
+        Classify:'memory HIGH · every other axis low → tier <span class="g">cheap</span> (mechanical, low-judgment)',
+        Route:'<span class="hl">archivum</span> only · parcus underneath · don’t pay opus to file a note',
+        Strike:'one memory file · one index pointer · interlinked to what it relates to',
+        Prove:'recall test — a cold next session retrieves it',
+        Compound:'this <em>is</em> compounding — the knowledge base just grew' } },
+    game:{ label:'Make a small game', tag:'game', task:'Make me a small browser game',
+      axes:A(0,1,2,3), tier:'strong', mach:'studio · multi-layer', lead:'ludus', layers:['disciplina','decor','ludus'],
+      loop:{ Sense:'read the pitch · find the core loop before anything else',
+        Classify:'domain(game) HIGH · design med · planning med → tier <span class="hl">strong</span>',
+        Route:'<span class="hl">ludus</span> leads a studio → <span class="hl">decor</span> (pixel art) + disciplina (plan) · parcus underneath',
+        Strike:'core loop first · game feel deliberate · a jam-sized cut — ship one, not ten',
+        Prove:'it’s playable · <span class="g">win/lose state fires</span> · the loop is actually fun',
+        Compound:'file what made it feel good' } },
+    council:{ label:'Ask several models', tag:'ensemble', task:'This call is high-stakes — ask several models',
+      axes:A(0,1,3,2), tier:'strong', mach:'council · gated', lead:'concilium', layers:['concilium'],
+      loop:{ Sense:'high-stakes · genuinely contested · one model’s miss is costly',
+        Classify:'judgment HIGH → tier <span class="hl">strong</span> · machinery → <span class="hl">council</span> (expensive — gate first)',
+        Route:'<span class="hl">concilium</span> · N models answer blind → anonymized peer-review → a chairman synthesizes · parcus underneath',
+        Strike:'one better answer — consensus surfaced, dissent kept, not averaged to mush',
+        Prove:'the panel’s disagreement is <span class="g">shown, not hidden</span>',
+        Compound:'file the answer + why it beat the lone take' } },
+    rename:{ label:'Rename a variable', tag:'lean', task:'Rename a variable across the whole repo',
+      axes:A(0,0,0,0), tier:'cheap', mach:'stay in core', lead:'parcus', layers:[],
+      loop:{ Sense:'read the call sites · mechanical, bounded, known',
+        Classify:'load — every axis low · zero specialist load → tier <span class="g">cheap</span>',
+        Route:'<span class="hl">stay in the lean core</span> · no layer pulled · no swarm · don’t spend opus to rename',
+        Strike:'surgical rename · match the surrounding style · nothing extra',
+        Prove:'grep clean · <span class="g">typecheck green</span>',
+        Compound:'nothing worth filing — and that is the correct call' } },
+  };
+  const ORDER = ['landing','secure','backtest','remember','game','council','rename'];
+
+  /* build the dispatch diagram */
+  const CX = 280, CY = 195, RX = 225, RY = 150;
+  const nodeEls = {}, linkEls = {}, pos = {};
+  RING.forEach((id, i) => {
+    const ang = -Math.PI / 2 + (i / RING.length) * Math.PI * 2;
+    pos[id] = { x: CX + Math.cos(ang) * RX, y: CY + Math.sin(ang) * RY };
+    const ln = svgel('line', { x1: CX, y1: CY, x2: pos[id].x, y2: pos[id].y, class: 'pt-lnk' });
+    svg.appendChild(ln); linkEls[id] = ln;
+  });
+  const pbar = svgel('g', { class: 'pt-pbar' });
+  pbar.appendChild(svgel('rect', { x: 60, y: 388, width: 440, height: 30, rx: 8 }));
+  pbar.appendChild(svgel('text', { x: 280, y: 407, text: 'fabius-parcus · always on, underneath' }));
+  svg.appendChild(pbar);
+  RING.forEach((id) => {
+    const w = 74, h = 30, { x, y } = pos[id];
+    const g = svgel('g', { class: 'pt-node', transform: `translate(${(x - w / 2).toFixed(1)},${(y - h / 2).toFixed(1)})` });
+    g.appendChild(svgel('rect', { x: 0, y: 0, width: w, height: h, rx: 8 }));
+    g.appendChild(svgel('text', { x: w / 2, y: h / 2 + 3.4, text: id }));
+    svg.appendChild(g); nodeEls[id] = g;
+  });
+  const hub = svgel('g', { class: 'pt-hub', transform: `translate(${CX - 52},${CY - 30})` });
+  hub.appendChild(svgel('rect', { x: 0, y: 0, width: 104, height: 60, rx: 12 }));
+  hub.appendChild(svgel('text', { x: 52, y: 26, text: 'fabius', 'font-size': 13 }));
+  hub.appendChild(svgel('text', { x: 52, y: 42, text: 'ROUTER', class: 'sub' }));
+  svg.appendChild(hub);
+
+  /* reasoning-stream skeleton */
+  const stepEls = {};
+  STEPS.forEach((s, i) => {
+    const d = document.createElement('div'); d.className = 'pt-step';
+    d.innerHTML = `<div class="pt-sh"><span class="pt-idx">${i + 1}</span><span class="pt-nm">${s}</span><span class="pt-verb">${VERB[s]}</span></div>`
+      + `<div class="pt-txt"></div>${s === 'Classify' ? '<div class="pt-meters" hidden></div><div class="pt-tierbadge" hidden></div>' : ''}`;
+    stepsWrap.appendChild(d); stepEls[s] = d;
+  });
+
+  /* chips */
+  const selectChip = (key) => chipsWrap.querySelectorAll('.pt-chip')
+    .forEach((c) => c.setAttribute('aria-pressed', c.dataset.key === key ? 'true' : 'false'));
+  ORDER.forEach((key, i) => {
+    const sc = SC[key];
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'pt-chip';
+    b.dataset.key = key; b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+    b.innerHTML = `${sc.label}<span class="pt-tag">${sc.tag}</span>`;
+    b.addEventListener('click', () => { $('#ptTask').value = sc.task; selectChip(key); run(key); });
+    chipsWrap.appendChild(b);
+  });
+
+  let runToken = 0;
+  async function typeInto(node, html, token) {
+    node.innerHTML = html;
+    if (RM) return;
+    const full = node.textContent;
+    node.innerHTML = ''; const cur = document.createElement('span'); cur.className = 'cur'; node.appendChild(cur);
+    let out = '';
+    for (let i = 0; i < full.length; i++) {
+      if (token !== runToken) return;
+      out += full[i]; node.textContent = out; node.appendChild(cur);
+      await sleep(full[i] === ' ' ? 7 : 13);
+    }
+    node.innerHTML = html;
+  }
+  function resetRun() {
+    Object.values(stepEls).forEach((s) => { s.classList.remove('on'); s.querySelector('.pt-txt').innerHTML = ''; });
+    const m = stepEls.Classify.querySelector('.pt-meters'), t = stepEls.Classify.querySelector('.pt-tierbadge');
+    m.hidden = true; m.innerHTML = ''; t.hidden = true; t.innerHTML = '';
+    Object.values(nodeEls).forEach((n) => n.classList.remove('active', 'lead'));
+    Object.values(linkEls).forEach((l) => l.classList.remove('active'));
+    hub.classList.remove('live'); pbar.classList.remove('on');
+    $('#ptLead').textContent = '—'; $('#ptMach').textContent = '—'; $('#ptTier').textContent = '—';
+  }
+  async function run(key) {
+    const sc = SC[key]; if (!sc) return;
+    runToken++; const token = runToken;
+    $('#ptRun').disabled = true; resetRun();
+    $('#ptClock').textContent = 'running…'; $('#ptDispSt').textContent = 'routing…';
+    for (const step of STEPS) {
+      if (token !== runToken) return;
+      $('#ptPhase').textContent = '→ ' + step;
+      const node = stepEls[step]; node.classList.add('on');
+      const txt = node.querySelector('.pt-txt');
+      if (step === 'Classify') {
+        const m = node.querySelector('.pt-meters'); m.hidden = false;
+        AX.forEach(([kk, lab]) => {
+          const v = sc.axes[kk], pct = [8, 38, 68, 100][v], hi = v >= 3, lo = v === 0;
+          const mm = document.createElement('div'); mm.className = 'pt-meter' + (hi ? ' hi' : '') + (lo ? ' lo' : '');
+          mm.innerHTML = `<div class="pt-mt"><span>${lab}</span><span class="pt-mv">${['—', 'low', 'med', 'HIGH'][v]}</span></div>`
+            + `<div class="pt-track"><div class="pt-fill" data-p="${pct}"></div></div>`;
+          m.appendChild(mm);
+        });
+        await sleep(60);
+        m.querySelectorAll('.pt-fill').forEach((f) => { f.style.width = f.dataset.p + '%'; });
+        const t = node.querySelector('.pt-tierbadge'); t.hidden = false;
+        const cls = sc.tier === 'strong' ? 'strong' : 'cheap';
+        const label = sc.tier === 'strong' ? 'opus-class · strong' : 'haiku-class · cheap';
+        t.innerHTML = `spend the cheapest tier that holds → <span class="pt-pill ${cls}">${label}</span>`;
+      }
+      if (step === 'Route') {
+        $('#ptDispSt').textContent = 'dispatched';
+        hub.classList.add('live'); pbar.classList.add('on');
+        for (const lid of sc.layers) {
+          if (linkEls[lid]) linkEls[lid].classList.add('active');
+          if (nodeEls[lid]) nodeEls[lid].classList.add('active');
+          await sleep(160);
+        }
+        if (sc.lead && nodeEls[sc.lead]) nodeEls[sc.lead].classList.add('lead');
+        $('#ptLead').textContent = CODE(sc.lead);
+        $('#ptMach').textContent = sc.mach;
+        $('#ptTier').textContent = sc.tier === 'strong' ? 'strong' : 'cheap';
+      }
+      await typeInto(txt, sc.loop[step], token);
+      await sleep(step === 'Route' ? 120 : 260);
+    }
+    if (token !== runToken) return;
+    $('#ptPhase').textContent = '✓ done · proven'; $('#ptClock').textContent = 'complete';
+    $('#ptRun').disabled = false;
+  }
+
+  const KWMAP = [['secur','secure'],['contract','secure'],['backtest','backtest'],['stock','backtest'],['trad','backtest'],
+    ['rememb','remember'],['memor','remember'],['game','game'],['council','council'],['several model','council'],
+    ['rename','rename'],['landing','landing'],['design','landing'],['website','landing']];
+  function dispatch() {
+    const val = $('#ptTask').value.trim().toLowerCase();
+    let key = chipsWrap.querySelector('.pt-chip[aria-pressed="true"]')?.dataset.key || 'landing';
+    for (const [kw, k] of KWMAP) { if (val.includes(kw)) { key = k; break; } }
+    selectChip(key); run(key);
+  }
+  $('#ptRun').addEventListener('click', dispatch);
+  $('#ptTask').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); dispatch(); } });
+
+  /* start the first run once the console scrolls into view */
+  let started = false;
+  const kick = () => { if (started) return; started = true; run('landing'); };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((ents, obs) => {
+      ents.forEach((en) => { if (en.isIntersecting) { kick(); obs.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe(svg);
+  } else { kick(); }
 })();
