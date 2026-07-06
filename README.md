@@ -15,9 +15,9 @@ python3 -m http.server 8799   # then open http://localhost:8799
 ## Structure
 
 ```
-index.html      structure + inline SVG symbols (emblem, beetle, 9 skill bugs, wordmark)
+index.html      structure + inline SVG symbols (emblem, beetle, 15 skill bugs, wordmark)
 styles.css      design system (tokens) + all sections + motion
-main.js         nav, beetle swarm, scroll reveals, emblem draw-in, explainer video, copy buttons
+main.js         nav, beetle swarm, scroll reveals, emblem draw-in, explainer video, the live dispatch console
 assets/         inter.woff2 · og.png · fabius-explainer.mp4 · fabius-explainer-poster.webp
 vercel.json     security headers + asset caching + CSP
 ```
