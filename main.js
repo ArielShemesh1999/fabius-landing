@@ -367,10 +367,11 @@
     hub.classList.remove('live'); pbar.classList.remove('on');
     $('#ptLead').textContent = '—'; $('#ptMach').textContent = '—'; $('#ptTier').textContent = '—';
   }
-  async function run(key) {
-    const sc = SC[key]; if (!sc) return;
+  async function run(arg) {
+    const sc = typeof arg === 'string' ? SC[arg] : arg;
+    if (!sc) return;
     runToken++; const token = runToken;
-    $('#ptRun').disabled = true; resetRun();
+    resetRun();   // Dispatch stays clickable mid-run — a new task just interrupts (runToken guards the rest)
     $('#ptClock').textContent = 'running…'; $('#ptDispSt').textContent = 'routing…';
     for (const step of STEPS) {
       if (token !== runToken) return;
@@ -411,24 +412,76 @@
     }
     if (token !== runToken) return;
     $('#ptPhase').textContent = '✓ done · proven'; $('#ptClock').textContent = 'complete';
-    $('#ptRun').disabled = false;
   }
 
-  const KWMAP = [['secur','secure'],['contract','secure'],['backtest','backtest'],['stock','backtest'],['trad','backtest'],
-    ['rememb','remember'],['memor','remember'],['game','game'],['council','council'],['several model','council'],
-    ['rename','rename'],['landing','landing'],['design','landing'],['website','landing']];
+  /* classify ANY typed task by detected domain, echoing the user's own words.
+     Every branch routes to a real layer; nothing typed is ignored. */
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const DOMAINS = [
+    { re:/(secur|vulnerab|exploit|threat|harden|\baudit|owasp|\bauth\b|xss|csrf|injection|secret)/, dom:'defensive security', lead:'praesidium', layers:['disciplina','praesidium'], tier:'strong', mach:'one agent', axes:A(0,1,2,3),
+      strike:'STRIDE per trust boundary → each finding ships severity + fix + a regression test', prove:'the regression test runs <span class="g">red → green</span>', compound:'file the vuln class → caught free next time' },
+    { re:/(contract|solidity|foundry|on-?chain|wallet|erc-?20|\btoken\b|\bmint\b|solana|anchor|\bevm\b|seal this|provenance|sign this)/, dom:'on-chain + provenance', lead:'catena', layers:['disciplina','catena'], tier:'strong', mach:'one agent', axes:A(0,2,2,3),
+      strike:'account-validation first · money-safe tx · nothing speculative', prove:'the tx sim passes · <span class="g">no unchecked account</span>', compound:'file the pattern' },
+    { re:/(chart|graph|\bplot\b|visuali|dashboard|dataviz|heatmap|sparkline)/, dom:'data visualization', lead:'decor', layers:['disciplina','decor'], tier:'strong', mach:'one agent', axes:A(0,1,2,3),
+      strike:'the right mark · a faint grid · an emphasized endpoint · honest, zero-based scale', prove:'reads at a glance · <span class="g">accessible in light + dark</span>', compound:'file the chart spec' },
+    { re:/(design|\bui\b|\bux\b|landing|website|web ?page|\bcss\b|brand|figma|layout|component|screen|mockup|\bhero\b|logo)/, dom:'ship-grade design', lead:'decor', layers:['disciplina','decor'], tier:'strong', mach:'one agent', axes:A(0,1,3,3),
+      strike:'design tokens · one accent · one elevation · mobile-first', prove:'headless screenshot · <span class="g">0 overflow</span> · contrast AA', compound:'file the design tokens → the next page starts ahead' },
+    { re:/(\bgame\b|playable|gameplay|\bjuice\b|arcade|pixel|roguelike|platformer|mechanic)/, dom:'game craft', lead:'ludus', layers:['disciplina','decor','ludus'], tier:'strong', mach:'studio · multi-layer', axes:A(0,1,2,3),
+      strike:'core loop first · game feel deliberate · a jam-sized cut — ship one, not ten', prove:'it’s playable · <span class="g">win/lose state fires</span> · the loop is fun', compound:'file what made it feel good' },
+    { re:/(market|stock|ticker|equit|invest|portfolio|backtest|\btrad|econom|valuation|\brisk\b|indicator|\bgdp\b|\bcpi\b)/, dom:'markets & economics', lead:'fortuna', layers:['disciplina','fortuna'], tier:'strong', mach:'one agent', axes:A(0,2,2,3),
+      strike:'risk sized first · out-of-sample · costs modeled — analysis, not advice', prove:'<span class="g">no look-ahead leak</span> · the edge survives fees', compound:'file the edge + its decay window' },
+    { re:/(remember|memor(y|ise|ize)|knowledge base|note this|save this|recall|re-?derive)/, dom:'persistent memory', lead:'archivum', layers:['archivum'], tier:'cheap', mach:'single tool', axes:A(3,0,0,0),
+      strike:'one memory file · one index pointer · interlinked', prove:'recall test — a cold next session retrieves it', compound:'this <em>is</em> compounding — the base just grew' },
+    { re:/(agent|subagent|swarm|orchestrat|multi-?agent|tool-?use|cohort)/, dom:'agent engineering', lead:'cohors', layers:['disciplina','cohors'], tier:'strong', mach:'one agent', axes:A(0,1,3,3),
+      strike:'least privilege · a precise output contract · the smallest orchestration that holds', prove:'the agent hits its contract · <span class="g">no over-broad tools</span>', compound:'file the agent shape' },
+    { re:/(automat|workflow|webhook|zapier|\bn8n\b|make\.com|integrat|\bcron\b|connect .* to)/, dom:'automation', lead:'machina', layers:['disciplina','machina'], tier:'strong', mach:'one agent', axes:A(0,2,2,2),
+      strike:'discover from the live schema · build incrementally · verify the wiring before it runs live', prove:'the wiring fires end-to-end · <span class="g">no silent miswire</span>', compound:'file the integration map' },
+    { re:/(biolog|genom|rna-?seq|protein|molecul|chemistr|hypothes|\bgene\b|variant|clinical|omics|scientif)/, dom:'scientific method', lead:'scientia', layers:['disciplina','scientia'], tier:'strong', mach:'one agent', axes:A(0,2,2,3),
+      strike:'competing falsifiable hypotheses · DB-grounded, never guessed', prove:'<span class="g">each claim traces to an authoritative database</span>', compound:'file the finding' },
+    { re:/(fine-?tune|serve .*model|inference|mlops|\beval|\bvllm\b|mlflow|train(ing)? .*model|checkpoint|quantiz)/, dom:'AI/ML engineering', lead:'doctrina', layers:['disciplina','doctrina'], tier:'strong', mach:'one agent', axes:A(0,2,2,3),
+      strike:'held-out, leakage-free eval · blind judges · a regression gate', prove:'the model earns <span class="g">“better”</span> on a held-out set', compound:'file the eval' },
+    { re:/(council|several models|panel of|ensemble|ask (multiple|many|other) models|cross-?model)/, dom:'cross-model council', lead:'concilium', layers:['concilium'], tier:'strong', mach:'council · gated', axes:A(0,1,3,2),
+      strike:'N answer blind → anonymized peer-review → a chairman synthesizes', prove:'the panel’s disagreement is <span class="g">shown, not hidden</span>', compound:'file the answer + why it won' },
+    { re:/(copy|market this|position(ing)?|launch|\bads?\b|\bseo\b|funnel|headline|slogan|outreach|\bpitch\b)/, dom:'go-to-market', lead:'mercatus', layers:['disciplina','mercatus'], tier:'strong', mach:'one agent', axes:A(0,1,2,3),
+      strike:'message matched to awareness · proof over adjectives · one clear next step', prove:'the value is <span class="g">legible</span> · the next step is obvious', compound:'file the positioning' },
+    { re:/(\bbug\b|\bfix\b|debug|error|crash|failing|broken|regression|stack ?trace|throws?)/, dom:'debugging', lead:'disciplina', layers:['disciplina'], tier:'strong', mach:'one agent', axes:A(0,1,3,1),
+      strike:'reproduce → root cause → the minimal fix', prove:'a regression test locks it · <span class="g">red → green</span>', compound:'file the root cause' },
+    { re:/(rename|typo|reformat|\blint\b|one-?liner|trivial|small (fix|change)|\btweak\b)/, dom:'zero-load · lean', lead:'parcus', layers:[], tier:'cheap', mach:'stay in core', axes:A(0,0,0,0),
+      strike:'surgical change · match the surrounding style · nothing extra', prove:'grep clean · <span class="g">typecheck green</span>', compound:'nothing worth filing — and that is correct' },
+  ];
+  const GENERIC = { dom:'general build', lead:'disciplina', layers:['disciplina'], tier:'strong', mach:'one agent', axes:A(0,1,2,1),
+    strike:'the smallest correct artifact · climb the YAGNI ladder, stop at the first rung that holds', prove:'run it · show the evidence — no “should work”', compound:'file what was learned' };
+
+  function buildDynamic(text) {
+    const d = DOMAINS.find((x) => x.re.test(text.toLowerCase())) || GENERIC;
+    const shown = esc(text.length > 60 ? text.slice(0, 57) + '…' : text) || 'an empty task';
+    const tierWord = d.tier === 'strong' ? '<span class="hl">strong</span>' : '<span class="g">cheap</span>';
+    const others = d.layers.filter((l) => l !== d.lead).map((l) => 'fabius-' + l).join(' + ');
+    const route = d.layers.length
+      ? `<span class="hl">fabius-${d.lead}</span> leads${others ? ' · ' + others : ''} · parcus underneath`
+      : `<span class="hl">stay in the lean core</span> · no specialist pulled · parcus only`;
+    return { lead: d.lead, layers: d.layers, tier: d.tier, mach: d.mach, axes: d.axes, loop: {
+      Sense: `read your task · “${shown}” · scope it before deciding`,
+      Classify: `read as <span class="hl">${d.dom}</span> · load weighed on 4 axes → tier ${tierWord} · machinery: ${d.mach}`,
+      Route: route, Strike: d.strike, Prove: d.prove, Compound: d.compound } };
+  }
+
   function dispatch() {
-    const val = $('#ptTask').value.trim().toLowerCase();
-    let key = chipsWrap.querySelector('.pt-chip[aria-pressed="true"]')?.dataset.key || 'landing';
-    for (const [kw, k] of KWMAP) { if (val.includes(kw)) { key = k; break; } }
-    selectChip(key); run(key);
+    const raw = $('#ptTask').value.trim();
+    if (!raw) { selectChip('landing'); $('#ptTask').value = SC.landing.task; run('landing'); return; }
+    // if a preset chip is pressed and the text still matches it verbatim, use the polished preset
+    const pressed = chipsWrap.querySelector('.pt-chip[aria-pressed="true"]')?.dataset.key;
+    if (pressed && SC[pressed] && raw === SC[pressed].task) { run(pressed); return; }
+    // otherwise: a custom task — deselect chips and route it dynamically, echoing the words typed
+    chipsWrap.querySelectorAll('.pt-chip').forEach((c) => c.setAttribute('aria-pressed', 'false'));
+    run(buildDynamic(raw));
   }
   $('#ptRun').addEventListener('click', dispatch);
   $('#ptTask').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); dispatch(); } });
 
-  /* start the first run once the console scrolls into view */
-  let started = false;
-  const kick = () => { if (started) return; started = true; run('landing'); };
+  /* start the first run once the console scrolls into view — but never
+     clobber a run the user already kicked off (runToken > 0) */
+  const kick = () => { if (runToken > 0) return; run('landing'); };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((ents, obs) => {
       ents.forEach((en) => { if (en.isIntersecting) { kick(); obs.disconnect(); } });

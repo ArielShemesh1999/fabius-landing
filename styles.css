@@ -264,14 +264,15 @@ img{display:block;max-width:100%}
 .pt-chip .pt-tag{color:#6b6580;margin-left:7px}
 .pt-chip[aria-pressed=true] .pt-tag{color:rgba(255,255,255,.72)}
 
-.pt-body{display:grid;grid-template-columns:1fr 1.02fr}
-.pt-col{padding:clamp(16px,2.2vw,24px)}
-.pt-reason{border-right:1px solid rgba(255,255,255,.055)}
+/* diagram on top, the six-step reasoning below (scroll to read) — same on phone */
+.pt-body{display:flex;flex-direction:column}
+.pt-col{padding:clamp(18px,2.4vw,26px)}
+.pt-reason{border-top:1px solid rgba(255,255,255,.055)}
 .pt-col-lab{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6b6580;
   display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
 .pt-phase{color:var(--primary-lite);text-align:right}
 
-.pt-steps{display:flex;flex-direction:column}
+.pt-steps{display:flex;flex-direction:column;max-width:840px;margin-inline:auto;width:100%}
 .pt-step{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.055);opacity:.28;transition:opacity .35s}
 .pt-step:last-child{border-bottom:none}
 .pt-step.on{opacity:1}
@@ -302,9 +303,9 @@ img{display:block;max-width:100%}
 .pt-pill.cheap{border-color:#3f7a5a;color:#34d399}
 
 .pt-dispatch{display:flex;flex-direction:column}
-.pt-diagram{width:100%;flex:1;min-height:320px}
+.pt-diagram{width:100%;max-width:600px;margin:4px auto 0}
 .pt-diagram svg{width:100%;height:auto;display:block;overflow:visible}
-.pt-readout{display:flex;gap:9px;flex-wrap:wrap;margin-top:8px;font-family:var(--mono);font-size:11px}
+.pt-readout{display:flex;gap:9px;flex-wrap:wrap;margin:14px auto 0;font-family:var(--mono);font-size:11px;max-width:600px;width:100%}
 .pt-r{border:1px solid rgba(255,255,255,.09);border-radius:8px;padding:7px 11px;color:#9a94ad;flex:1;min-width:118px}
 .pt-r>span{color:#6b6580}
 .pt-r b{display:block;color:#ECEAF3;font-size:12.5px;margin-top:2px;letter-spacing:.01em}
@@ -333,9 +334,8 @@ img{display:block;max-width:100%}
 .pt-foot b{color:var(--primary-lite);font-family:var(--mono);font-weight:600;font-size:.94em}
 
 @media (max-width:760px){
-  .pt-body{grid-template-columns:1fr}
-  .pt-reason{border-right:none;border-bottom:1px solid rgba(255,255,255,.055)}
   .pt-meters{grid-template-columns:1fr;max-width:none}
+  .pt-diagram{min-height:300px}
 }
 
 /* ── nine skills grid ────────────────────────────────────── */
