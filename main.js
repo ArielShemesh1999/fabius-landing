@@ -43,22 +43,42 @@
   const revealTargets = $$(
     '.sec-head, .cmp, .pt-console, .card, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
     '.formula-band, .gate-fig, .math-work, ' +
-    '.research-copy, .tool-list li, .install-in, .idea-in, .core-in, .latin'
+    '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in, .latin'
   );
   if (!reduce && 'IntersectionObserver' in window) {
-    revealTargets.forEach((el, i) => {
+    // orchestrated stagger: grouped items cascade by their position within the group.
+    // grids cascade row-wise (modulo columns) so nothing waits more than ~2 steps.
+    revealTargets.forEach((el) => {
       el.classList.add('reveal');
-      // gentle stagger only within tight groups
-      if (el.matches('.card, .tool-list li')) el.style.transitionDelay = (i % 3) * 70 + 'ms';
+      const sibs = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
+      let i = 0;
+      if (el.matches('.card')) i = sibs % 3;
+      else if (el.matches('.tool-list li')) i = sibs % 2;
+      else if (el.matches('.research-pts li')) i = Math.min(sibs, 3);
+      if (i) el.style.setProperty('--reveal-i', i);
     });
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
         en.target.classList.add('in');
+        en.target.addEventListener('transitionend', () => en.target.classList.add('done'), { once: true });
         obs.unobserve(en.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
     revealTargets.forEach((el) => io.observe(el));
+  }
+
+  /* ── hero parallax — the beetle swarm drifts slower than the page (depth) ── */
+  const swarm = $('#swarm');
+  if (swarm && !reduce) {
+    let ticking = false;
+    const drift = () => {
+      ticking = false;
+      const y = Math.min(scrollY, 760) * 0.15;
+      swarm.style.transform = `translate3d(0,${y.toFixed(1)}px,0)`;
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(drift); } }, { passive: true });
+    drift();
   }
 
   /* ── emblem: draw-in "creation" on every spiral it appears (not nav/footer) ── */
@@ -79,6 +99,8 @@
         const path = $('.draw-spiral', en.target), dot = $('.draw-dot', en.target);
         if (path) path.style.strokeDashoffset = '0';
         if (dot) dot.style.opacity = '1';
+        // once the stroke has finished drawing, let the mark come alive (breathe + glow)
+        setTimeout(() => en.target.classList.add('drawn'), 1500);
         obs.unobserve(en.target);
       });
     }, { threshold: 0.4 });
