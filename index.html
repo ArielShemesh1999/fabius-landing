@@ -37,14 +37,14 @@
 <meta name="twitter:image:alt" content="fabius wordmark with the tagline scout wide, strike narrow and the line one agent, every model, end to end." />
 
 <link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/styles.css?v=2026-07-10a" />
+<link rel="stylesheet" href="/styles.css?v=2026-07-10b" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"An autonomous engineering agent that runs on every major model — Anthropic, OpenAI, Google, Mistral, Groq — under a single Fabian stance: scout wide, strike narrow. Fifteen coordinated, non-overlapping capability layers, managed from one console.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-07a","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"An autonomous engineering agent. One stance — scout wide, strike narrow — across the whole job: code, design, agents, debugging, memory, marketing, defensive security, game craft, on-chain development and sealing, automation, science, ML engineering, markets & finance, and convening a cross-model council to deliberate one answer. Fifteen coordinated, non-overlapping skills form its brain, and it runs on every major model."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"You run and manage fabius from the synapse console: hand it a task, pick a model tier, and it routes → plans → strikes with the smallest correct artifact → self-verifies → records. Every run is logged and reviewable."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"Every major provider — Anthropic, OpenAI, Google, Mistral and Groq — at a frontier, mid or fast tier per task. Bring your own key and the agent adapts. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"Does it make the model smarter?","acceptedAnswer":{"@type":"Answer","text":"No — it is a scope-control system, not a capability boost. In its benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. And it holds when verified objectively — code run against hidden tests, facts checked: under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%. All of it on 20–35% less output. Honest framing: structure beats brevity — not smarter, not 10× on everything; every capable tier gains on both panels and the fast tier dips on trivial one-liners, printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
 </script>
-<script defer src="/main.js?v=2026-07-10a"></script>
+<script defer src="/main.js?v=2026-07-10b"></script>
 </head>
 <body>
 
@@ -85,8 +85,6 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#idea">Idea</a>
       <a href="#system">System</a>
-      <a href="#architecture">Console</a>
-      <a href="#skills">Skills</a>
       <a href="#usecases">Use cases</a>
       <a href="#benchmark">Benchmark</a>
       <a href="#faq">FAQ</a>
@@ -103,8 +101,6 @@
     <a href="#idea">Idea</a>
     <a href="#flow">The loop</a>
     <a href="#system">System</a>
-    <a href="#architecture">Console</a>
-    <a href="#skills">Skills</a>
     <a href="#usecases">Use cases</a>
     <a href="#benchmark">Benchmark</a>
     <a href="#research">Research</a>
@@ -233,7 +229,7 @@
     <header class="sec-head flow-head">
       <p class="eyebrow-text"><span class="eb-n">03</span>The loop</p>
       <h2 class="sec-title">One loop. Run on every task.</h2>
-      <p class="sec-lede">“Scout wide, strike narrow” isn’t a slogan — it’s the five-beat rhythm behind every run. Investigate everything; ship one thing; keep what you learned. The system and console below show that same run two more ways — by the rules it obeys, and live as it executes.</p>
+      <p class="sec-lede">“Scout wide, strike narrow” isn’t a slogan — it’s the five-beat rhythm behind every run. Investigate everything; ship one thing; keep what you learned. The system below shows that same run again — decomposed into the rules it obeys.</p>
     </header>
     <ol class="flow-loop" aria-label="The fabius operating loop">
       <li class="flow-step" style="--fi:0">
@@ -407,291 +403,11 @@
   </div>
 </section>
 
-<!-- ── the mechanism · live dispatch console ────────────────────── -->
-<section class="praetorium" id="architecture">
-  <div class="pt-grid-bg" aria-hidden="true"></div>
-  <div class="wrap pt-wrap">
-    <header class="sec-head pt-head">
-      <p class="eyebrow-text"><span class="eb-n">05</span>The mechanism</p>
-      <h2 class="sec-title">Give it a task. Watch fabius think.</h2>
-      <p class="sec-lede">Your prompt never triggers one choice — it triggers three, made together: <em>which layers</em>, <em>how much machinery</em>, and <em>which model tier</em>. Then the same six-step execution loop runs, every time. Pick a task, or type your own, and watch fabius route it live.</p>
-    </header>
-
-    <div class="pt-console reveal">
-      <div class="pt-top">
-        <span class="pt-lamps" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="pt-ttl"><b>fabius</b> · router — the command tent</span>
-        <span class="pt-clock" id="ptClock">idle</span>
-      </div>
-
-      <div class="pt-prompt">
-        <div class="pt-lab">The task</div>
-        <div class="pt-in">
-          <input id="ptTask" type="text" autocomplete="off" spellcheck="false" value="Build me a landing page for my app" aria-label="A task to hand fabius" />
-          <button class="btn primary pt-run" id="ptRun" type="button">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Dispatch
-          </button>
-        </div>
-        <div class="pt-chips" id="ptChips" role="group" aria-label="Example tasks"></div>
-      </div>
-
-      <div class="pt-body">
-        <div class="pt-col pt-reason">
-          <div class="pt-col-lab"><span>Reasoning — the six-step loop</span><span class="pt-phase" id="ptPhase">— awaiting task</span></div>
-          <div class="pt-steps" id="ptSteps"></div>
-        </div>
-        <div class="pt-col pt-dispatch">
-          <div class="pt-col-lab"><span>Dispatch</span><span class="pt-phase" id="ptDispSt">router idle</span></div>
-          <div class="pt-diagram">
-            <svg id="ptDiagram" viewBox="0 0 560 430" role="img" aria-label="Dispatch diagram — the fabius router hands the task to the relevant capability layers over the always-on lean core."></svg>
-          </div>
-          <div class="pt-readout">
-            <div class="pt-r acc"><span>lead layer</span><b id="ptLead">—</b></div>
-            <div class="pt-r"><span>machinery</span><b id="ptMach">—</b></div>
-            <div class="pt-r"><span>model tier</span><b id="ptTier">—</b></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="pt-foot">Process picks <em>how</em>, domain picks <em>what</em> — <b>fabius-parcus</b>, the lean core, runs beneath all of it. Each rule has exactly one owner; that’s what keeps fifteen skills from contradicting one another.</p>
-  </div>
-</section>
-
-<!-- ── the fifteen skills ─────────────────────────────────────── -->
-<section class="skills" id="skills">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">06</span>The fifteen skills</p>
-      <h2 class="sec-title">Fifteen coordinated, zero-overlap skills. One console.</h2>
-      <p class="sec-lede">A router, an always-on lean core, and thirteen engineering specialists. Each is a thin operating contract; the depth loads only on demand.</p>
-    </header>
-    <div class="grid">
-      <article class="card lead" style="--acc:#7a3dff">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-router"/></svg></span><span class="card-tag">router</span></div>
-        <h3>fabius</h3>
-        <p>Reads the job, sets the stance, dispatches by layer + machinery + model-tier. The conductor and the kill-switch.</p>
-      </article>
-      <article class="card" style="--acc:#6366f1">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-parcus"/></svg></span><span class="card-tag">always on</span></div>
-        <h3>fabius-parcus</h3>
-        <p>The lean core. Terse output, the YAGNI ladder, surgical changes — never speculative scope. Runs underneath everything.</p>
-      </article>
-      <article class="card" style="--acc:#2563eb">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-disciplina"/></svg></span><span class="card-tag">process</span></div>
-        <h3>fabius-disciplina</h3>
-        <p>Brainstorm → plan → test-first → prove. Grill ambiguity one question at a time. Root-cause debugging, not symptom patches.</p>
-      </article>
-      <article class="card" style="--acc:#db2777">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-decor"/></svg></span><span class="card-tag">design</span></div>
-        <h3>fabius-decor</h3>
-        <p>Ship-grade UI and data-viz. One-accent laws, a token vocabulary, mobile-first, live-verify, data-ink charts.</p>
-      </article>
-      <article class="card" style="--acc:#0891b2">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-cohors"/></svg></span><span class="card-tag">agents</span></div>
-        <h3>fabius-cohors</h3>
-        <p>Define and orchestrate other agents. A definition schema, least privilege, five orchestration patterns including the swarm.</p>
-      </article>
-      <article class="card" style="--acc:#d97706">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-archivum"/></svg></span><span class="card-tag">memory</span></div>
-        <h3>fabius-archivum</h3>
-        <p>Persistent, per-project memory. A linked markdown knowledge base of index + log + topic pages, tended without being asked. Stop re-deriving.</p>
-      </article>
-      <article class="card" style="--acc:#059669">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-mercatus"/></svg></span><span class="card-tag">go-to-market</span></div>
-        <h3>fabius-mercatus</h3>
-        <p>Positioning, message-to-awareness match, proof over adjectives, a one-action funnel, copy that converts.</p>
-      </article>
-      <article class="card" style="--acc:#e11d48">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-praesidium"/></svg></span><span class="card-tag">security</span></div>
-        <h3>fabius-praesidium</h3>
-        <p>Defensive security. STRIDE per boundary, the OWASP pass, secrets + least privilege, severity → fix → proof findings.</p>
-      </article>
-      <article class="card" style="--acc:#7c3aed">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-ludus"/></svg></span><span class="card-tag">game craft</span></div>
-        <h3>fabius-ludus</h3>
-        <p>The core loop first, deliberate juice, state as a machine, the pixel lane, jam-sized scope.</p>
-      </article>
-      <article class="card" style="--acc:#ca8a04">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-catena"/></svg></span><span class="card-tag">on-chain</span></div>
-        <h3>fabius-catena</h3>
-        <p>On-chain dev (EVM + Solana) and verifiable provenance. Account-validation-first, money-safe transactions, cryptographic sealing — hash → sign → anchor → verify.</p>
-      </article>
-      <article class="card" style="--acc:#0d9488">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-machina"/></svg></span><span class="card-tag">automation</span></div>
-        <h3>fabius-machina</h3>
-        <p>Deterministic workflow automation. Discover from the live schema, build incrementally, validate <em>and</em> verify the wiring, then activate — no silent miswires.</p>
-      </article>
-      <article class="card" style="--acc:#3730a3">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-scientia"/></svg></span><span class="card-tag">science</span></div>
-        <h3>fabius-scientia</h3>
-        <p>The scientific method, executable. Competing falsifiable hypotheses, source-grounded database lookups, reproducible field-standard pipelines.</p>
-      </article>
-      <article class="card" style="--acc:#4338ca">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-doctrina"/></svg></span><span class="card-tag">AI/ML engineering</span></div>
-        <h3>fabius-doctrina</h3>
-        <p>The model lifecycle as production software. Train → evaluate → serve → monitor. Held-out leakage-free evals, blind judges, vLLM-class serving, MLOps that's reproducible.</p>
-      </article>
-      <article class="card" style="--acc:#15803d">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-fortuna"/></svg></span><span class="card-tag">markets &amp; finance</span></div>
-        <h3>fabius-fortuna</h3>
-        <p>Method over money. Risk sized first, evidence over narrative, valuation with stated assumptions, backtests proven out-of-sample. Analysis, not advice — never manipulation.</p>
-      </article>
-      <article class="card" style="--acc:#0ea5e9">
-        <div class="card-top"><span class="card-ic"><svg aria-hidden="true"><use href="#bug-concilium"/></svg></span><span class="card-tag">cross-model council</span></div>
-        <h3>fabius-concilium</h3>
-        <p>Convene a council of models on one question — each answers, then ranks the others blind, and a chairman synthesizes the field into one better answer. Ensemble epistemics, spent only when a wrong answer is costly.</p>
-      </article>
-    </div>
-    <p class="latin">parcus, frugal · disciplina, training · decor, what is fitting · cohors, the cohort · archivum, the record office · mercatus, the marketplace · praesidium, the garrison · ludus, the game · catena, the chain · machina, the working mechanism · scientia, knowledge won by method · doctrina, the body of learning · fortuna, the turn of the market · concilium, the summoned council.</p>
-  </div>
-</section>
-
-<!-- ── inside the console · tabbed explorer ────────────────────── -->
-<section class="inside" id="inside">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">07</span>Inside the console</p>
-      <h2 class="sec-title">It’s a real console. Not a prompt box.</h2>
-      <p class="sec-lede">You don’t just chat with fabius — you run it. Every task is dispatched, every run is logged, costed and reviewable. Switch views and watch the same brain from six angles.</p>
-    </header>
-    <div class="tour">
-      <div class="tour-tabs" role="tablist" aria-label="Console views">
-        <button class="tour-tab" role="tab" id="tt-graph" aria-controls="tp-graph" aria-selected="true"><span class="tt-i"><svg viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="17" cy="18" r="2.4"/><circle cx="12" cy="12" r="2.8"/><path d="M8.2 8 14 11M15.7 7.4 13.4 10.6M16.4 15.7 13 13.4"/></svg></span>Graph</button>
-        <button class="tour-tab" role="tab" id="tt-system" aria-controls="tp-system" aria-selected="false"><span class="tt-i"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4" rx="1"/><rect x="3" y="16" width="6" height="4" rx="1"/><rect x="15" y="16" width="6" height="4" rx="1"/><path d="M12 7v4M6 16v-3h12v3"/></svg></span>System</button>
-        <button class="tour-tab" role="tab" id="tt-router" aria-controls="tp-router" aria-selected="false"><span class="tt-i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.6"/><path d="M12 9.4V4M14.4 12H20M12 14.6V20M9.4 12H4"/></svg></span>Router</button>
-        <button class="tour-tab" role="tab" id="tt-missions" aria-controls="tp-missions" aria-selected="false"><span class="tt-i"><svg viewBox="0 0 24 24"><path d="M5 5h14M5 12h14M5 19h9"/></svg></span>Missions</button>
-        <button class="tour-tab" role="tab" id="tt-memory" aria-controls="tp-memory" aria-selected="false"><span class="tt-i"><svg viewBox="0 0 24 24"><path d="M6 4h9l4 4v12H6z"/><path d="M9 11h7M9 14.5h7"/></svg></span>Memory</button>
-        <button class="tour-tab" role="tab" id="tt-operator" aria-controls="tp-operator" aria-selected="false"><span class="tt-i"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10l3 2.5-3 2.5M12.5 15h4"/></svg></span>Operator</button>
-      </div>
-
-      <div class="tour-stage">
-        <!-- graph -->
-        <div class="tour-panel" role="tabpanel" id="tp-graph" aria-labelledby="tt-graph">
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · graph</span></div>
-            <div class="scr-body">
-              <svg class="scr-graph" viewBox="0 0 340 200" aria-hidden="true">
-                <g class="sg-links">
-                  <line x1="170" y1="100" x2="70" y2="46"/><line x1="170" y1="100" x2="270" y2="44"/>
-                  <line x1="170" y1="100" x2="300" y2="120"/><line x1="170" y1="100" x2="250" y2="168"/>
-                  <line x1="170" y1="100" x2="120" y2="172"/><line x1="170" y1="100" x2="46" y2="128"/>
-                  <line x1="170" y1="100" x2="60" y2="92"/><line x1="170" y1="100" x2="196" y2="40"/>
-                  <line class="sg-hot" x1="170" y1="100" x2="270" y2="44"/><line class="sg-hot" x1="170" y1="100" x2="300" y2="120"/>
-                  <line x1="70" y1="46" x2="196" y2="40"/><line x1="250" y1="168" x2="300" y2="120"/>
-                </g>
-                <g class="sg-nodes">
-                  <circle cx="70" cy="46" r="6"/><circle cx="196" cy="40" r="5"/><circle cx="270" cy="44" r="6" class="sg-on"/>
-                  <circle cx="300" cy="120" r="7" class="sg-on"/><circle cx="250" cy="168" r="5"/><circle cx="120" cy="172" r="6"/>
-                  <circle cx="46" cy="128" r="5"/><circle cx="60" cy="92" r="5"/>
-                  <circle cx="170" cy="100" r="11" class="sg-hub"/>
-                </g>
-              </svg>
-            </div>
-          </div>
-          <p class="tour-cap"><b>Graph.</b> The whole brain as a force-graph — fifteen skills, their links, and what’s firing right now.</p>
-        </div>
-
-        <!-- system -->
-        <div class="tour-panel" role="tabpanel" id="tp-system" aria-labelledby="tt-system" hidden>
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · system</span></div>
-            <div class="scr-body scr-sys">
-              <span class="ss-node ss-router">router</span>
-              <span class="ss-wire"></span>
-              <span class="ss-node ss-core">parcus · lean core</span>
-              <span class="ss-wire"></span>
-              <span class="ss-row"><i>disciplina</i><i>decor</i><i>cohors</i><i>praesidium</i><i class="ss-more">+9</i></span>
-              <span class="ss-wire"></span>
-              <span class="ss-node ss-spine">the spine · CORPUS.md · evals</span>
-            </div>
-          </div>
-          <p class="tour-cap"><b>System.</b> The architecture at a glance — router, lean core, thirteen layers, one spine.</p>
-        </div>
-
-        <!-- router -->
-        <div class="tour-panel" role="tabpanel" id="tp-router" aria-labelledby="tt-router" hidden>
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · router</span></div>
-            <div class="scr-body">
-              <svg class="scr-router" viewBox="0 0 340 200" aria-hidden="true">
-                <g class="sr-spokes">
-                  <line x1="170" y1="100" x2="60" y2="50"/><line x1="170" y1="100" x2="170" y2="34"/>
-                  <line x1="170" y1="100" x2="280" y2="50"/><line x1="170" y1="100" x2="306" y2="100"/>
-                  <line x1="170" y1="100" x2="280" y2="150"/><line x1="170" y1="100" x2="60" y2="150"/>
-                  <line x1="170" y1="100" x2="34" y2="100"/>
-                  <line class="sr-hot" x1="170" y1="100" x2="170" y2="34"/><line class="sr-hot" x1="170" y1="100" x2="280" y2="50"/>
-                </g>
-                <g class="sr-nodes">
-                  <g transform="translate(30,40)"><rect width="60" height="20" rx="6"/><text x="30" y="14">cohors</text></g>
-                  <g class="sr-lead" transform="translate(140,24)"><rect width="60" height="20" rx="6"/><text x="30" y="14">disciplina</text></g>
-                  <g class="sr-lead" transform="translate(250,40)"><rect width="60" height="20" rx="6"/><text x="30" y="14">decor</text></g>
-                  <g transform="translate(276,90)"><rect width="60" height="20" rx="6"/><text x="30" y="14">machina</text></g>
-                  <g transform="translate(250,140)"><rect width="60" height="20" rx="6"/><text x="30" y="14">fortuna</text></g>
-                  <g transform="translate(30,140)"><rect width="60" height="20" rx="6"/><text x="30" y="14">catena</text></g>
-                  <g transform="translate(4,90)"><rect width="60" height="20" rx="6"/><text x="30" y="14">ludus</text></g>
-                </g>
-                <g class="sr-hub" transform="translate(140,86)"><rect width="60" height="28" rx="8"/><text x="30" y="18">fabius</text></g>
-              </svg>
-            </div>
-          </div>
-          <p class="tour-cap"><b>Router.</b> Watch a task get classified and dispatched to the layers that own it — <em>disciplina</em> plans, <em>decor</em> executes.</p>
-        </div>
-
-        <!-- missions -->
-        <div class="tour-panel" role="tabpanel" id="tp-missions" aria-labelledby="tt-missions" hidden>
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · missions</span></div>
-            <div class="scr-body scr-list">
-              <div class="sl-row"><span class="sl-k">Ship the pricing page</span><span class="sl-lay">decor</span><span class="sl-st ok">proven</span></div>
-              <div class="sl-row"><span class="sl-k">Audit the vault contract</span><span class="sl-lay">praesidium</span><span class="sl-st run">running</span></div>
-              <div class="sl-row"><span class="sl-k">Backtest the momentum edge</span><span class="sl-lay">fortuna</span><span class="sl-st ok">proven</span></div>
-              <div class="sl-row"><span class="sl-k">Wire the intake webhook</span><span class="sl-lay">machina</span><span class="sl-st queue">queued</span></div>
-              <div class="sl-row"><span class="sl-k">File the API-key convention</span><span class="sl-lay">archivum</span><span class="sl-st ok">proven</span></div>
-            </div>
-          </div>
-          <p class="tour-cap"><b>Missions.</b> Every run as a mission — queued, running, proven — each with its layer, cost and receipt.</p>
-        </div>
-
-        <!-- memory -->
-        <div class="tour-panel" role="tabpanel" id="tp-memory" aria-labelledby="tt-memory" hidden>
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · memory</span></div>
-            <div class="scr-body scr-mem">
-              <div class="sm2-card"><b>api-key-convention.md</b><small>secrets in env · never hardcode</small></div>
-              <div class="sm2-card"><b>design-tokens.md</b><small>one accent · mobile-first · AA</small><span class="sm2-link">↔ [[decor]]</span></div>
-              <div class="sm2-card"><b>vuln-classes.md</b><small>re-entrancy · unchecked account</small><span class="sm2-link">↔ [[praesidium]]</span></div>
-              <div class="sm2-idx"><span>MEMORY.md</span><i>index · 24 notes · linked</i></div>
-            </div>
-          </div>
-          <p class="tour-cap"><b>Memory.</b> A persistent, linked knowledge base — notes the agent writes once and recalls cold, so it stops re-deriving.</p>
-        </div>
-
-        <!-- operator -->
-        <div class="tour-panel" role="tabpanel" id="tp-operator" aria-labelledby="tt-operator" hidden>
-          <div class="scr">
-            <div class="scr-bar"><span class="scr-lamps"><i></i><i></i><i></i></span><span class="scr-ttl">fabius · operator</span></div>
-            <div class="scr-body scr-term">
-              <p><span class="tm-pr">▶</span> build me a landing page for my app</p>
-              <p class="tm-d">classify · design HIGH · planning HIGH → tier <b>strong</b></p>
-              <p class="tm-d">route · disciplina plans → decor executes · parcus underneath</p>
-              <p class="tm-d">strike · tokens · one accent · mobile-first</p>
-              <p class="tm-g">prove · 0 overflow · contrast AA · single h1 ✓</p>
-              <p class="tm-d">record · design tokens filed → next page starts ahead</p>
-            </div>
-          </div>
-          <p class="tour-cap"><b>Operator.</b> The operator terminal — hand it a task, pick a model tier, and watch the six-step loop run end to end.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ── what you can hand it · use-case gallery ─────────────────── -->
 <section class="usecases" id="usecases">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">08</span>What you can hand it</p>
+      <p class="eyebrow-text"><span class="eb-n">05</span>What you can hand it</p>
       <h2 class="sec-title">One agent. The whole job.</h2>
       <p class="sec-lede">Hand it any of these. The router reads the job, dispatches to the layer that owns it, and runs the same loop — scout, strike, prove, record.</p>
     </header>
@@ -725,7 +441,7 @@
 <section class="bench" id="benchmark">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">09</span>The proof</p>
+      <p class="eyebrow-text"><span class="eb-n">06</span>The proof</p>
       <h2 class="sec-title">One benchmark: fabius improves every model it runs on.</h2>
       <p class="sec-lede">One benchmark, four panels. Fifteen tasks, three arms — <code>baseline</code> · a generic “be concise” control (the real test) · the shipped fabius files, verbatim — blind-judged on the four newest Claude models by two judges never told which arm wrote which. Then verified objectively, with no quality judge at all: the generated code executed against hidden test suites, the facts checked against fixed checklists. Then demoed blind across model families. And then the newest panel: a versioned <strong>100-task suite</strong> executing the identity contract itself — bare model → under fabius → under fabius with memory. Beating the control, not the baseline, is the real test.</p>
     </header>
@@ -776,7 +492,7 @@
 <section class="research" id="research">
   <div class="wrap research-in">
     <div class="research-copy">
-      <p class="eyebrow-text"><span class="eb-n">10</span>Grounded in research</p>
+      <p class="eyebrow-text"><span class="eb-n">07</span>Grounded in research</p>
       <h2 class="sec-title">Decisions, not hand-waving.</h2>
       <p class="sec-lede">fabius’s routing is drawn from the agent-research canon — ReAct, Toolformer, Tree of Thoughts, Reflexion, MemGPT, DSPy, Voyager and the 2026 efficiency surveys — turned into a documented decision policy: twenty-two proven rules — eighteen sourced from the canon, four governing what the router itself adds (tier dispatch, long-horizon loops, verticals, corpus packaging) — plus a researched frontier layer, each tagged for what the papers <em>measured</em> versus what fabius <em>borrows by analogy</em>.</p>
       <ul class="research-pts">
@@ -802,7 +518,7 @@
 <section class="math" id="math">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">11</span>The decision</p>
+      <p class="eyebrow-text"><span class="eb-n">08</span>The decision</p>
       <h2 class="sec-title">Every call is the same inequality.</h2>
       <p class="sec-lede">Add a tool? Spawn a reviewer? Branch wider? Retry once more? Under the hood fabius asks one question — does the expected loss removed beat the cost of the machinery? That single threshold governs all twenty-two routing rules (each adversarially verified, the set proven to cohere — exceptions printed, not smoothed). Scout wide, strike narrow — as arithmetic.</p>
     </header>
@@ -838,7 +554,7 @@
 <section class="tools" id="tools">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">12</span>Every model</p>
+      <p class="eyebrow-text"><span class="eb-n">09</span>Every model</p>
       <h2 class="sec-title">One agent. Every major model.</h2>
       <p class="sec-lede">fabius runs on every major provider from one console — and picks a tier per task: frontier when the job is hard, mid or fast when it isn’t. Bring your own key; the agent adapts to whatever you hand it.</p>
     </header>
@@ -879,7 +595,7 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">13</span>Questions</p>
+      <p class="eyebrow-text"><span class="eb-n">10</span>Questions</p>
       <h2 class="sec-title">Frequently asked.</h2>
     </header>
     <div class="faq-list">
