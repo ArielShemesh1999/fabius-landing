@@ -428,29 +428,32 @@ img{display:block;max-width:100%}
 .system .sec-lede em{color:#fff}
 .system .eyebrow-text{color:var(--primary-lite)}
 
-/* system map — a CSS backplane that reflows at any width */
-.sysmap{position:relative;max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
-.sm-tier{display:flex;justify-content:center;width:100%}
-.sm-node{background:linear-gradient(180deg,#14121c,#100e18);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:13px 26px;display:inline-flex;flex-direction:column;gap:3px;box-shadow:0 12px 34px -20px rgba(0,0,0,.9)}
-.sm-node b{font-family:var(--mono);font-weight:600;font-size:14px;color:#fff;letter-spacing:-.01em}
-.sm-node span{font-family:var(--mono);font-size:10.5px;color:#8b85a1;letter-spacing:.02em}
-.sm-router{border-color:rgba(122,61,255,.5);box-shadow:0 0 0 1px rgba(122,61,255,.18),0 16px 44px -22px rgba(122,61,255,.7)}
-.sm-router b{color:var(--primary-lite)}
-.sm-core b{color:#d9cffb}
-.sm-spine{border-style:dashed;border-color:rgba(255,255,255,.16)}
-.sm-spine b{color:#c3bdd8}
-.sm-drop{position:relative;width:1px;height:34px;background:linear-gradient(#403a60,rgba(64,58,96,.15));margin:0 auto}
-.sm-drop-lab{position:absolute;left:12px;top:50%;transform:translateY(-50%);white-space:nowrap;font-family:var(--mono);font-size:9.5px;color:#8b85a1;letter-spacing:.04em}
-.sm-bus{width:min(880px,94%);height:1px;background:linear-gradient(90deg,transparent,rgba(122,61,255,.45),transparent);margin:2px auto 0}
-.sm-layers{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;width:100%;max-width:940px;margin:14px auto 0}
-.sm-chip{flex:0 1 auto;min-width:116px;display:flex;align-items:center;gap:9px;
-  background:#15131e;border:1px solid rgba(255,255,255,.08);border-left:2px solid var(--acc,#7a3dff);border-radius:10px;padding:8px 13px;text-align:left;
-  transition:transform .2s var(--ease),border-color .2s var(--ease),background .2s var(--ease)}
-.sm-chip:hover{transform:translateY(-2px);background:#1b1826}
-.sm-ic{width:26px;height:28px;color:var(--acc,#9b6bff);flex:none;display:grid;place-items:center}
-.sm-ic svg{width:24px;height:26px}
-.sm-chip b{font-family:var(--mono);font-weight:600;font-size:12.5px;color:#ECEAF3;line-height:1.15}
-.sm-chip small{font-size:10px;color:#8b85a1;line-height:1.15}
+/* system map — SVG fan diagram (router → lean core → 13 layers → spine), built + animated by main.js */
+.smap-wrap{max-width:1120px;margin:0 auto;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.smap-wrap::-webkit-scrollbar{display:none}
+.smap{display:block;width:100%;min-width:760px;height:auto}
+.smap-link{fill:none;stroke:rgba(160,143,225,.24);stroke-width:1.4}
+.smap-link.sm-trunk{stroke:rgba(160,143,225,.36)}
+.smap-arrow{fill:rgba(160,143,225,.6)}
+.smap-dot{fill:var(--primary-lite);opacity:0;filter:drop-shadow(0 0 4px rgba(155,107,255,.95))}
+.smap.flowing .smap-dot{opacity:1;transition:opacity .7s ease}
+.smap-node{opacity:0}
+.smap.in .smap-node{opacity:1;transition:opacity .7s var(--ease)}
+.smap.in .smap-core{transition-delay:.3s}
+.smap.in .smap-layer{transition-delay:.6s}
+.smap.in .smap-spine{transition-delay:1.1s}
+.smap-node rect{fill:#14121c;stroke:rgba(255,255,255,.12);stroke-width:1.3}
+.smap-name{fill:#fff;font-family:var(--mono);font-weight:600;font-size:13px;text-anchor:middle;letter-spacing:-.01em}
+.smap-sub{fill:#8b85a1;font-family:var(--mono);font-size:9px;text-anchor:middle}
+.smap-router rect{fill:#161228;stroke:rgba(122,61,255,.55);stroke-width:1.5}
+.smap-router .smap-name{fill:var(--primary-lite)}
+.smap-core rect{fill:#161326}
+.smap-core .smap-name{fill:#d9cffb}
+.smap-layer rect{fill:#15131e;stroke:color-mix(in srgb, var(--acc,#7a3dff) 42%, rgba(255,255,255,.11))}
+.smap-layer .smap-name{font-size:11.5px}
+.smap-spine rect{fill:#141324;stroke:rgba(255,255,255,.2);stroke-dasharray:5 4}
+.smap-spine .smap-name{fill:#c3bdd8}
+.smap-lab{fill:#8b85a1;font-family:var(--mono);font-size:10px;letter-spacing:.03em}
 
 /* the reasoning loop — rule-owned stages */
 .sys-sub{max-width:760px;margin:clamp(52px,7vw,84px) auto 22px;text-align:center}
@@ -495,6 +498,44 @@ img{display:block;max-width:100%}
 .sys-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .sys-ghost{background:transparent;color:#ECEAF3;border-color:rgba(255,255,255,.22)}
 .sys-ghost:hover{background:rgba(255,255,255,.06);border-color:var(--primary-lite);color:#fff;transform:translateY(-1px)}
+
+/* the decision — dark overrides for the moved formula band + gate chart + worked example */
+.system .formula-band{background:linear-gradient(180deg,#14121c,#100e18);border:1px solid rgba(255,255,255,.09)}
+.system .formula{color:#ECEAF3}
+.system .formula .bb{color:#fff}
+.system .formula .m-op{color:#8b85a1}
+.system .formula .t-skip{color:#9a94ad}
+.system .formula .t-act{color:var(--primary-lite)}
+.system .formula i{color:#c3bdd8}
+.system .formula .m-then{color:var(--primary-lite)}
+.system .formula-key{color:#9a94ad}
+.system .formula-key b{color:#ECEAF3}
+.system .gate-fig,.system .math-work{background:linear-gradient(180deg,#14121c,#100e18);border-color:rgba(255,255,255,.09)}
+.system .fig-title{color:#fff}
+.system .fig-note{color:#8b85a1}
+.system .fig-note em{color:#c3bdd8}
+.system .gate-chart .c-engage{fill:rgba(122,61,255,.1)}
+.system .gate-chart .c-zero{stroke:rgba(255,255,255,.16)}
+.system .gate-chart .c-line{stroke:var(--primary-lite)}
+.system .gate-chart .c-knee{stroke:var(--c-amber)}
+.system .gate-chart .c-knee-halo{fill:var(--c-amber);opacity:.22}
+.system .gate-chart .c-knee-dot{fill:#0b0a12;stroke:var(--c-amber)}
+.system .gate-chart .c-knee-lab{fill:#e8b06a}
+.system .gate-chart .c-region{fill:#9a94ad}
+.system .gate-chart .c-region2{fill:var(--primary-lite)}
+.system .gate-chart .c-axtitle{fill:#8b85a1}
+.system .work-q{color:#fff}
+.system .work-steps li{border-top-color:rgba(255,255,255,.09)}
+.system .work-steps .ws-k{color:#b6b0d6}
+.system .work-steps .ws-v{color:#ECEAF3}
+.system .work-bar .wb-lab{color:#9a94ad}
+.system .work-bar .wb-row b{color:#ECEAF3}
+.system .work-bar .wb-track{background:#221d31}
+.system .work-bar .wb-before{background:#3f3a53}
+.system .work-bar .wb-after{background:var(--primary)}
+.system .work-concl{color:#b6b0d6}
+.system .work-concl b{color:var(--primary-lite)}
+.system .work-rule{color:#8b85a1}
 
 /* ── what you can hand it · use-case gallery ─────────────── */
 .usecases{padding:var(--sec) 0;background:var(--canvas)}

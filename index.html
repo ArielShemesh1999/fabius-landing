@@ -37,14 +37,14 @@
 <meta name="twitter:image:alt" content="fabius wordmark with the tagline scout wide, strike narrow and the line one agent, every model, end to end." />
 
 <link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/styles.css?v=2026-07-10b" />
+<link rel="stylesheet" href="/styles.css?v=2026-07-10c" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"An autonomous engineering agent that runs on every major model — Anthropic, OpenAI, Google, Mistral, Groq — under a single Fabian stance: scout wide, strike narrow. Fifteen coordinated, non-overlapping capability layers, managed from one console.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-07a","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"An autonomous engineering agent. One stance — scout wide, strike narrow — across the whole job: code, design, agents, debugging, memory, marketing, defensive security, game craft, on-chain development and sealing, automation, science, ML engineering, markets & finance, and convening a cross-model council to deliberate one answer. Fifteen coordinated, non-overlapping skills form its brain, and it runs on every major model."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"You run and manage fabius from the synapse console: hand it a task, pick a model tier, and it routes → plans → strikes with the smallest correct artifact → self-verifies → records. Every run is logged and reviewable."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"Every major provider — Anthropic, OpenAI, Google, Mistral and Groq — at a frontier, mid or fast tier per task. Bring your own key and the agent adapts. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"Does it make the model smarter?","acceptedAnswer":{"@type":"Answer","text":"No — it is a scope-control system, not a capability boost. In its benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. And it holds when verified objectively — code run against hidden tests, facts checked: under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%. All of it on 20–35% less output. Honest framing: structure beats brevity — not smarter, not 10× on everything; every capable tier gains on both panels and the fast tier dips on trivial one-liners, printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
 </script>
-<script defer src="/main.js?v=2026-07-10b"></script>
+<script defer src="/main.js?v=2026-07-10c"></script>
 </head>
 <body>
 
@@ -276,42 +276,9 @@
       <p class="sec-lede">Scout wide · strike narrow. One router dispatches an always-on lean core and thirteen specialist layers over a thin shared spine. Each rule has exactly one owner — that’s what keeps fifteen skills from contradicting one another.</p>
     </header>
 
-    <!-- system map -->
-    <div class="sysmap reveal" role="img" aria-label="fabius system map: the router dispatches the always-on lean core fabius-parcus and thirteen specialist layers — disciplina, decor, cohors, archivum, mercatus, praesidium, ludus, catena, machina, scientia, doctrina, fortuna and concilium — over a shared spine of references, CORPUS.md, evals and AGENTS.md.">
-      <div class="sm-tier">
-        <div class="sm-node sm-router">
-          <b>fabius — router</b><span>layer · machinery · tier</span>
-        </div>
-      </div>
-      <div class="sm-drop"><span class="sm-drop-lab">dispatches</span></div>
-      <div class="sm-tier">
-        <div class="sm-node sm-core">
-          <b>fabius-parcus — core</b><span>lean · runs under every layer</span>
-        </div>
-      </div>
-      <div class="sm-drop"><span class="sm-drop-lab">under every layer</span></div>
-      <div class="sm-bus" aria-hidden="true"></div>
-      <div class="sm-layers">
-        <div class="sm-chip" style="--acc:#2563eb"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-disciplina"/></svg></span><b>disciplina</b><small>process</small></div>
-        <div class="sm-chip" style="--acc:#db2777"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-decor"/></svg></span><b>decor</b><small>design</small></div>
-        <div class="sm-chip" style="--acc:#0891b2"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-cohors"/></svg></span><b>cohors</b><small>agents</small></div>
-        <div class="sm-chip" style="--acc:#d97706"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-archivum"/></svg></span><b>archivum</b><small>memory</small></div>
-        <div class="sm-chip" style="--acc:#059669"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-mercatus"/></svg></span><b>mercatus</b><small>go-to-market</small></div>
-        <div class="sm-chip" style="--acc:#e11d48"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-praesidium"/></svg></span><b>praesidium</b><small>security</small></div>
-        <div class="sm-chip" style="--acc:#7c3aed"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-ludus"/></svg></span><b>ludus</b><small>games</small></div>
-        <div class="sm-chip" style="--acc:#ca8a04"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-catena"/></svg></span><b>catena</b><small>on-chain · seal</small></div>
-        <div class="sm-chip" style="--acc:#0d9488"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-machina"/></svg></span><b>machina</b><small>automation</small></div>
-        <div class="sm-chip" style="--acc:#3730a3"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-scientia"/></svg></span><b>scientia</b><small>science</small></div>
-        <div class="sm-chip" style="--acc:#4338ca"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-doctrina"/></svg></span><b>doctrina</b><small>AI/ML eng.</small></div>
-        <div class="sm-chip" style="--acc:#15803d"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-fortuna"/></svg></span><b>fortuna</b><small>markets</small></div>
-        <div class="sm-chip" style="--acc:#0ea5e9"><span class="sm-ic"><svg aria-hidden="true"><use href="#bug-concilium"/></svg></span><b>concilium</b><small>council</small></div>
-      </div>
-      <div class="sm-drop sm-drop-up"><span class="sm-drop-lab">end to end</span></div>
-      <div class="sm-tier">
-        <div class="sm-node sm-spine">
-          <b>the spine</b><span>references · CORPUS.md · evals · AGENTS.md</span>
-        </div>
-      </div>
+    <!-- system map — SVG fan diagram, built + animated by main.js -->
+    <div class="smap-wrap" role="img" aria-label="fabius system map: the router dispatches the always-on lean core fabius-parcus, which fans out to thirteen specialist layers — disciplina (process), decor (design), cohors (agents), archivum (memory), mercatus (go-to-market), praesidium (security), ludus (games), catena (on-chain and sealing), machina (automation), scientia (science), doctrina (AI/ML engineering), fortuna (markets) and concilium (council) — that converge on a shared spine of references, CORPUS.md, evals and AGENTS.md.">
+      <svg class="smap" id="sysmapSvg" viewBox="0 0 1280 700" preserveAspectRatio="xMidYMin meet" aria-hidden="true"></svg>
     </div>
 
     <!-- the reasoning loop -->
@@ -392,6 +359,37 @@
           <b>Plan, then bind</b>
           <p>Plan in placeholders; bind the calls last. Independent tool and sub-agent calls run in parallel, not down a chain — latency stays flat as the work fans out.</p>
         </figcaption>
+      </figure>
+    </div>
+
+    <!-- the decision · every call is the same inequality (moved into the band) -->
+    <div class="sys-sub">
+      <h3 class="sys-h3">The decision — every call is the same inequality.</h3>
+      <p class="sys-p">Add a tool? Spawn a reviewer? Branch wider? Retry once more? Under the hood fabius asks one question — does the expected loss removed beat the cost of the machinery? That single threshold governs all twenty-two routing rules. Scout wide, strike narrow — as arithmetic.</p>
+    </div>
+    <div class="formula-band">
+      <div class="formula"><span class="bb">𝔼</span>[L&#8201;|&#8201;<span class="t-skip">skip</span>] <span class="m-op">−</span> <span class="bb">𝔼</span>[L&#8201;|&#8201;<span class="t-act">act</span>] <span class="m-op">&gt;</span> <i>c</i> <span class="m-then">→&#8201;engage</span></div>
+      <div class="formula-key"><span><b>𝔼[L&#8201;|&#8201;skip]</b>expected loss without it</span><span><b>𝔼[L&#8201;|&#8201;act]</b>expected loss with it</span><span><b>c</b>the cost of the machinery</span></div>
+    </div>
+    <div class="math-grid">
+      <figure class="gate-fig">
+        <figcaption class="fig-title">Act only when the value clears the cost.</figcaption>
+        <svg class="chart gate-chart" viewBox="0 0 640 300" role="img" aria-label="Net value of acting equals value of information minus cost. Below the cost threshold it is negative (skip, pure overhead); above it, positive (engage). fabius acts only when the value clears the cost."><rect class="c-engage" x="276.0" y="26" width="348.0" height="232"/><line class="c-zero" x1="44" y1="165.2" x2="624" y2="165.2"/><path class="c-line" d="M44.0 258.0 L624.0 26.0"/><line class="c-knee" x1="276.0" y1="26" x2="276.0" y2="258"/><circle class="c-knee-halo" cx="276.0" cy="165.2" r="10"/><circle class="c-knee-dot" cx="276.0" cy="165.2" r="6"/><text class="c-knee-lab" x="287.0" y="153.2">cost  c</text><text class="c-region" x="160.0" y="246" text-anchor="middle">skip — pure overhead</text><text class="c-region2" x="450.0" y="44" text-anchor="middle">engage</text><text class="c-axtitle" x="624" y="288" text-anchor="end">value of information  →</text><text class="c-axtitle" x="42" y="16">net value of acting</text></svg>
+        <p class="fig-note">The gap on the left is the <em>value of information</em>. Below the threshold the machinery is pure overhead; fabius stays inline. (rules R3 · R7 · M1 · M4 — one object, different machinery.)</p>
+      </figure>
+      <figure class="math-work">
+        <p class="work-q">Worked example — should fabius add a reviewer?</p>
+        <ol class="work-steps">
+          <li><span class="ws-k">The author misses</span><span class="ws-v">p₁ = 30%</span></li>
+          <li><span class="ws-k">An independent reviewer misses</span><span class="ws-v">p₂ = 40%</span></li>
+          <li><span class="ws-k">Independent ⇒ both miss</span><span class="ws-v">p₁·p₂ = 0.30×0.40 = 0.12</span></li>
+          <li><span class="ws-k">Expected error</span><span class="ws-v">30% → 12%</span></li>
+        </ol>
+        <div class="work-bar">
+          <div class="wb-row"><span class="wb-lab">one pass</span><span class="wb-track"><span class="wb-fill wb-before" style="width:60%"></span></span><b>30%</b></div>
+          <div class="wb-row"><span class="wb-lab">two passes</span><span class="wb-track"><span class="wb-fill wb-after" style="width:24%"></span></span><b>12%</b></div>
+        </div>
+        <p class="work-concl">18 points of loss removed — more than one agent costs. <b>So fabius spawns the reviewer:</b> two decorrelated passes beat one. <span class="work-rule">(rule M1)</span></p>
       </figure>
     </div>
 
@@ -513,48 +511,11 @@
   </div>
 </section>
 
-
-<!-- ── the decision (math) ─────────────────────────────────────── -->
-<section class="math" id="math">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">08</span>The decision</p>
-      <h2 class="sec-title">Every call is the same inequality.</h2>
-      <p class="sec-lede">Add a tool? Spawn a reviewer? Branch wider? Retry once more? Under the hood fabius asks one question — does the expected loss removed beat the cost of the machinery? That single threshold governs all twenty-two routing rules (each adversarially verified, the set proven to cohere — exceptions printed, not smoothed). Scout wide, strike narrow — as arithmetic.</p>
-    </header>
-    <div class="formula-band">
-      <div class="formula"><span class="bb">𝔼</span>[L&#8201;|&#8201;<span class="t-skip">skip</span>] <span class="m-op">−</span> <span class="bb">𝔼</span>[L&#8201;|&#8201;<span class="t-act">act</span>] <span class="m-op">&gt;</span> <i>c</i> <span class="m-then">→&#8201;engage</span></div>
-      <div class="formula-key"><span><b>𝔼[L&#8201;|&#8201;skip]</b>expected loss without it</span><span><b>𝔼[L&#8201;|&#8201;act]</b>expected loss with it</span><span><b>c</b>the cost of the machinery</span></div>
-    </div>
-    <div class="math-grid">
-      <figure class="gate-fig">
-        <figcaption class="fig-title">Act only when the value clears the cost.</figcaption>
-        <svg class="chart gate-chart" viewBox="0 0 640 300" role="img" aria-label="Net value of acting equals value of information minus cost. Below the cost threshold it is negative (skip, pure overhead); above it, positive (engage). fabius acts only when the value clears the cost."><rect class="c-engage" x="276.0" y="26" width="348.0" height="232"/><line class="c-zero" x1="44" y1="165.2" x2="624" y2="165.2"/><path class="c-line" d="M44.0 258.0 L624.0 26.0"/><line class="c-knee" x1="276.0" y1="26" x2="276.0" y2="258"/><circle class="c-knee-halo" cx="276.0" cy="165.2" r="10"/><circle class="c-knee-dot" cx="276.0" cy="165.2" r="6"/><text class="c-knee-lab" x="287.0" y="153.2">cost  c</text><text class="c-region" x="160.0" y="246" text-anchor="middle">skip — pure overhead</text><text class="c-region2" x="450.0" y="44" text-anchor="middle">engage</text><text class="c-axtitle" x="624" y="288" text-anchor="end">value of information  →</text><text class="c-axtitle" x="42" y="16">net value of acting</text></svg>
-        <p class="fig-note">The gap on the left is the <em>value of information</em>. Below the threshold the machinery is pure overhead; fabius stays inline. (rules R3 · R7 · M1 · M4 — one object, different machinery.)</p>
-      </figure>
-      <figure class="math-work">
-        <p class="work-q">Worked example — should fabius add a reviewer?</p>
-        <ol class="work-steps">
-          <li><span class="ws-k">The author misses</span><span class="ws-v">p₁ = 30%</span></li>
-          <li><span class="ws-k">An independent reviewer misses</span><span class="ws-v">p₂ = 40%</span></li>
-          <li><span class="ws-k">Independent ⇒ both miss</span><span class="ws-v">p₁·p₂ = 0.30×0.40 = 0.12</span></li>
-          <li><span class="ws-k">Expected error</span><span class="ws-v">30% → 12%</span></li>
-        </ol>
-        <div class="work-bar">
-          <div class="wb-row"><span class="wb-lab">one pass</span><span class="wb-track"><span class="wb-fill wb-before" style="width:60%"></span></span><b>30%</b></div>
-          <div class="wb-row"><span class="wb-lab">two passes</span><span class="wb-track"><span class="wb-fill wb-after" style="width:24%"></span></span><b>12%</b></div>
-        </div>
-        <p class="work-concl">18 points of loss removed — more than one agent costs. <b>So fabius spawns the reviewer:</b> two decorrelated passes beat one. <span class="work-rule">(rule M1)</span></p>
-      </figure>
-    </div>
-  </div>
-</section>
-
 <!-- ── any tool ────────────────────────────────────────────────── -->
 <section class="tools" id="tools">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">09</span>Every model</p>
+      <p class="eyebrow-text"><span class="eb-n">08</span>Every model</p>
       <h2 class="sec-title">One agent. Every major model.</h2>
       <p class="sec-lede">fabius runs on every major provider from one console — and picks a tier per task: frontier when the job is hard, mid or fast when it isn’t. Bring your own key; the agent adapts to whatever you hand it.</p>
     </header>
@@ -595,7 +556,7 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">10</span>Questions</p>
+      <p class="eyebrow-text"><span class="eb-n">09</span>Questions</p>
       <h2 class="sec-title">Frequently asked.</h2>
     </header>
     <div class="faq-list">

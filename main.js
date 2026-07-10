@@ -42,7 +42,7 @@
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
     '.sec-head, .cmp, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
-    '.formula-band, .gate-fig, .math-work, .flow-loop, .sysmap, .rloop, .rescard, .uc-card, ' +
+    '.formula-band, .gate-fig, .math-work, .flow-loop, .rloop, .rescard, .uc-card, ' +
     '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in'
   );
   if (!reduce && 'IntersectionObserver' in window) {
@@ -230,4 +230,90 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     map.forEach((_, s) => spy.observe(s));
   }
+})();
+
+/* ── the system map: router → lean core → 13 layers → spine, drawn as a
+   curved fan with packets flowing along the connectors — the synapse
+   console view. Connectors draw in on scroll, then the packets flow.
+   Reduced-motion: fully drawn, static, no packets. */
+(() => {
+  'use strict';
+  const svg = document.getElementById('sysmapSvg');
+  if (!svg) return;
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (t, a = {}, kids = []) => {
+    const n = document.createElementNS(NS, t);
+    for (const k in a) { if (k === 'text') n.textContent = a[k]; else n.setAttribute(k, a[k]); }
+    (Array.isArray(kids) ? kids : [kids]).forEach((c) => c && n.appendChild(c));
+    return n;
+  };
+  const LAYERS = [
+    ['disciplina', 'process', '#2563eb'], ['decor', 'design', '#db2777'], ['cohors', 'agents', '#0891b2'],
+    ['archivum', 'memory', '#d97706'], ['mercatus', 'go-to-market', '#059669'], ['praesidium', 'security', '#e11d48'],
+    ['ludus', 'games', '#7c3aed'], ['catena', 'on-chain · seal', '#ca8a04'], ['machina', 'automation', '#0d9488'],
+    ['scientia', 'science', '#3730a3'], ['doctrina', 'AI/ML eng.', '#4338ca'], ['fortuna', 'markets', '#15803d'],
+    ['concilium', 'council', '#0ea5e9'],
+  ];
+  const W = 1280, n = LAYERS.length;
+  const router = { cx: 640, cy: 52, w: 252, h: 56 };
+  const core = { cx: 640, cy: 178, w: 300, h: 56 };
+  const spine = { cx: 640, cy: 558, w: 346, h: 54 };
+  const LY = 378, LW = 86, LH = 56, MG = 56, SPAN = W - MG * 2;
+  const lx = (i) => MG + SPAN * i / (n - 1);
+
+  const defs = mk('defs');
+  defs.appendChild(mk('marker', { id: 'smArrow', viewBox: '0 0 10 10', refX: 8.5, refY: 5, markerWidth: 6, markerHeight: 6, orient: 'auto-start-reverse' },
+    mk('path', { d: 'M0 0 L10 5 L0 10 z', class: 'smap-arrow' })));
+  svg.appendChild(defs);
+  const gLink = mk('g'), gDot = mk('g', { class: 'smap-dots' }), gNode = mk('g');
+  svg.appendChild(gLink); svg.appendChild(gDot); svg.appendChild(gNode);
+
+  const paths = [];
+  const link = (d, id, trunk) => {
+    const p = mk('path', { d, id, class: 'smap-link' + (trunk ? ' sm-trunk' : ''), 'marker-end': 'url(#smArrow)' });
+    gLink.appendChild(p); paths.push(p);
+  };
+  const cBot = core.cy + core.h / 2, sTop = spine.cy - spine.h / 2;
+  link(`M${router.cx} ${router.cy + router.h / 2} L${core.cx} ${core.cy - core.h / 2 - 2}`, 'sm-disp', true);
+  LAYERS.forEach((_, i) => link(`M${core.cx} ${cBot} C ${core.cx} ${cBot + 78} ${lx(i)} ${LY - LH / 2 - 78} ${lx(i)} ${LY - LH / 2 - 2}`, `sm-o${i}`));
+  LAYERS.forEach((_, i) => link(`M${lx(i)} ${LY + LH / 2} C ${lx(i)} ${LY + LH / 2 + 78} ${spine.cx} ${sTop - 61} ${spine.cx} ${sTop - 2}`, `sm-i${i}`));
+  link(`M${spine.cx} ${spine.cy + spine.h / 2} L${spine.cx} 672`, 'sm-end', true);
+
+  const node = (cx, cy, w, h, cls, name, sub, acc) => {
+    const g = mk('g', { class: 'smap-node ' + cls, transform: `translate(${cx - w / 2} ${cy - h / 2})` });
+    if (acc) g.setAttribute('style', `--acc:${acc}`);
+    g.appendChild(mk('rect', { width: w, height: h, rx: 13 }));
+    g.appendChild(mk('text', { class: 'smap-name', x: w / 2, y: h / 2 - 3, text: name }));
+    g.appendChild(mk('text', { class: 'smap-sub', x: w / 2, y: h / 2 + 12, text: sub }));
+    gNode.appendChild(g);
+  };
+  node(router.cx, router.cy, router.w, router.h, 'smap-router', 'fabius — router', 'layer · machinery · tier');
+  node(core.cx, core.cy, core.w, core.h, 'smap-core', 'fabius-parcus — core', 'lean · runs under every layer');
+  LAYERS.forEach(([name, sub, acc], i) => node(lx(i), LY, LW, LH, 'smap-layer', name, sub, acc));
+  node(spine.cx, spine.cy, spine.w, spine.h, 'smap-spine', 'the spine', 'references · CORPUS.md · evals · AGENTS.md');
+
+  const lab = (x, y, t) => gNode.appendChild(mk('text', { class: 'smap-lab', x, y, text: t }));
+  lab(710, 118, 'dispatches'); lab(300, cBot + 54, 'under every layer'); lab(710, 632, 'end to end');
+
+  if (!RM) paths.forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+
+  const flow = () => {
+    paths.forEach((p, i) => {
+      const dot = mk('circle', { r: 3.4, class: 'smap-dot' });
+      const mp = mk('mpath', { href: '#' + p.id });
+      mp.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#' + p.id); // WebKit/older Safari
+      dot.appendChild(mk('animateMotion', { dur: (2 + (i % 5) * 0.28).toFixed(2) + 's', begin: (-i * 0.17).toFixed(2) + 's', repeatCount: 'indefinite', calcMode: 'linear' }, mp));
+      gDot.appendChild(dot);
+    });
+    svg.classList.add('flowing');
+  };
+  const run = () => {
+    if (!RM) paths.forEach((p, i) => { p.style.transition = `stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1) ${(i * 0.028).toFixed(2)}s`; p.style.strokeDashoffset = '0'; });
+    svg.classList.add('in');
+    if (!RM) setTimeout(flow, 1500);
+  };
+  if (RM || !('IntersectionObserver' in window)) { run(); return; }
+  const io = new IntersectionObserver((es, o) => { es.forEach((e) => { if (e.isIntersecting) { run(); o.disconnect(); } }); }, { threshold: 0.2 });
+  io.observe(svg);
 })();
