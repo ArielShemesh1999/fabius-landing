@@ -42,7 +42,7 @@
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
     '.sec-head, .cmp, .pt-console, .card, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
-    '.formula-band, .gate-fig, .math-work, ' +
+    '.formula-band, .gate-fig, .math-work, .flow-loop, .sysmap, .rloop, .rescard, .tour, .uc-card, ' +
     '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in, .latin'
   );
   if (!reduce && 'IntersectionObserver' in window) {
@@ -53,6 +53,7 @@
       const sibs = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
       let i = 0;
       if (el.matches('.card')) i = sibs % 3;
+      else if (el.matches('.uc-card')) i = sibs % 3;
       else if (el.matches('.tool-list li')) i = sibs % 2;
       else if (el.matches('.research-pts li')) i = Math.min(sibs, 3);
       if (i) el.style.setProperty('--reveal-i', i);
@@ -510,4 +511,34 @@
     }, { threshold: 0.35 });
     io.observe(svg);
   } else { kick(); }
+})();
+
+/* ── inside the console: tabbed explorer ───────────────────────────
+   Roving-tabindex tabs (ArrowLeft/Right), each swapping one dark
+   preview panel. Progressive enhancement — panels default visible-by-
+   [hidden] in the markup, so no-JS still shows the first view. */
+(() => {
+  'use strict';
+  const tabs = [...document.querySelectorAll('.tour-tab')];
+  if (!tabs.length) return;
+  const select = (tab) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !on;
+    });
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      const next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); select(next);
+    });
+  });
+  select(tabs.find((t) => t.getAttribute('aria-selected') === 'true') || tabs[0]);
 })();
