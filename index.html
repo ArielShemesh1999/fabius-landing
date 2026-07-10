@@ -37,14 +37,14 @@
 <meta name="twitter:image:alt" content="fabius wordmark with the tagline scout wide, strike narrow and the line one agent, every model, end to end." />
 
 <link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/styles.css?v=2026-07-10c" />
+<link rel="stylesheet" href="/styles.css?v=2026-07-10d" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"An autonomous engineering agent that runs on every major model — Anthropic, OpenAI, Google, Mistral, Groq — under a single Fabian stance: scout wide, strike narrow. Fifteen coordinated, non-overlapping capability layers, managed from one console.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-07a","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"An autonomous engineering agent. One stance — scout wide, strike narrow — across the whole job: code, design, agents, debugging, memory, marketing, defensive security, game craft, on-chain development and sealing, automation, science, ML engineering, markets & finance, and convening a cross-model council to deliberate one answer. Fifteen coordinated, non-overlapping skills form its brain, and it runs on every major model."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"You run and manage fabius from the synapse console: hand it a task, pick a model tier, and it routes → plans → strikes with the smallest correct artifact → self-verifies → records. Every run is logged and reviewable."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"Every major provider — Anthropic, OpenAI, Google, Mistral and Groq — at a frontier, mid or fast tier per task. Bring your own key and the agent adapts. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"Does it make the model smarter?","acceptedAnswer":{"@type":"Answer","text":"No — it is a scope-control system, not a capability boost. In its benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. And it holds when verified objectively — code run against hidden tests, facts checked: under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%. All of it on 20–35% less output. Honest framing: structure beats brevity — not smarter, not 10× on everything; every capable tier gains on both panels and the fast tier dips on trivial one-liners, printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
 </script>
-<script defer src="/main.js?v=2026-07-10c"></script>
+<script defer src="/main.js?v=2026-07-10d"></script>
 </head>
 <body>
 
@@ -86,7 +86,6 @@
       <a href="#idea">Idea</a>
       <a href="#system">System</a>
       <a href="#usecases">Use cases</a>
-      <a href="#benchmark">Benchmark</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-cta">
@@ -102,7 +101,6 @@
     <a href="#flow">The loop</a>
     <a href="#system">System</a>
     <a href="#usecases">Use cases</a>
-    <a href="#benchmark">Benchmark</a>
     <a href="#research">Research</a>
     <a href="#faq">FAQ</a>
     <a class="btn ghost" href="https://synapse-vert-one.vercel.app/" target="_blank" rel="noopener">Console</a>
@@ -435,62 +433,11 @@
   </div>
 </section>
 
-<!-- ── benchmark ───────────────────────────────────────────────── -->
-<section class="bench" id="benchmark">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">06</span>The proof</p>
-      <h2 class="sec-title">One benchmark: fabius improves every model it runs on.</h2>
-      <p class="sec-lede">One benchmark, four panels. Fifteen tasks, three arms — <code>baseline</code> · a generic “be concise” control (the real test) · the shipped fabius files, verbatim — blind-judged on the four newest Claude models by two judges never told which arm wrote which. Then verified objectively, with no quality judge at all: the generated code executed against hidden test suites, the facts checked against fixed checklists. Then demoed blind across model families. And then the newest panel: a versioned <strong>100-task suite</strong> executing the identity contract itself — bare model → under fabius → under fabius with memory. Beating the control, not the baseline, is the real test.</p>
-    </header>
-    <figure class="fam-figure">
-      <figcaption class="fig-title">Panel A — the four newest Claude models, blind.</figcaption>
-      <div class="cmp" role="table" aria-label="Blind quality score out of 15 across the four newest Claude models — the bare model versus the same model carrying the shipped fabius files verbatim.">
-        <div class="cmp-row cmp-h" role="row"><span role="columnheader">Model</span><span role="columnheader">Bare model</span><span role="columnheader" class="cmp-f">Under fabius</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Fable 5 <small>frontier</small></span><span role="cell">14.50 / 15</span><span role="cell" class="cmp-f">14.73 / 15&nbsp;&nbsp;<strong>+0.23</strong>&nbsp;· −25% output</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Sonnet 5 <small>mid</small></span><span role="cell">14.07 / 15</span><span role="cell" class="cmp-f">14.50 / 15&nbsp;&nbsp;<strong>+0.43</strong>&nbsp;· −34% output</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Opus 4.8 <small>frontier</small></span><span role="cell">14.40 / 15</span><span role="cell" class="cmp-f">14.60 / 15&nbsp;&nbsp;<strong>+0.20</strong>&nbsp;· −20% output</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Haiku <small>fast</small></span><span role="cell">11.73 / 15</span><span role="cell" class="cmp-f">11.40 / 15&nbsp;&nbsp;<strong>−0.33</strong>&nbsp;· −35% output</span></div>
-      </div>
-      <p class="fig-note">Panel A of the benchmark — the shipped <code>AGENTS.md</code> stance and each routed specialist’s <code>SKILL.md</code>, byte-for-byte, on the four newest Claude models: 15 tasks × 3 arms, each answer scored by <em>two</em> blind judges (inter-judge gap 0.72/15). Output drops 20–35% on every model. Every capable tier — Fable 5, Sonnet 5 and Opus 4.8 — beats both the bare model and the “be concise” control while doing it, and Sonnet 5’s <strong>+0.43</strong> is the largest lift of the four. Haiku is the one dip, and it splits cleanly: +0.71 on its 12 specialist tasks, −4.50 on 3 trivial one-liners — the full contracts overwhelming a fast model on trivial work, exactly what the lean gate and model-tier routing exist to prevent, and why the fast tier gets a condensed stance.</p>
-    </figure>
-    <figure class="fam-figure">
-      <figcaption class="fig-title">Panel B — objective: the code is run, the facts are checked.</figcaption>
-      <div class="cmp" role="table" aria-label="Objective correctness by model — percentage of real tests and factual checklist points passed, bare model versus under fabius.">
-        <div class="cmp-row cmp-h" role="row"><span role="columnheader">Model</span><span role="columnheader">Bare model</span><span role="columnheader" class="cmp-f">Under fabius</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Haiku <small>fast</small></span><span role="cell">75.6%</span><span role="cell" class="cmp-f">93.0%&nbsp;&nbsp;<strong>+17.4</strong></span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Opus 4.8</span><span role="cell">84.9%</span><span role="cell" class="cmp-f">90.7%&nbsp;&nbsp;<strong>+5.8</strong></span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Sonnet 5 <small>mid</small></span><span role="cell">84.9%</span><span role="cell" class="cmp-f">90.7%&nbsp;&nbsp;<strong>+5.8</strong></span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Fable 5</span><span role="cell">87.2%</span><span role="cell" class="cmp-f">90.7%&nbsp;&nbsp;<strong>+3.5</strong></span></div>
-      </div>
-      <p class="fig-note">Panel B of the benchmark — no quality judge at all: 9 deliverables × 3 arms × the same four models, graded by two strict graders. Generated code is written to a file and <em>run</em> against a hidden test suite; research, security, on-chain and automation deliverables are graded against a fixed factual checklist (is the SQL query parameterized? is FDR correction applied? is the token account validated? is the handler idempotent?). Pure algorithm code is already at ~100% for every bare model — no headroom — so fabius holds it there. The lift is on the deliverables where <em>looks right</em> and <em>is right</em> diverge: parameterized SQL <strong>67.5% → 100%</strong>, idempotent webhook <strong>40% → 67.5%</strong>, Solana account validation <strong>47.5% → 57.5%</strong>. <strong>Every one of the four models gains objectively</strong> (+3.5 to +17.4), the biggest on the smallest model — Haiku +17.4 — because its bare defaults skip the most guardrails. It fixes real bugs a quality score never sees, on 12–25% less output.</p>
-    </figure>
-    <figure class="fam-figure">
-      <figcaption class="fig-title">Panel C — cross-family demos.</figcaption>
-      <svg class="chart fam-chart" viewBox="0 0 640 300" role="img" aria-label="fabius quality lift over the be-concise control on genuine-build tasks, by model family: Grok +8.5, GPT +7, Claude +7, Mistral +2.5 out of 15. Every family gains."><line class="c-grid" x1="104.0" y1="26" x2="104.0" y2="260"/><text class="c-axis" x="104.0" y="278" text-anchor="middle">+0</text><line class="c-grid" x1="207.6" y1="26" x2="207.6" y2="260"/><text class="c-axis" x="207.6" y="278" text-anchor="middle">+2</text><line class="c-grid" x1="311.2" y1="26" x2="311.2" y2="260"/><text class="c-axis" x="311.2" y="278" text-anchor="middle">+4</text><line class="c-grid" x1="414.8" y1="26" x2="414.8" y2="260"/><text class="c-axis" x="414.8" y="278" text-anchor="middle">+6</text><line class="c-grid" x1="518.4" y1="26" x2="518.4" y2="260"/><text class="c-axis" x="518.4" y="278" text-anchor="middle">+8</text><line class="c-grid" x1="622.0" y1="26" x2="622.0" y2="260"/><text class="c-axis" x="622.0" y="278" text-anchor="middle">+10</text><rect class="c-famtrack" x="104" y="26.0" width="518.0" height="30" rx="6"/><rect class="c-fam" x="104" y="26.0" width="440.3" height="30" rx="6"><title>Grok: +8.5 vs the be-concise control (genuine-build, /15)</title></rect><text class="c-famlab" x="92" y="45.0" text-anchor="end">Grok</text><text class="c-famval" x="552.3" y="45.0">+8.5</text><rect class="c-famtrack" x="104" y="94.0" width="518.0" height="30" rx="6"/><rect class="c-fam" x="104" y="94.0" width="362.6" height="30" rx="6"><title>GPT: +7.0 vs the be-concise control (genuine-build, /15)</title></rect><text class="c-famlab" x="92" y="113.0" text-anchor="end">GPT</text><text class="c-famval" x="474.6" y="113.0">+7.0</text><rect class="c-famtrack" x="104" y="162.0" width="518.0" height="30" rx="6"/><rect class="c-fam" x="104" y="162.0" width="362.6" height="30" rx="6"><title>Claude: +7.0 vs the be-concise control (genuine-build, /15)</title></rect><text class="c-famlab" x="92" y="181.0" text-anchor="end">Claude</text><text class="c-famval" x="474.6" y="181.0">+7.0</text><rect class="c-famtrack" x="104" y="230.0" width="518.0" height="30" rx="6"/><rect class="c-fam" x="104" y="230.0" width="129.5" height="30" rx="6"><title>Mistral: +2.5 vs the be-concise control (genuine-build, /15)</title></rect><text class="c-famlab" x="92" y="249.0" text-anchor="end">Mistral</text><text class="c-famval" x="241.5" y="249.0">+2.5</text><text class="c-axis" x="363" y="294" text-anchor="middle">lift vs the control · /15 →</text></svg>
-      <p class="fig-note">Panel C of the benchmark — blind demos on model families, run on a portable harness with live provider keys (6 tasks, measured 2026-06-22). Quality lift (fabius − the “be concise” control) on genuine-build tasks, out of 15: every family gains — Grok +8.5, GPT +7.0, Claude +7.0, Mistral +2.5. Largest where it matters — real builds and trust boundaries; near zero on pure YAGNI, by design. Gemini is wired; no number is printed without a key.</p>
-    </figure>
-    <figure class="fam-figure">
-      <figcaption class="fig-title">Panel D — the FBS run: bare model → under fabius → with memory.</figcaption>
-      <div class="cmp" role="table" aria-label="The Fabius Benchmark Suite run — 100 neutral production-shaped tasks scored out of 28 by two blind judges, in three modes: bare model, under the shipped fabius files, and with recalled memory added.">
-        <div class="cmp-row cmp-h" role="row"><span role="columnheader">Measure</span><span role="columnheader">Bare model</span><span role="columnheader" class="cmp-f">Under fabius → with memory</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Sonnet 5 <small>full 100-task suite</small></span><span role="cell">26.14 / 28 · 4,001 chars</span><span role="cell" class="cmp-f">26.16 → 26.16 / 28&nbsp;&nbsp;<strong>quality held</strong>&nbsp;· output −10.5% → −12.2%</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Haiku 4.5 <small>smoke tier</small></span><span role="cell">25.27 / 28</span><span role="cell" class="cmp-f">26.00 → 26.73 / 28&nbsp;&nbsp;<strong>+1.46</strong>&nbsp;· −11–14% output</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Stress tier <small>objective checks</small></span><span role="cell">89.9%</span><span role="cell" class="cmp-f">93.7%&nbsp;&nbsp;<strong>+3.8</strong>&nbsp;· where prompts fight back</span></div>
-        <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Design tasks <small>under memory</small></span><span role="cell">22.17 / 28</span><span role="cell" class="cmp-f">27.08 / 28&nbsp;&nbsp;<strong>+4.91</strong>&nbsp;· recalled decisions bind</span></div>
-      </div>
-      <p class="fig-note">Panel D executes the system’s own identity contract — an intelligence amplification layer is judged on <em>outcomes per token</em>, never “is it smarter.” The Fabius Benchmark Suite: 100 neutral, production-shaped tasks (toy problems banned), three tiers, ten categories, objective checks on every task, scored /28 by two blind judges. On the fast tier the layers <strong>stack monotonically</strong> — stance +0.73, memory +0.73 more. On the mid tier quality holds at 93% while output falls 10–12%. The misses are printed, not hidden: the core tier dips −0.6 under memory; one collapsed answer (a 363-character stub, 1.5/28) accounts for most of the stance dip there; and memory <em>costs</em> security −1.57 while buying design +4.91 — the measured case for verify-gated recall.</p>
-    </figure>
-    <p class="bench-line">One benchmark, four panels, one pattern: <strong>fabius improves every model it runs on — on 20–35% less output.</strong> Blind-judged on the newest Claude models, structure beats brevity; verified objectively, with no quality judge at all, it passes more executed tests and factual checks; demoed across model families, every family gains; and on its own 100-task suite, the same model delivers the same quality on 10–12% fewer tokens — with memory stacking a second gain on the fast tier. Not “smarter,” not “10× on everything” — a scope-control system that knows when to compress and when to expand. And it’s <strong>built right</strong>: a deterministic suite verifies the system — fifteen single-owner skills, every reference live, the content-bound seal recomputable — at <strong>19/19</strong>.</p>
-    <a class="text-link" href="/fabius-as-a-system.pdf" target="_blank" rel="noopener">Method, mechanism &amp; caveats — in the whitepaper →</a>
-  </div>
-</section>
-
 <!-- ── research ────────────────────────────────────────────────── -->
 <section class="research" id="research">
   <div class="wrap research-in">
     <div class="research-copy">
-      <p class="eyebrow-text"><span class="eb-n">07</span>Grounded in research</p>
+      <p class="eyebrow-text"><span class="eb-n">06</span>Grounded in research</p>
       <h2 class="sec-title">Decisions, not hand-waving.</h2>
       <p class="sec-lede">fabius’s routing is drawn from the agent-research canon — ReAct, Toolformer, Tree of Thoughts, Reflexion, MemGPT, DSPy, Voyager and the 2026 efficiency surveys — turned into a documented decision policy: twenty-two proven rules — eighteen sourced from the canon, four governing what the router itself adds (tier dispatch, long-horizon loops, verticals, corpus packaging) — plus a researched frontier layer, each tagged for what the papers <em>measured</em> versus what fabius <em>borrows by analogy</em>.</p>
       <ul class="research-pts">
@@ -515,7 +462,7 @@
 <section class="tools" id="tools">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">08</span>Every model</p>
+      <p class="eyebrow-text"><span class="eb-n">07</span>Every model</p>
       <h2 class="sec-title">One agent. Every major model.</h2>
       <p class="sec-lede">fabius runs on every major provider from one console — and picks a tier per task: frontier when the job is hard, mid or fast when it isn’t. Bring your own key; the agent adapts to whatever you hand it.</p>
     </header>
@@ -556,7 +503,7 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">09</span>Questions</p>
+      <p class="eyebrow-text"><span class="eb-n">08</span>Questions</p>
       <h2 class="sec-title">Frequently asked.</h2>
     </header>
     <div class="faq-list">
@@ -607,7 +554,6 @@
     <nav class="foot-links" aria-label="Footer">
       <a href="https://synapse-vert-one.vercel.app/" target="_blank" rel="noopener">Console</a>
       <a href="/fabius-as-a-system.pdf" target="_blank" rel="noopener">Paper</a>
-      <a href="#benchmark">Benchmark</a>
       <a href="#research">Research</a>
       <a href="#faq">FAQ</a>
       <a href="#install">Run it</a>

@@ -41,7 +41,7 @@
 
   /* ── scroll reveals ─────────────────────────────────────── */
   const revealTargets = $$(
-    '.sec-head, .cmp, .fam-figure, .ladder-fig, .bench-line, .text-link, ' +
+    '.sec-head, .cmp, .ladder-fig, .text-link, ' +
     '.formula-band, .gate-fig, .math-work, .flow-loop, .rloop, .rescard, .uc-card, ' +
     '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in'
   );
@@ -259,7 +259,7 @@
   const router = { cx: 640, cy: 52, w: 252, h: 56 };
   const core = { cx: 640, cy: 178, w: 300, h: 56 };
   const spine = { cx: 640, cy: 558, w: 346, h: 54 };
-  const LY = 378, LW = 86, LH = 56, MG = 56, SPAN = W - MG * 2;
+  const LY = 378, LW = 88, LH = 70, MG = 56, SPAN = W - MG * 2;
   const lx = (i) => MG + SPAN * i / (n - 1);
 
   const defs = mk('defs');
@@ -280,17 +280,25 @@
   LAYERS.forEach((_, i) => link(`M${lx(i)} ${LY + LH / 2} C ${lx(i)} ${LY + LH / 2 + 78} ${spine.cx} ${sTop - 61} ${spine.cx} ${sTop - 2}`, `sm-i${i}`));
   link(`M${spine.cx} ${spine.cy + spine.h / 2} L${spine.cx} 672`, 'sm-end', true);
 
-  const node = (cx, cy, w, h, cls, name, sub, acc) => {
+  const node = (cx, cy, w, h, cls, name, sub, acc, iconId) => {
     const g = mk('g', { class: 'smap-node ' + cls, transform: `translate(${cx - w / 2} ${cy - h / 2})` });
     if (acc) g.setAttribute('style', `--acc:${acc}`);
     g.appendChild(mk('rect', { width: w, height: h, rx: 13 }));
-    g.appendChild(mk('text', { class: 'smap-name', x: w / 2, y: h / 2 - 3, text: name }));
-    g.appendChild(mk('text', { class: 'smap-sub', x: w / 2, y: h / 2 + 12, text: sub }));
+    if (iconId) { // layer nodes carry their skill's beetle, stacked above the name
+      const use = mk('use', { class: 'smap-ic', href: '#' + iconId, x: w / 2 - 11, y: 9, width: 22, height: 24 });
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#' + iconId);
+      g.appendChild(use);
+      g.appendChild(mk('text', { class: 'smap-name', x: w / 2, y: h - 25, text: name }));
+      g.appendChild(mk('text', { class: 'smap-sub', x: w / 2, y: h - 12, text: sub }));
+    } else {
+      g.appendChild(mk('text', { class: 'smap-name', x: w / 2, y: h / 2 - 3, text: name }));
+      g.appendChild(mk('text', { class: 'smap-sub', x: w / 2, y: h / 2 + 12, text: sub }));
+    }
     gNode.appendChild(g);
   };
   node(router.cx, router.cy, router.w, router.h, 'smap-router', 'fabius — router', 'layer · machinery · tier');
   node(core.cx, core.cy, core.w, core.h, 'smap-core', 'fabius-parcus — core', 'lean · runs under every layer');
-  LAYERS.forEach(([name, sub, acc], i) => node(lx(i), LY, LW, LH, 'smap-layer', name, sub, acc));
+  LAYERS.forEach(([name, sub, acc], i) => node(lx(i), LY, LW, LH, 'smap-layer', name, sub, acc, 'bug-' + name));
   node(spine.cx, spine.cy, spine.w, spine.h, 'smap-spine', 'the spine', 'references · CORPUS.md · evals · AGENTS.md');
 
   const lab = (x, y, t) => gNode.appendChild(mk('text', { class: 'smap-lab', x, y, text: t }));
