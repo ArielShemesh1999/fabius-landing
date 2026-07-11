@@ -38,7 +38,7 @@ The honest result, because this is the part that matters: one benchmark, three p
 
 What I want to be very clear about: this is NOT "10×", it's not making the model smarter, and the gains are near-zero on tasks that are already pure-YAGNI — by design. The honest framing is "structure beats brevity": it's a scope-control system that knows when to compress and when to expand, and the advantage grows as the model's own default discipline drops (which is why Haiku and Grok gain the most, and a more disciplined model gains less).
 
-What I think is actually novel vs. "yet another prompt pack": the routing is one inequality. Every decision — add a tool? spawn a reviewer? branch wider? retry? — reduces to "does the expected loss removed exceed the cost of the machinery?" Eighteen rules, each tagged for what the cited papers actually measured vs. what fabius borrows by analogy, and the rule set is checked to be internally consistent. There's a paper with the derivations.
+What I think is actually novel vs. "yet another prompt pack": the routing is one inequality. Every decision — add a tool? spawn a reviewer? branch wider? retry? — reduces to "does the expected loss removed exceed the cost of the machinery?" Twenty-two rules, all our own research — each one derived, adversarially verified, and checked to be internally consistent. There's a paper with the derivations.
 
 Where it's weak / what I'd love torn apart: n is small, the judge is itself an LLM (I report the blind setup but it's not human-rated), and "genuine-build" task selection is mine, so there's selection risk. I'd genuinely value people re-running it on their own tasks and telling me where it loses.
 
