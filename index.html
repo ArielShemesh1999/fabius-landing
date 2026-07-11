@@ -37,14 +37,14 @@
 <meta name="twitter:image:alt" content="fabius wordmark with the tagline scout wide, strike narrow and the line one agent, every model, end to end." />
 
 <link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/styles.css?v=2026-07-10d" />
+<link rel="stylesheet" href="/styles.css?v=2026-07-11a" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"An autonomous engineering agent that runs on every major model — Anthropic, OpenAI, Google, Mistral, Groq — under a single Fabian stance: scout wide, strike narrow. Fifteen coordinated, non-overlapping capability layers, managed from one console.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-07a","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"An autonomous engineering agent. One stance — scout wide, strike narrow — across the whole job: code, design, agents, debugging, memory, marketing, defensive security, game craft, on-chain development and sealing, automation, science, ML engineering, markets & finance, and convening a cross-model council to deliberate one answer. Fifteen coordinated, non-overlapping skills form its brain, and it runs on every major model."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"You run and manage fabius from the synapse console: hand it a task, pick a model tier, and it routes → plans → strikes with the smallest correct artifact → self-verifies → records. Every run is logged and reviewable."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"Every major provider — Anthropic, OpenAI, Google, Mistral and Groq — at a frontier, mid or fast tier per task. Bring your own key and the agent adapts. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"Does it make the model smarter?","acceptedAnswer":{"@type":"Answer","text":"No — it is a scope-control system, not a capability boost. In its benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. And it holds when verified objectively — code run against hidden tests, facts checked: under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%. All of it on 20–35% less output. Honest framing: structure beats brevity — not smarter, not 10× on everything; every capable tier gains on both panels and the fast tier dips on trivial one-liners, printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
 </script>
-<script defer src="/main.js?v=2026-07-10d"></script>
+<script defer src="/main.js?v=2026-07-11a"></script>
 </head>
 <body>
 
@@ -197,35 +197,11 @@
   </div>
 </section>
 
-<!-- ── what changes ────────────────────────────────────────────── -->
-<section class="changes" id="changes">
-  <div class="wrap">
-    <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">02</span>What changes</p>
-      <h2 class="sec-title" id="cmpTitle">Same model. A different shape of output.</h2>
-      <p class="sec-lede">One concentrated set of operating rules changes what the agent ships across every kind of work — without you re-explaining yourself each time.</p>
-    </header>
-    <div class="cmp" role="table" aria-labelledby="cmpTitle">
-      <div class="cmp-row cmp-h" role="row">
-        <span role="columnheader">You ask for</span>
-        <span role="columnheader">Typical model default</span>
-        <span role="columnheader" class="cmp-f">Under fabius</span>
-      </div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Code</span><span role="cell">Verbose, over-engineered, may skip validation</span><span role="cell" class="cmp-f">Minimal and surgical — validation and security kept</span></div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">A bug fix</span><span role="cell">Patches the symptom</span><span role="cell" class="cmp-f">Reproduce → root cause → regression test</span></div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">UI</span><span role="cell">Inline styles, inconsistent, desktop-first</span><span role="cell" class="cmp-f">Design tokens, one accent, mobile-first, accessible</span></div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">An agent</span><span role="cell">Broad tools, vague role</span><span role="cell" class="cmp-f">Least privilege, a precise output contract</span></div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">An explanation</span><span role="cell">Padded, hedged</span><span role="cell" class="cmp-f">Tight, exact, no filler</span></div>
-      <div class="cmp-row" role="row"><span role="cell" class="cmp-k">Research / memory</span><span role="cell">Re-derives every session</span><span role="cell" class="cmp-f">Written down once, retrieved the next time</span></div>
-    </div>
-  </div>
-</section>
-
 <!-- ── how it flows · the five-beat loop ───────────────────────── -->
 <section class="flow" id="flow">
   <div class="wrap">
     <header class="sec-head flow-head">
-      <p class="eyebrow-text"><span class="eb-n">03</span>The loop</p>
+      <p class="eyebrow-text"><span class="eb-n">02</span>The loop</p>
       <h2 class="sec-title">One loop. Run on every task.</h2>
       <p class="sec-lede">“Scout wide, strike narrow” isn’t a slogan — it’s the five-beat rhythm behind every run. Investigate everything; ship one thing; keep what you learned. The system below shows that same run again — decomposed into the rules it obeys.</p>
     </header>
@@ -269,7 +245,7 @@
   <div class="sys-grid-bg" aria-hidden="true"></div>
   <div class="wrap sys-wrap">
     <header class="sec-head sys-head">
-      <p class="eyebrow-text"><span class="eb-n">04</span>The system</p>
+      <p class="eyebrow-text"><span class="eb-n">03</span>The system</p>
       <h2 class="sec-title">One system. Fifteen coordinated skills.</h2>
       <p class="sec-lede">Scout wide · strike narrow. One router dispatches an always-on lean core and thirteen specialist layers over a thin shared spine. Each rule has exactly one owner — that’s what keeps fifteen skills from contradicting one another.</p>
     </header>
@@ -403,7 +379,7 @@
 <section class="usecases" id="usecases">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">05</span>What you can hand it</p>
+      <p class="eyebrow-text"><span class="eb-n">04</span>What you can hand it</p>
       <h2 class="sec-title">One agent. The whole job.</h2>
       <p class="sec-lede">Hand it any of these. The router reads the job, dispatches to the layer that owns it, and runs the same loop — scout, strike, prove, record.</p>
     </header>
@@ -437,7 +413,7 @@
 <section class="research" id="research">
   <div class="wrap research-in">
     <div class="research-copy">
-      <p class="eyebrow-text"><span class="eb-n">06</span>Grounded in research</p>
+      <p class="eyebrow-text"><span class="eb-n">05</span>Grounded in research</p>
       <h2 class="sec-title">Decisions, not hand-waving.</h2>
       <p class="sec-lede">fabius’s routing is drawn from the agent-research canon — ReAct, Toolformer, Tree of Thoughts, Reflexion, MemGPT, DSPy, Voyager and the 2026 efficiency surveys — turned into a documented decision policy: twenty-two proven rules — eighteen sourced from the canon, four governing what the router itself adds (tier dispatch, long-horizon loops, verticals, corpus packaging) — plus a researched frontier layer, each tagged for what the papers <em>measured</em> versus what fabius <em>borrows by analogy</em>.</p>
       <ul class="research-pts">
@@ -462,7 +438,7 @@
 <section class="tools" id="tools">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">07</span>Every model</p>
+      <p class="eyebrow-text"><span class="eb-n">06</span>Every model</p>
       <h2 class="sec-title">One agent. Every major model.</h2>
       <p class="sec-lede">fabius runs on every major provider from one console — and picks a tier per task: frontier when the job is hard, mid or fast when it isn’t. Bring your own key; the agent adapts to whatever you hand it.</p>
     </header>
@@ -503,7 +479,7 @@
 <section class="faq" id="faq">
   <div class="wrap">
     <header class="sec-head">
-      <p class="eyebrow-text"><span class="eb-n">08</span>Questions</p>
+      <p class="eyebrow-text"><span class="eb-n">07</span>Questions</p>
       <h2 class="sec-title">Frequently asked.</h2>
     </header>
     <div class="faq-list">
