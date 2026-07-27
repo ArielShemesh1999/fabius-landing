@@ -589,3 +589,10 @@ img{display:block;max-width:100%}
 @media (max-width:380px){
   .hero-cmd{font-size:12.5px;padding-left:14px}
 }
+
+/* the local-runtime commands sit outside the install card, so they need their own
+   measure — full-bleed monospace lines read as a wall, not as commands */
+.local-cmds{max-width:640px;margin-bottom:40px}
+/* a command must never be clipped on a narrow screen — it scrolls, it does not truncate */
+.local-cmds .cmd code{scrollbar-width:none}
+.local-cmds .cmd code::-webkit-scrollbar{display:none}
