@@ -43,7 +43,8 @@
   const revealTargets = $$(
     '.sec-head, .ladder-fig, .text-link, ' +
     '.formula-band, .gate-fig, .math-work, .flow-loop, .rloop, .rescard, .uc-card, ' +
-    '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in'
+    '.research-copy, .research-pts li, .tool-list li, .install-in, .idea-in, .core-in, ' +
+    '.voice-console, .voice-features li, .provider-card, .surface-rail, .local-terminal, .local-features li'
   );
   if (!reduce && 'IntersectionObserver' in window) {
     // orchestrated stagger: grouped items cascade by their position within the group.
@@ -54,18 +55,48 @@
       let i = 0;
       if (el.matches('.uc-card')) i = sibs % 3;
       else if (el.matches('.tool-list li')) i = sibs % 2;
+      else if (el.matches('.provider-card')) i = sibs % 3;
+      else if (el.matches('.voice-features li')) i = sibs % 2;
+      else if (el.matches('.local-features li')) i = sibs % 3;
       else if (el.matches('.research-pts li')) i = Math.min(sibs, 3);
       if (i) el.style.setProperty('--reveal-i', i);
     });
+    const revealOne = (el) => {
+      if (el.classList.contains('in')) return;
+      el.classList.add('in');
+      el.addEventListener('transitionend', () => el.classList.add('done'), { once: true });
+      setTimeout(() => el.classList.add('done'), 1200);
+    };
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach((en) => {
         if (!en.isIntersecting) return;
-        en.target.classList.add('in');
-        en.target.addEventListener('transitionend', () => en.target.classList.add('done'), { once: true });
+        revealOne(en.target);
         obs.unobserve(en.target);
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
     revealTargets.forEach((el) => io.observe(el));
+    // WebKit can coalesce IntersectionObserver work during very fast programmatic
+    // scrolling. A lightweight viewport probe keeps the experience deterministic,
+    // while the timeout is the final content-visibility backstop.
+    let revealTick = false;
+    const revealVisible = () => {
+      revealTick = false;
+      revealTargets.forEach((el) => {
+        if (el.classList.contains('in')) return;
+        const r = el.getBoundingClientRect();
+        if (r.top < innerHeight * 0.92 && r.bottom > 0) {
+          revealOne(el);
+          io.unobserve(el);
+        }
+      });
+    };
+    addEventListener('scroll', () => {
+      if (revealTick) return;
+      revealTick = true;
+      setTimeout(revealVisible, 24);
+    }, { passive: true });
+    setTimeout(revealVisible, 350);
+    setTimeout(() => revealTargets.forEach(revealOne), 4500);
   }
 
   /* ── hero parallax — the beetle swarm drifts slower than the page (depth) ── */
@@ -99,7 +130,7 @@
         const path = $('.draw-spiral', en.target), dot = $('.draw-dot', en.target);
         if (path) path.style.strokeDashoffset = '0';
         if (dot) dot.style.opacity = '1';
-        // once the stroke has finished drawing, let the mark come alive (breathe + glow)
+        // keep a restrained static glow once the draw-in completes
         setTimeout(() => en.target.classList.add('drawn'), 1500);
         obs.unobserve(en.target);
       });
