@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>fabius — one agent above every model</title>
-<meta name="description" content="fabius is the autonomous agent layer above every major model. It gives Claude, GPT, Gemini, Mistral, Llama and Grok one operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification." />
+<meta name="description" content="fabius is the autonomous agent layer above every major model. It gives Claude, GPT, Gemini, Mistral, local models through Ollama and Grok one operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification." />
 <meta name="theme-color" content="#f8f7fc" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="author" content="Ariel Shemesh" />
@@ -36,12 +36,12 @@
 <meta name="twitter:image:alt" content="fabius wordmark with the tagline scout wide, strike narrow and the line one agent, every model, end to end." />
 
 <link rel="preload" href="/assets/inter.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="stylesheet" href="/styles.css?v=2026-07-30a" />
+<link rel="stylesheet" href="/styles.css?v=2026-07-30b" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"fabius is an autonomous agent layer above every major model. It gives Claude, GPT, Gemini, Mistral, Llama and Grok one operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-17b","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council, voice agent, multilingual speech to text, automatic language detection, spoken answers","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation, voice input in any language with automatic detection, spoken answers read back out loud","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"fabius","applicationCategory":"DeveloperApplication","operatingSystem":"Cross-platform","alternateName":"fabius agent","description":"fabius is an autonomous agent layer above every major model. It gives Claude, GPT, Gemini, Mistral, local models through Ollama and Grok one operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification.","image":"https://fabius-landing.vercel.app/assets/og.png?v=2026-07-17b","keywords":"AI agent, autonomous agent, multi-model agent, model-agnostic agent, agent orchestration, scope control, llm council, voice agent, multilingual speech to text, automatic language detection, spoken answers","featureList":"router, lean core, process, design and data-viz, agent orchestration, persistent memory, marketing, defensive security, game craft, on-chain development and provenance sealing, automation, scientific research, AI/ML engineering, markets and finance analysis, cross-model council deliberation, voice input in any language with automatic detection, spoken answers read back out loud","softwareHelp":"https://synapse-vert-one.vercel.app/","author":{"@type":"Person","name":"Ariel Shemesh","url":"https://github.com/ArielShemesh1999"},"url":"https://fabius-landing.vercel.app/"}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"fabius is an autonomous agent layer that sits above the model. It gives Claude, GPT, Gemini, Mistral, Llama or Grok the same operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification. The selected model remains the execution engine; it follows the fabius contract from the task to the proof."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"Open the synapse console, hand fabius a task, and choose the model engine. fabius scopes the job, routes the right skills, gives the operating contract to the selected model, verifies what it returns, and records what mattered. Every run is logged and reviewable."}},{"@type":"Question","name":"Can it run on my own machine?","acceptedAnswer":{"@type":"Answer","text":"Yes — and it is the same agent, not a cut-down one: same router, same rules, same contracts, read off disk and handed to the model. A console has no filesystem, so it cannot read the repository you are working in and the task leaves the building; running locally fixes both. It writes nothing and runs nothing until you allow it, the working directory is a boundary it cannot escape, secrets and key files are refused outright, and even in fully autonomous mode it still stops and asks before anything that cannot be undone — a push, a production deploy, a recursive delete. When it hands you code it runs that code first, and a failing exit overrules its own review. It also audits any domain you own without an API key, and can be reached by encrypted message with no server in between."}},{"@type":"Question","name":"Can I talk to it?","acceptedAnswer":{"@type":"Answer","text":"Yes — in any language. Speak to it in the console instead of typing: it detects the language itself, so you never pick one from a list, and the transcript comes back punctuated and clean. It then reads its answer back out loud — Hebrew in a Hebrew voice. Being straight about the boundary: the mic that covers ~99 languages runs on the console’s own speech service — not on a model key — and costs about $0.0005 per audio-minute, billed to whoever runs the console; outside a console it falls back to the browser’s own speech engine — free, but that is the browser’s language coverage, not ~99. Connect it to Telegram and you can send it a voice note there too."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"Every major provider — Anthropic, OpenAI, Google, Mistral, Groq and xAI — can run as the execution engine underneath fabius. Bring your own key, choose a frontier, mid or fast tier, and the same fabius brain remains in control. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"What does fabius add to the model?","acceptedAnswer":{"@type":"Answer","text":"It does not retrain or alter the base model. It adds the operating brain around it: instructions, routing, specialist skills, memory, safety and verification. The selected model follows that contract, so the same model can work more consistently and with less waste. In the benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. Under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%, on 20–35% less output. The fast tier’s dip on trivial one-liners remains printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is fabius?","acceptedAnswer":{"@type":"Answer","text":"fabius is an autonomous agent layer that sits above the model. It gives Claude, GPT, Gemini, Mistral, compatible local models through Ollama, or Grok the same operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification. The selected model remains the execution engine; it follows the fabius contract from the task to the proof."}},{"@type":"Question","name":"How do I run fabius?","acceptedAnswer":{"@type":"Answer","text":"Open the synapse console, hand fabius a task, and choose the model engine. fabius scopes the job, routes the right skills, gives the operating contract to the selected model, verifies what it returns, and records what mattered. Every run is logged and reviewable."}},{"@type":"Question","name":"Can it run on my own machine?","acceptedAnswer":{"@type":"Answer","text":"Yes — and it is the same agent, not a cut-down one: same router, same rules, same contracts, read off disk and handed to the model. A console has no filesystem, so it cannot read the repository you are working in and the task leaves the building; running locally fixes both. It writes nothing and runs nothing until you allow it, the working directory is a boundary it cannot escape, secrets and key files are refused outright, and even in fully autonomous mode it still stops and asks before anything that cannot be undone — a push, a production deploy, a recursive delete. When it hands you code it runs that code first, and a failing exit overrules its own review. It also audits any domain you own without an API key, and can be reached by encrypted message with no server in between."}},{"@type":"Question","name":"Can I talk to it?","acceptedAnswer":{"@type":"Answer","text":"Yes — in any language. Speak to it in the console instead of typing: it detects the language itself, so you never pick one from a list, and the transcript comes back punctuated and clean. It then reads its answer back out loud — Hebrew in a Hebrew voice. Being straight about the boundary: the mic that covers ~99 languages runs on the console’s own speech service — not on a model key — and costs about $0.0005 per audio-minute, billed to whoever runs the console; outside a console it falls back to the browser’s own speech engine — free, but that is the browser’s language coverage, not ~99. Connect it to Telegram and you can send it a voice note there too."}},{"@type":"Question","name":"Which models does it run on?","acceptedAnswer":{"@type":"Answer","text":"fabius can use Anthropic, OpenAI, Google, Mistral, Groq and xAI engines, plus compatible local models through Ollama. Bring your own key or choose a local runtime; the same fabius brain remains in control. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude."}},{"@type":"Question","name":"Is the brain public?","acceptedAnswer":{"@type":"Answer","text":"No. fabius’s brain — the fifteen skills, the routing policy, the memory — is private and cryptographically sealed (SHA-256 + a Merkle root anchored to Bitcoin). The seal is proof of authorship if anyone ever copies it."}},{"@type":"Question","name":"What does fabius add to the model?","acceptedAnswer":{"@type":"Answer","text":"It does not retrain or alter the base model. It adds the operating brain around it: instructions, routing, specialist skills, memory, safety and verification. The selected model follows that contract, so the same model can work more consistently and with less waste. In the benchmark — blind, judged against both a bare baseline and a generic “be concise” control — every capable tier (Fable 5, Sonnet 5, Opus 4.8) beats both controls on the four newest Claude models. Under fabius the smallest model passes 93% of real tests and factual checks vs 75.6% bare, and parameterized SQL goes 67.5% → 100%, on 20–35% less output. The fast tier’s dip on trivial one-liners remains printed as-is."}},{"@type":"Question","name":"How is fabius evaluated?","acceptedAnswer":{"@type":"Answer","text":"Against its own written contract. The identity is fixed in the brain: fabius is an intelligence amplification layer, so the only fair question is whether the exact same model achieves better outcomes with less waste. The Fabius Benchmark Suite runs 100 neutral, production-shaped tasks in three modes — bare model, under the shipped fabius files, and with recalled memory added — scored by two blind judges and objective per-task checks. Latest run: the fast tier climbs 25.27 → 26.00 → 26.73 of 28 on 11–14% less output; the mid tier holds 93% quality on 10–12% less output. The misses are printed in the receipt, not hidden."}},{"@type":"Question","name":"How is it different from telling the model to “be concise”?","acceptedAnswer":{"@type":"Answer","text":"That is exactly the control it was tested against — and it wins. fabius is structure, not brevity: a scope-control system that knows when to compress and when to expand. Method and caveats are in the whitepaper."}}]}
 </script>
 <script defer src="/main.js?v=2026-07-29a"></script>
 </head>
@@ -53,6 +53,42 @@
     <path d="M50 50 L61 50 L61 39 L39 39 L39 61 L72 61 L72 28 L28 28 L28 72 L83 72 L83 17 L17 17"
       fill="none" stroke="currentColor" stroke-width="5.5" stroke-linecap="square"/>
     <circle cx="50" cy="50" r="3.1" fill="currentColor"/>
+  </symbol>
+  <!-- one coherent interface-icon family: 24px canvas · 1.75px round stroke -->
+  <symbol id="icon-language" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.25 2.3 3.4 5.15 3.4 8.5S14.25 18.2 12 20.5C9.75 18.2 8.6 15.35 8.6 12S9.75 5.8 12 3.5"/>
+    </g>
+  </symbol>
+  <symbol id="icon-transcript" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 3.5h8l4 4v13H6zM14 3.5v4h4M9 11h6M9 14.5h3"/><path d="m13.7 17 1.5 1.5 3-3.4"/>
+    </g>
+  </symbol>
+  <symbol id="icon-speaker" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4.5 10h3L12 6.5v11L7.5 14h-3zM15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.6 7.6 0 0 1 0 11"/>
+    </g>
+  </symbol>
+  <symbol id="icon-meter" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 18a8 8 0 1 1 16 0M12 18l4-5M7 14.5l-1.5-1M12 10V8M17 14.5l1.5-1"/><circle cx="12" cy="18" r="1"/>
+    </g>
+  </symbol>
+  <symbol id="icon-browser-voice" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 8h18M6 6h.01M8.5 6h.01M7 14h2l1.5-2.5 2.5 5 1.5-3H17"/>
+    </g>
+  </symbol>
+  <symbol id="icon-terminal" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="3"/><path d="m7 9 3 3-3 3M12.5 15H17"/>
+    </g>
+  </symbol>
+  <symbol id="icon-browser" viewBox="0 0 24 24">
+    <g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 8h18M6 6h.01M8.5 6h.01"/>
+    </g>
   </symbol>
 <symbol id="bug-router" viewBox="0 0 44 48" fill="currentColor"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.7 8 Q15 2.6 11.4 1.2"/><path d="M25.3 8 Q29 2.6 32.6 1.2"/><path d="M14.5 21 L5 17 L2 21"/><path d="M12.5 29 L3 29 L1 35"/><path d="M14 37 L5.5 43 L3.5 46.5"/><path d="M29.5 21 L39 17 L42 21"/><path d="M31.5 29 L41 29 L43 35"/><path d="M30 37 L38.5 43 L40.5 46.5"/></g><ellipse cx="22" cy="9" rx="3.4" ry="3"/><path d="M16.5 12 Q22 10.4 27.5 12 L29.5 16.5 Q22 15 14.5 16.5 Z"/><path fill-opacity=".3" d="M22 15 C30.5 15 33.6 22 33.6 29.6 C33.6 39.6 28 45.6 22 45.6 C16 45.6 10.4 39.6 10.4 29.6 C10.4 22 13.5 15 22 15 Z"/><line x1="22" y1="18.5" x2="22" y2="42" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55"/><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><path d="M22 29 L25 29 L25 25.8 L18.8 25.8 L18.8 32.2 L27.2 32.2 L27.2 23.5"/></g><circle cx="22" cy="29" r="1.15"/></symbol>
   <symbol id="bug-parcus" viewBox="0 0 44 48" fill="currentColor"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18.7 8 Q15 2.6 11.4 1.2"/><path d="M25.3 8 Q29 2.6 32.6 1.2"/><path d="M14.5 21 L5 17 L2 21"/><path d="M12.5 29 L3 29 L1 35"/><path d="M14 37 L5.5 43 L3.5 46.5"/><path d="M29.5 21 L39 17 L42 21"/><path d="M31.5 29 L41 29 L43 35"/><path d="M30 37 L38.5 43 L40.5 46.5"/></g><ellipse cx="22" cy="9" rx="3.4" ry="3"/><path d="M16.5 12 Q22 10.4 27.5 12 L29.5 16.5 Q22 15 14.5 16.5 Z"/><path fill-opacity=".3" d="M22 15 C27.8 15 30 22 30 29.6 C30 39.6 26 45.6 22 45.6 C18 45.6 14 39.6 14 29.6 C14 22 16.2 15 22 15 Z"/><line x1="22" y1="18.5" x2="22" y2="42" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".55"/><circle cx="22" cy="29.5" r="2.1"/></symbol>
@@ -126,7 +162,7 @@
     </h1>
     <p class="hero-sub">
       <strong>fabius is the agent; the model is the engine.</strong> It gives Claude, GPT, Gemini,
-      Mistral, Llama, or Grok the same instructions, skills, memory, safety, and verification loop —
+      Mistral, compatible local models through Ollama, or Grok the same instructions, skills, memory, safety, and verification loop —
       then the selected model follows that brain from task to proof.
     </p>
     <div class="hero-actions">
@@ -174,7 +210,7 @@
         <span class="provider-pill provider-openai"><span class="provider-logo" aria-hidden="true"><img src="/assets/brands/openai.png" alt="" width="48" height="48" decoding="async" /></span><span class="provider-pill-copy"><small>OpenAI</small><b>GPT</b></span></span>
         <span class="provider-pill provider-google"><span class="provider-logo" aria-hidden="true"><img src="/assets/brands/gemini.svg" alt="" width="48" height="48" decoding="async" /></span><span class="provider-pill-copy"><small>Google</small><b>Gemini</b></span></span>
         <span class="provider-pill provider-mistral"><span class="provider-logo" aria-hidden="true"><img src="/assets/brands/mistral.png" alt="" width="48" height="48" decoding="async" /></span><span class="provider-pill-copy"><small>Mistral</small><b>Mistral</b></span></span>
-        <span class="provider-pill provider-groq"><span class="provider-logo" aria-hidden="true"><img src="/assets/brands/groq.png" alt="" width="48" height="48" decoding="async" /></span><span class="provider-pill-copy"><small>Groq</small><b>Llama</b></span></span>
+        <span class="provider-pill provider-ollama"><span class="provider-logo" aria-hidden="true"><img class="ollama-logo" src="/assets/brands/ollama.svg" alt="" width="34" height="50" decoding="async" /></span><span class="provider-pill-copy"><small>Local runtime</small><b>Ollama</b></span></span>
         <span class="provider-pill provider-xai"><span class="provider-logo" aria-hidden="true"><img src="/assets/brands/xai.png" alt="" width="48" height="48" decoding="async" /></span><span class="provider-pill-copy"><small>xAI</small><b>Grok</b></span></span>
       </div>
       <p class="router-caption">
@@ -236,7 +272,7 @@
       <p class="eyebrow-text"><span class="eb-n">01</span>The architecture</p>
       <h2 class="idea-title">The model is the engine.<br/><span class="accent">fabius is the brain.</span></h2>
       <p class="idea-body">fabius sits above the model. It does not replace or retrain Claude, GPT, Gemini,
-        Mistral, Llama, or Grok. It gives the selected model the operating instructions: what to investigate,
+        Mistral, compatible local models through Ollama, or Grok. It gives the selected model the operating instructions: what to investigate,
         which skill owns the work, when to act, how to verify, and what to remember.</p>
       <ol class="idea-principles">
         <li><span>01</span><div><b>You give fabius the task.</b><small>One accountable entry point for the whole job.</small></div></li>
@@ -263,7 +299,7 @@
         <span><img src="/assets/brands/openai.png" alt="" width="40" height="40" loading="lazy" decoding="async" /></span>
         <span><img src="/assets/brands/gemini.svg" alt="" width="40" height="40" loading="lazy" decoding="async" /></span>
         <span><img src="/assets/brands/mistral.png" alt="" width="40" height="40" loading="lazy" decoding="async" /></span>
-        <span><img src="/assets/brands/groq.png" alt="" width="40" height="40" loading="lazy" decoding="async" /></span>
+        <span><img class="ollama-logo" src="/assets/brands/ollama.svg" alt="" width="27" height="40" loading="lazy" decoding="async" /></span>
         <span><img src="/assets/brands/xai.png" alt="" width="40" height="40" loading="lazy" decoding="async" /></span>
       </div>
       <div class="brain-output"><span><i></i> verified artifact</span><b>executed · checked · remembered</b></div>
@@ -322,7 +358,7 @@
     <header class="sec-head sys-head">
       <p class="eyebrow-text"><span class="eb-n">03</span>The system</p>
       <h2 class="sec-title">The brain stays. The model can change.</h2>
-      <p class="sec-lede">fabius owns the operating contract: one router, an always-on lean core, thirteen specialist layers, shared memory, and verification. Claude, GPT, Gemini, Mistral, Llama, or Grok is the execution engine underneath. Swap the engine; the instructions and standards stay.</p>
+      <p class="sec-lede">fabius owns the operating contract: one router, an always-on lean core, thirteen specialist layers, shared memory, and verification. Claude, GPT, Gemini, Mistral, a compatible local model through Ollama, or Grok is the execution engine underneath. Swap the engine; the instructions and standards stay.</p>
     </header>
 
     <!-- system map — SVG fan diagram, built + animated by main.js -->
@@ -538,12 +574,12 @@
         </div>
       </div>
       <ul class="voice-features">
-        <li><span class="feature-glyph" aria-hidden="true">Aa</span><div><b>~99 languages</b><small>Detected automatically — no language picker.</small></div></li>
-        <li><span class="feature-glyph" aria-hidden="true">✓</span><div><b>Clean transcripts</b><small>Punctuated, readable, ready to route.</small></div></li>
-        <li><span class="feature-glyph" aria-hidden="true">◖</span><div><b>Spoken answers</b><small>Hebrew comes back in a Hebrew voice.</small></div></li>
+        <li><span class="feature-glyph glyph-language" aria-hidden="true"><svg><use href="#icon-language"/></svg></span><div><b>~99 languages</b><small>Detected automatically — no language picker.</small></div></li>
+        <li><span class="feature-glyph glyph-transcript" aria-hidden="true"><svg><use href="#icon-transcript"/></svg></span><div><b>Clean transcripts</b><small>Punctuated, readable, ready to route.</small></div></li>
+        <li><span class="feature-glyph glyph-speaker" aria-hidden="true"><svg><use href="#icon-speaker"/></svg></span><div><b>Spoken answers</b><small>Hebrew comes back in a Hebrew voice.</small></div></li>
         <li><span class="feature-glyph brand-glyph" aria-hidden="true"><img src="/assets/brands/telegram.png" alt="" width="32" height="32" loading="lazy" decoding="async" /></span><div><b>Console or Telegram</b><small>Speak in the console or send a voice note.</small></div></li>
-        <li><span class="feature-glyph" aria-hidden="true">$</span><div><b>Metered honestly</b><small>About <code>$0.0005</code> per audio-minute in the console.</small></div></li>
-        <li><span class="feature-glyph" aria-hidden="true">∞</span><div><b>Browser fallback</b><small>Free, using the browser’s own language coverage.</small></div></li>
+        <li><span class="feature-glyph glyph-meter" aria-hidden="true"><svg><use href="#icon-meter"/></svg></span><div><b>Metered honestly</b><small>About <code>$0.0005</code> per audio-minute in the console.</small></div></li>
+        <li><span class="feature-glyph glyph-browser-voice" aria-hidden="true"><svg><use href="#icon-browser-voice"/></svg></span><div><b>Browser fallback</b><small>Free, using the browser’s own language coverage.</small></div></li>
       </ul>
     </div>
   </div>
@@ -598,11 +634,11 @@
           <span class="provider-state"><i></i> ready</span>
           <p>Large · Medium · Small</p>
         </article>
-        <article class="provider-card provider-groq">
-          <span class="provider-mark" aria-hidden="true"><img src="/assets/brands/groq.png" alt="" width="64" height="64" loading="lazy" decoding="async" /></span>
-          <div class="provider-name"><small>Groq</small><h3>Llama</h3></div>
+        <article class="provider-card provider-ollama">
+          <span class="provider-mark" aria-hidden="true"><img class="ollama-logo" src="/assets/brands/ollama.svg" alt="" width="34" height="50" loading="lazy" decoding="async" /></span>
+          <div class="provider-name"><small>Local runtime</small><h3>Ollama</h3></div>
           <span class="provider-state"><i></i> ready</span>
-          <p>Llama 3.3 70B · 3.1 8B — instant</p>
+          <p>Compatible open models · private local inference</p>
         </article>
         <article class="provider-card provider-xai">
           <span class="provider-mark" aria-hidden="true"><img src="/assets/brands/xai.png" alt="" width="64" height="64" loading="lazy" decoding="async" /></span>
@@ -614,14 +650,14 @@
       <div class="surface-rail">
         <div class="surface-copy"><small>Execution surfaces</small><b>Works where the task lives.</b></div>
         <div class="surface-list">
-          <span class="surface-chip"><span class="surface-logo terminal-logo" aria-hidden="true">&gt;_</span>Local CLI</span>
+          <span class="surface-chip"><span class="surface-logo terminal-logo" aria-hidden="true"><svg><use href="#icon-terminal"/></svg></span>Local CLI</span>
           <span class="surface-chip"><span class="surface-logo" aria-hidden="true"><img src="/assets/brands/synapse.webp" alt="" width="32" height="32" loading="lazy" decoding="async" /></span>Synapse</span>
-          <span class="surface-chip"><span class="surface-logo browser-logo" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="2.5" y="3.5" width="15" height="13" rx="3"/><path d="M3 7.5h14M6 5.5h.01M8 5.5h.01"/></svg></span>Browser</span>
+          <span class="surface-chip"><span class="surface-logo browser-logo" aria-hidden="true"><svg><use href="#icon-browser"/></svg></span>Browser</span>
           <span class="surface-chip"><span class="surface-logo" aria-hidden="true"><img src="/assets/brands/telegram.png" alt="" width="32" height="32" loading="lazy" decoding="async" /></span>Telegram</span>
           <span class="surface-chip"><span class="surface-logo" aria-hidden="true"><img src="/assets/brands/xai.png" alt="" width="32" height="32" loading="lazy" decoding="async" /></span>Grok Build</span>
         </div>
       </div>
-      <p class="brand-note">Provider marks identify compatible services only; no affiliation or endorsement is implied.</p>
+      <p class="brand-note">Provider and platform marks identify compatible services only; no affiliation or endorsement is implied.</p>
     </div>
   </div>
 </section>
@@ -693,7 +729,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>What is fabius?</summary>
-        <div class="faq-a"><p>fabius is an autonomous agent layer that sits above the model. It gives Claude, GPT, Gemini, Mistral, Llama or Grok the same operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification. The selected model remains the execution engine; it follows the fabius contract from the task to the proof.</p></div>
+        <div class="faq-a"><p>fabius is an autonomous agent layer that sits above the model. It gives Claude, GPT, Gemini, Mistral, compatible local models through Ollama, or Grok the same operating brain: instructions, routing, fifteen coordinated skills, memory, safety and verification. The selected model remains the execution engine; it follows the fabius contract from the task to the proof.</p></div>
       </details>
       <details class="faq-item">
         <summary>How do I run fabius?</summary>
@@ -709,7 +745,7 @@
       </details>
       <details class="faq-item">
         <summary>Which models does it run on?</summary>
-        <div class="faq-a"><p>Every major provider — Anthropic, OpenAI, Google, Mistral, Groq and xAI — can run as the execution engine underneath fabius. Bring your own key, choose a frontier, mid or fast tier, and the same fabius brain remains in control. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude.</p></div>
+        <div class="faq-a"><p>fabius can use Anthropic, OpenAI, Google, Mistral, Groq and xAI engines, plus compatible local models through Ollama. Bring your own key or choose a local runtime; the same fabius brain remains in control. Its benchmark covers the four newest Claude models — blind-judged and objectively verified, the code executed and the facts checked — with cross-family demos on GPT, Grok, Mistral and Claude.</p></div>
       </details>
       <details class="faq-item">
         <summary>Is the brain public?</summary>

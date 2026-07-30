@@ -1,6 +1,6 @@
 # fabius — landing page
 
-Marketing site for **fabius** — one autonomous agent layer above every major model. Claude, GPT, Gemini, Mistral, Llama, and Grok supply the execution engine; fabius supplies the operating brain: instructions, routing, coordinated skills, memory, safety, and verification. The brain is a private, provenance-sealed work; its console is [synapse](https://synapse-vert-one.vercel.app).
+Marketing site for **fabius** — one autonomous agent layer above every major model. Claude, GPT, Gemini, Mistral, local models through Ollama, and Grok supply the execution engine; fabius supplies the operating brain: instructions, routing, coordinated skills, memory, safety, and verification. The brain is a private, provenance-sealed work; its console is [synapse](https://synapse-vert-one.vercel.app).
 
 - **Stack:** vanilla HTML + CSS + JS. No build step.
 - **Design:** Apple / Figma / Framer language — clean white canvas, one purple accent (`#7a3dff`), self-hosted Inter. Bug/insect identity: a custom SVG beetle carrying the squared-spiral Fabius emblem.

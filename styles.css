@@ -232,7 +232,8 @@ img{display:block;max-width:100%}
 .provider-pill b{overflow:hidden;text-overflow:ellipsis;font-size:11.5px;line-height:1.25;font-weight:620;letter-spacing:-.015em}
 .router-caption{position:relative;display:flex;align-items:center;justify-content:center;gap:9px;margin:12px 4px 1px;font:9.5px/1.35 var(--mono);letter-spacing:.035em;text-align:center;text-transform:uppercase;color:var(--faint)}
 .router-caption strong{font-weight:650;color:var(--ink-2)}.router-caption i{width:18px;height:1px;background:var(--hairline-2)}.router-caption i::after{content:"";display:block;width:4px;height:4px;margin-left:auto;border-top:1px solid var(--faint);border-right:1px solid var(--faint);transform:translateY(-1.5px) rotate(45deg)}
-.provider-anthropic{--provider:var(--tone-coral)}.provider-openai{--provider:#159b76}.provider-google{--provider:var(--tone-blue)}.provider-mistral{--provider:var(--tone-amber)}.provider-groq{--provider:#8267c9}.provider-xai{--provider:var(--ink-2)}
+.provider-anthropic{--provider:var(--tone-coral)}.provider-openai{--provider:#159b76}.provider-google{--provider:var(--tone-blue)}.provider-mistral{--provider:var(--tone-amber)}.provider-ollama{--provider:#19171f}.provider-xai{--provider:var(--ink-2)}
+.provider-ollama .provider-logo img.ollama-logo{width:17px;height:25px}
 .hero-fade{position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(to top,var(--canvas),transparent);z-index:1;pointer-events:none}
 
 /* hero swarm — living walkers */
@@ -338,6 +339,7 @@ img{display:block;max-width:100%}
 .brain-contract{margin-top:8px;padding:10px 11px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:rgba(255,255,255,.035)}
 .brain-contract>small{display:block;margin-bottom:7px;font:8px/1.3 var(--mono);letter-spacing:.075em;text-transform:uppercase;color:#8f899f}.brain-contract>div{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}.brain-contract span{padding:6px 3px;border:1px solid rgba(255,255,255,.08);border-radius:7px;background:rgba(255,255,255,.045);font:600 7.5px/1 var(--mono);letter-spacing:.025em;text-align:center;text-transform:uppercase;color:#c4bdd3}
 .brain-engines{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.brain-engines span{height:42px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.1);border-radius:11px;background:#fff;box-shadow:0 6px 16px -12px rgba(0,0,0,.7)}.brain-engines img{width:31px;height:31px;object-fit:contain;filter:none;transform:none}
+.brain-engines img.ollama-logo{width:20px;height:29px}
 .brain-output span{display:inline-flex;align-items:center;gap:8px;font:650 8.5px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#8fe1ca}.brain-output b{font:500 9px/1.3 var(--mono);color:#a9a3b8}
 .idea-foot{grid-column:1/-1;padding-top:22px;border-top:1px solid rgba(102,80,150,.13);font-size:14px;line-height:1.55;text-align:center;color:var(--faint);font-style:italic}
 
@@ -463,13 +465,13 @@ img{display:block;max-width:100%}
 .voice-result span{font:9px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:#8fcfc9}.voice-result b{font-size:12.5px;font-weight:520;color:#c8c3d8}
 .voice-features{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .voice-features li{display:flex;align-items:flex-start;gap:13px;padding:19px;border:1px solid var(--glass-edge);border-radius:20px;background:rgba(255,255,255,.65);box-shadow:0 12px 34px -30px rgba(45,24,88,.42);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-.feature-glyph{width:36px;height:36px;display:grid;place-items:center;flex:none;border-radius:11px;background:var(--tint);color:var(--primary-ink);font:650 12px/1 var(--mono)}
-.feature-glyph.brand-glyph{overflow:hidden;padding:5px;border:1px solid var(--hairline);background:#fff}
-.feature-glyph.brand-glyph img{display:block;width:100%;height:100%;object-fit:contain}
-.voice-features li:nth-child(2) .feature-glyph,.voice-features li:nth-child(6) .feature-glyph{background:var(--tone-cyan-wash);color:var(--c-teal-ink)}
-.voice-features li:nth-child(4) .feature-glyph{background:var(--tone-coral-wash);color:#b95534}
-.voice-features li:nth-child(4) .feature-glyph.brand-glyph{background:#fff}
-.voice-features li:nth-child(5) .feature-glyph{background:var(--tone-amber-wash);color:var(--c-amber-ink)}
+.feature-glyph{width:40px;height:40px;display:grid;place-items:center;flex:none;border:1px solid rgba(122,61,255,.11);border-radius:12px;background:var(--tint);color:var(--primary-ink);box-shadow:inset 0 1px 0 rgba(255,255,255,.78)}
+.feature-glyph svg{display:block;width:21px;height:21px}
+.feature-glyph.brand-glyph{overflow:hidden;padding:7px;border-color:var(--hairline);background:#fff}
+.feature-glyph.brand-glyph img{display:block;width:100%;height:100%;object-fit:contain;filter:none;transform:none}
+.feature-glyph.glyph-transcript,.feature-glyph.glyph-browser-voice{border-color:rgba(20,165,150,.13);background:var(--tone-cyan-wash);color:var(--c-teal-ink)}
+.feature-glyph.glyph-speaker{border-color:rgba(77,121,255,.13);background:var(--tone-blue-wash);color:#345fcc}
+.feature-glyph.glyph-meter{border-color:rgba(207,122,26,.13);background:var(--tone-amber-wash);color:var(--c-amber-ink)}
 .voice-features div{display:flex;flex-direction:column;gap:4px}.voice-features b{font-size:14px;font-weight:620;letter-spacing:-.02em}.voice-features small{font-size:12.5px;line-height:1.45;color:var(--muted)}.voice-features code{font-size:.9em;color:var(--primary-ink)}
 
 /* ── any tool ────────────────────────────────────────────── */
@@ -497,14 +499,15 @@ img{display:block;max-width:100%}
 .provider-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--provider) 32%,var(--hairline-2));box-shadow:var(--glass-shadow)}
 .provider-mark{width:44px;height:44px;display:grid;place-items:center;grid-row:1;border:1px solid rgba(31,27,42,.09);border-radius:14px;background:#fff;box-shadow:0 7px 17px -13px rgba(20,16,40,.62)}
 .provider-mark img{display:block;width:40px;height:40px;object-fit:contain;filter:none;transform:none}
+.provider-ollama .provider-mark img.ollama-logo{width:24px;height:35px}
 .provider-name small{display:block;margin-bottom:1px;font:9.5px/1.3 var(--mono);letter-spacing:.055em;text-transform:uppercase;color:var(--faint)}.provider-name h3{font-size:17px;letter-spacing:-.03em}
 .provider-state{display:inline-flex;align-items:center;gap:6px;justify-self:end;padding:5px 7px;border:1px solid var(--hairline);border-radius:999px;background:rgba(255,255,255,.7);font:600 8px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}.provider-state i{width:5px;height:5px;background:var(--provider);box-shadow:none}
 .provider-card p{grid-column:1/-1;margin-top:15px;padding-top:12px;border-top:1px solid var(--hairline);font-size:12.5px;line-height:1.45;color:var(--muted)}
 .surface-rail{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:24px;margin-top:12px;padding:14px 16px;border:1px solid var(--glass-line);border-radius:18px;background:rgba(255,255,255,.68)}
 .surface-copy{display:flex;flex-direction:column;gap:2px;min-width:174px}.surface-copy small{font:9px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.075em;color:var(--primary-ink)}.surface-copy b{font-size:13px;font-weight:610}
 .surface-list{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}.surface-chip{display:inline-flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid var(--hairline);border-radius:11px;background:rgba(255,255,255,.72);font-size:11.5px;font-weight:550;color:var(--ink-2)}
-.surface-logo{width:21px;height:21px;display:grid;place-items:center;flex:none;border:1px solid rgba(31,27,42,.08);border-radius:6px;background:#fff}
-.surface-logo img{display:block;width:18px;height:18px;object-fit:contain}.surface-logo.terminal-logo{border:0;background:transparent;color:var(--primary-ink);font:650 9.5px/1 var(--mono)}.surface-logo.browser-logo{border:0;background:transparent;color:var(--primary-ink)}.surface-logo.browser-logo svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.surface-logo{width:24px;height:24px;display:grid;place-items:center;flex:none;border:1px solid rgba(31,27,42,.08);border-radius:7px;background:#fff}
+.surface-logo img{display:block;width:20px;height:20px;object-fit:contain;filter:none;transform:none}.surface-logo svg{display:block;width:17px;height:17px}.surface-logo.terminal-logo,.surface-logo.browser-logo{border-color:rgba(122,61,255,.12);background:var(--tint);color:var(--primary-ink)}
 .brand-note{margin:11px 4px 0;font:9px/1.5 var(--mono);letter-spacing:.035em;color:var(--faint)}
 
 /* ── local runtime ───────────────────────────────────────── */
