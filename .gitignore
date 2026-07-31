@@ -3,3 +3,7 @@
 .vercel
 node_modules/
 .cache/
+
+# internal, non-public notes: this repo is public — draft launch/internal
+# playbooks in the private repo, never here
+LAUNCH.md
